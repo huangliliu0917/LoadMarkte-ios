@@ -15,10 +15,16 @@
 @implementation AppDelegate
 
 
+- (void)setupInit{
+    
+  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
+    [self setupInit];
+   
     return YES;
 }
 

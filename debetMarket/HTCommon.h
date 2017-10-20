@@ -17,11 +17,25 @@
 
 /**商户号*/
 #define DebetCustomerId @"4421"
-
 /**版本更新store*/
 #define AppleID  @"1215556282"
 
+#define HTDebetAppId @""
+#define HTDebetSecret @""
+
 // 1、获得RGB颜色
 #define LWColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+// 1、屏幕高度
+#define KScreenHeight  [UIScreen mainScreen].bounds.size.height
+// 1、屏幕宽度
+#define KScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define kNavigationBar_HEIGHT 64
+#define kStatusBar_Height  20
+#define KScreenWidthRatio  (KScreenWidth / 375.0)
+#define kScreenHeightRatio ((KScreenHeight-64)/603.0)
+#define kAdaptedWidth(x)  ceilf((x) * KScreenWidthRatio)
+#define kAdaptedHeight(x) ceilf((x) * kScreenHeightRatio)
+#define kAdaptedFontSize(R)  kCHINESE_SYSTEM(kAdaptedWidth(R))
+#define kCHINESE_SYSTEM(x) [UIFont systemFontOfSize:x]
 
 #endif /* HTCommon_h */

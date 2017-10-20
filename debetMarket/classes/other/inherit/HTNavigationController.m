@@ -46,6 +46,7 @@
 + (void)setupNavBarButtonItemTheme
 {
     
+      [[UINavigationBar appearance] setTranslucent:NO];
 //    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(ScreenWidth, ScreenHeight)
 //                                                         forBarMetrics:UIBarMetricsDefault];
 }
@@ -54,8 +55,9 @@
  */
 + (void)setupNavBarTheme
 {
-//    //取出appeace对象,就能改导航栏的样式了
-//    UINavigationBar * NavBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[self class]]];
+    //取出appeace对象,就能改导航栏的样式了
+    UINavigationBar * NavBar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[self class]]];
+    [NavBar setTranslucent:NO];
 //    if (IsIos8) {
 //        [NavBar setTranslucent:NO];
 //    }
@@ -66,12 +68,21 @@
 //        [NavBar setBackgroundImage:colorImage forBarMetrics:UIBarMetricsDefault];
 //
 //    }
+//    [NavBar setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+//    [NavBar setShadowImage:[[UIImage alloc] init]];
+    
+    [NavBar setShadowImage:[UIImage new]];
+    [NavBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    
     
 //    //导航栏颜色
-//    [NavBar setBarTintColor:HuoBanMallBuyNavColor];
+    [NavBar setBarTintColor:LWColor(236, 36, 43)];
 //    //导航栏按钮颜色
 //    [NavBar setTintColor:TopNavTitleViewTitleColor];
-//    [NavBar setTitleTextAttributes:@{NSForegroundColorAttributeName : TopNavTitleViewTitleColor}];
+    
+    
+    [NavBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],NSFontAttributeName:kAdaptedFontSize(22)}];
+    
     
 }
 
@@ -79,10 +90,11 @@
     [super viewDidLoad];
     id target = self.interactivePopGestureRecognizer.delegate;
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:target  action:@selector(handleNavigationTransition:)];
-    
     pan.delegate =self;
     self.interactivePopGestureRecognizer.enabled = NO;
     [self.view addGestureRecognizer:pan];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{

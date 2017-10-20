@@ -1,32 +1,40 @@
 //
-//  HTViewController.m
+//  MineViewController.m
 //  debetMarket
 //
-//  Created by lhb on 2017/10/17.
+//  Created by 罗海波 on 2017/10/20.
 //  Copyright © 2017年 HT. All rights reserved.
 //
 
-#import "HTViewController.h"
+#import "MineViewController.h"
 
-@interface HTViewController ()
+@interface MineViewController ()
 
 @end
 
-@implementation HTViewController
+@implementation MineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    delegate.currentVC = self;
     // Do any additional setup after loading the view.
 }
+
+
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    
+//    return 2;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    
+//    
+//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 /*
 #pragma mark - Navigation

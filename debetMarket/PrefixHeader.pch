@@ -19,6 +19,6 @@
 #import "HTCheckVersionTool.h"
 #import "AppDelegate.h"
 #import "MyCoreLocation.h"
-#import "NSMutableDictionary+Sign.h"
-
+#import "HTTableViewController.h"
+#import <Masonry/Masonry.h>
 #endif /* PrefixHeader_pch */

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1269311D1F998EDE00F6D414 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1269311C1F998EDE00F6D414 /* MineViewController.m */; };
+		126931201F99AB0D00F6D414 /* HomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1269311F1F99AB0D00F6D414 /* HomeTopView.m */; };
+		126931221F99AB6500F6D414 /* HomeTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 126931211F99AB6500F6D414 /* HomeTopView.xib */; };
+		126931261F99D15600F6D414 /* HotPublish.m in Sources */ = {isa = PBXBuildFile; fileRef = 126931241F99D15600F6D414 /* HotPublish.m */; };
+		126931271F99D15600F6D414 /* HotPublish.xib in Resources */ = {isa = PBXBuildFile; fileRef = 126931251F99D15600F6D414 /* HotPublish.xib */; };
 		12934B061F975B310090B36F /* Base64Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 12934B001F975B310090B36F /* Base64Util.m */; };
 		12934B071F975B310090B36F /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 12934B021F975B310090B36F /* GTMBase64.m */; };
 		12934B081F975B310090B36F /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 12934B051F975B310090B36F /* MD5Encryption.m */; };
@@ -56,8 +61,14 @@
 
 /* Begin PBXFileReference section */
 		0A20B97237A9C03DF8C2DBC1 /* Pods-debetMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-debetMarket.release.xcconfig"; path = "Pods/Target Support Files/Pods-debetMarket/Pods-debetMarket.release.xcconfig"; sourceTree = "<group>"; };
-		1230B8CC1F9755D1003F464D /* NSMutableDictionary+Sign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Sign.h"; sourceTree = "<group>"; };
-		1230B8CD1F9755D1003F464D /* NSMutableDictionary+Sign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Sign.m"; sourceTree = "<group>"; };
+		1269311B1F998EDE00F6D414 /* MineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
+		1269311C1F998EDE00F6D414 /* MineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		1269311E1F99AB0D00F6D414 /* HomeTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTopView.h; sourceTree = "<group>"; };
+		1269311F1F99AB0D00F6D414 /* HomeTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTopView.m; sourceTree = "<group>"; };
+		126931211F99AB6500F6D414 /* HomeTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTopView.xib; sourceTree = "<group>"; };
+		126931231F99D15600F6D414 /* HotPublish.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotPublish.h; sourceTree = "<group>"; };
+		126931241F99D15600F6D414 /* HotPublish.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotPublish.m; sourceTree = "<group>"; };
+		126931251F99D15600F6D414 /* HotPublish.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotPublish.xib; sourceTree = "<group>"; };
 		12934AFF1F975B310090B36F /* Base64Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Util.h; sourceTree = "<group>"; };
 		12934B001F975B310090B36F /* Base64Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Util.m; sourceTree = "<group>"; };
 		12934B011F975B310090B36F /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
@@ -152,10 +163,17 @@
 		1230B8CB1F9755C2003F464D /* categray */ = {
 			isa = PBXGroup;
 			children = (
-				1230B8CC1F9755D1003F464D /* NSMutableDictionary+Sign.h */,
-				1230B8CD1F9755D1003F464D /* NSMutableDictionary+Sign.m */,
 			);
 			path = categray;
+			sourceTree = "<group>";
+		};
+		1269311A1F998E9A00F6D414 /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				1269311B1F998EDE00F6D414 /* MineViewController.h */,
+				1269311C1F998EDE00F6D414 /* MineViewController.m */,
+			);
+			path = mine;
 			sourceTree = "<group>";
 		};
 		12934AFE1F975B310090B36F /* Encryption */ = {
@@ -317,6 +335,12 @@
 		EFEBD0A71F9748D4003F3F41 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				1269311E1F99AB0D00F6D414 /* HomeTopView.h */,
+				1269311F1F99AB0D00F6D414 /* HomeTopView.m */,
+				126931211F99AB6500F6D414 /* HomeTopView.xib */,
+				126931231F99D15600F6D414 /* HotPublish.h */,
+				126931241F99D15600F6D414 /* HotPublish.m */,
+				126931251F99D15600F6D414 /* HotPublish.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -324,6 +348,7 @@
 		EFF5C88B1F95A2CC00FEEC9B /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				1269311A1F998E9A00F6D414 /* mine */,
 				EFEBD0A31F95FFB8003F3F41 /* home */,
 				EF6C68701F95A41B00DB3871 /* other */,
 				EFF5C88C1F95A2DA00FEEC9B /* main */,
@@ -511,9 +536,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFF9EA731F9599F400E61B11 /* LaunchScreen.storyboard in Resources */,
+				126931221F99AB6500F6D414 /* HomeTopView.xib in Resources */,
 				EFF9EA701F9599F400E61B11 /* Assets.xcassets in Resources */,
 				EFF9EA6E1F9599F400E61B11 /* Main.storyboard in Resources */,
 				EFEBD0941F95F033003F3F41 /* CityData.plist in Resources */,
+				126931271F99D15600F6D414 /* HotPublish.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +723,7 @@
 				EF6C68741F95A4D300DB3871 /* HTViewController.m in Sources */,
 				EF6C687A1F95A7D600DB3871 /* HTTabBarController.m in Sources */,
 				EFEBD09E1F95F7E0003F3F41 /* MyCoreLocation.m in Sources */,
+				1269311D1F998EDE00F6D414 /* MineViewController.m in Sources */,
 				EF6C686F1F95A40500DB3871 /* HomeViewController.m in Sources */,
 				12934B071F975B310090B36F /* GTMBase64.m in Sources */,
 				EFEBD0991F95F033003F3F41 /* TLCityPickerSearchResultController.m in Sources */,
@@ -705,6 +733,8 @@
 				EFEBD0AA1F974A92003F3F41 /* HTNavigationController.m in Sources */,
 				EFEBD0951F95F033003F3F41 /* TLCity.m in Sources */,
 				EFEBD0A11F95FBEF003F3F41 /* HTCheckVersionTool.m in Sources */,
+				126931261F99D15600F6D414 /* HotPublish.m in Sources */,
+				126931201F99AB0D00F6D414 /* HomeTopView.m in Sources */,
 				EFEBD0971F95F033003F3F41 /* TLCityHeaderView.m in Sources */,
 				EFF9EA681F9599F400E61B11 /* AppDelegate.m in Sources */,
 				EFEBD07E1F95DC26003F3F41 /* HTAFHTTPSessionManager.m in Sources */,
