@@ -8,6 +8,6 @@
 
 #import "HTTableViewController.h"
 
-@interface DebetTableViewController : HTViewController
+@interface DebetTableViewController : HTTableViewController
 
 @end

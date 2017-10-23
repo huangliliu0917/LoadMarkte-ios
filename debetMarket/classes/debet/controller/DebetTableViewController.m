@@ -29,20 +29,26 @@
     
     self.navigationItem.title = @"贷款";
     self.head = [[HeadIconView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth * 0.5)];
+    self.tableView.tableHeaderView = self.head;
 //    self.head.backgroundColor = LWColor(236, 36, 43);
-    [self.view addSubview:self.head];
+    //[self.view addSubview:self.head];
     
     
-    self.content  = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.head.frame), KScreenWidth, KScreenHeight - CGRectGetMaxY(self.head.frame)) style:UITableViewStylePlain];
-    self.content.dataSource = self;
-    self.content.delegate = self;
-    self.content.estimatedRowHeight = 100;
-    self.content.rowHeight = UITableViewAutomaticDimension;
-    [self.content registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"productCell"];
-    self.content.tableFooterView = [[UIView alloc] init];
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"productCell"];
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    //.content  = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.head.frame), KScreenWidth, KScreenHeight - CGRectGetMaxY(self.head.frame)) style:UITableViewStylePlain];
+    //self.content.dataSource = self;
+    //self.content.delegate = self;
+    //self.content.estimatedRowHeight = 100;
+    //self.content.rowHeight = UITableViewAutomaticDimension;
+    //[self.content registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"productCell"];
+    //self.content.tableFooterView = [[UIView alloc] init];
 //    self.content.contentInset = UIEdgeInsetsMake(kAdaptedHeight(15), 0, 0, 0);
-    self.content.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:self.content];
+    //self.content.backgroundColor = [UIColor lightGrayColor];
+    //[self.view addSubview:self.content];
 }
 
 
