@@ -20,5 +20,9 @@
 #import "AppDelegate.h"
 #import "MyCoreLocation.h"
 #import "HTTableViewController.h"
+#import "HotPublish.h"
+#import "MenuControlView.h"
+#import "HomeListModel.h"
 #import <Masonry/Masonry.h>
+#import "CenterViewCell.h"
 #endif /* PrefixHeader_pch */
