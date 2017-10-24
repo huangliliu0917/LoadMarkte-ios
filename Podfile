@@ -8,7 +8,8 @@ target 'debetMarket' do
   # Pods for debetMarket
   pod 'AFNetworking', '~> 3.0'
   pod 'SDWebImage'
-  pod 'MWPhotoBrowser'
+  pod 'MBProgressHUD'
+  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   pod 'IQKeyboardManager'
   pod 'BlocksKit'
   pod 'YYCache'

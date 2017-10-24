@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		12000C961F9D87D800ECE3AE /* CenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12000C951F9D87D800ECE3AE /* CenterViewCell.m */; };
 		12000C991F9D882D00ECE3AE /* HomeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12000C981F9D882D00ECE3AE /* HomeListModel.m */; };
+		12000CA01F9DD62600ECE3AE /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12000C9F1F9DD62600ECE3AE /* LoginView.m */; };
+		12000CA51F9DD9FB00ECE3AE /* BackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12000CA41F9DD9FB00ECE3AE /* BackView.m */; };
 		1208DCD21F9AEA3800524BB4 /* NewProductTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1208DCD11F9AEA3800524BB4 /* NewProductTitle.m */; };
 		1208DCD71F9AF79F00524BB4 /* FourFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1208DCD61F9AF79F00524BB4 /* FourFormView.m */; };
 		1208DCDB1F9AF89600524BB4 /* DebetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1208DCDA1F9AF89600524BB4 /* DebetTableViewController.m */; };
@@ -17,6 +19,7 @@
 		1208DCEF1F9B0BEA00524BB4 /* ContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1208DCED1F9B0BEA00524BB4 /* ContentTableViewCell.m */; };
 		1208DCF01F9B0BEA00524BB4 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1208DCEE1F9B0BEA00524BB4 /* ContentTableViewCell.xib */; };
 		1208DCF31F9B0FD500524BB4 /* PushWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1208DCF11F9B0FD500524BB4 /* PushWebViewController.m */; };
+		124BBB611F9F1788007CEAF8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 124BBB601F9F1788007CEAF8 /* LoginViewController.m */; };
 		12645F851F9B12DD00E758BD /* ADView.m in Sources */ = {isa = PBXBuildFile; fileRef = 12645F831F9B12DD00E758BD /* ADView.m */; };
 		1269311D1F998EDE00F6D414 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1269311C1F998EDE00F6D414 /* MineViewController.m */; };
 		126931201F99AB0D00F6D414 /* HomeTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1269311F1F99AB0D00F6D414 /* HomeTopView.m */; };
@@ -82,6 +85,10 @@
 		12000C951F9D87D800ECE3AE /* CenterViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenterViewCell.m; sourceTree = "<group>"; };
 		12000C971F9D882D00ECE3AE /* HomeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeListModel.h; sourceTree = "<group>"; };
 		12000C981F9D882D00ECE3AE /* HomeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeListModel.m; sourceTree = "<group>"; };
+		12000C9E1F9DD62600ECE3AE /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		12000C9F1F9DD62600ECE3AE /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		12000CA31F9DD9FB00ECE3AE /* BackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackView.h; sourceTree = "<group>"; };
+		12000CA41F9DD9FB00ECE3AE /* BackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackView.m; sourceTree = "<group>"; };
 		1208DCD01F9AEA3800524BB4 /* NewProductTitle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewProductTitle.h; sourceTree = "<group>"; };
 		1208DCD11F9AEA3800524BB4 /* NewProductTitle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewProductTitle.m; sourceTree = "<group>"; };
 		1208DCD51F9AF79F00524BB4 /* FourFormView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourFormView.h; sourceTree = "<group>"; };
@@ -97,6 +104,8 @@
 		1208DCEE1F9B0BEA00524BB4 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
 		1208DCF11F9B0FD500524BB4 /* PushWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushWebViewController.m; sourceTree = "<group>"; };
 		1208DCF21F9B0FD500524BB4 /* PushWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushWebViewController.h; sourceTree = "<group>"; };
+		124BBB5F1F9F1788007CEAF8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		124BBB601F9F1788007CEAF8 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		12645F831F9B12DD00E758BD /* ADView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADView.m; sourceTree = "<group>"; };
 		12645F841F9B12DD00E758BD /* ADView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADView.h; sourceTree = "<group>"; };
 		1269311B1F998EDE00F6D414 /* MineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
@@ -209,6 +218,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12000C9D1F9DD5E000ECE3AE /* view */ = {
+			isa = PBXGroup;
+			children = (
+				12000C9E1F9DD62600ECE3AE /* LoginView.h */,
+				12000C9F1F9DD62600ECE3AE /* LoginView.m */,
+				12000CA31F9DD9FB00ECE3AE /* BackView.h */,
+				12000CA41F9DD9FB00ECE3AE /* BackView.m */,
+				124BBB5F1F9F1788007CEAF8 /* LoginViewController.h */,
+				124BBB601F9F1788007CEAF8 /* LoginViewController.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		1208DCD81F9AF85300524BB4 /* debet */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +282,7 @@
 		1269311A1F998E9A00F6D414 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				12000C9D1F9DD5E000ECE3AE /* view */,
 				1269311B1F998EDE00F6D414 /* MineViewController.h */,
 				1269311C1F998EDE00F6D414 /* MineViewController.m */,
 			);
@@ -750,7 +773,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-debetMarket/Pods-debetMarket-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				$PODS_CONFIGURATION_BUILD_DIR/MWPhotoBrowser/MWPhotoBrowser.bundle,
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -855,16 +878,19 @@
 				EFEBD0951F95F033003F3F41 /* TLCity.m in Sources */,
 				1269312A1F99DF2300F6D414 /* CircleBannerView.m in Sources */,
 				1208DCE31F9B019D00524BB4 /* DebetTableViewCell.m in Sources */,
+				124BBB611F9F1788007CEAF8 /* LoginViewController.m in Sources */,
 				12000C991F9D882D00ECE3AE /* HomeListModel.m in Sources */,
 				EFEBD0A11F95FBEF003F3F41 /* HTCheckVersionTool.m in Sources */,
 				126931261F99D15600F6D414 /* HotPublish.m in Sources */,
 				1208DCD71F9AF79F00524BB4 /* FourFormView.m in Sources */,
 				12000C961F9D87D800ECE3AE /* CenterViewCell.m in Sources */,
 				126931201F99AB0D00F6D414 /* HomeTopView.m in Sources */,
+				12000CA51F9DD9FB00ECE3AE /* BackView.m in Sources */,
 				1208DCF31F9B0FD500524BB4 /* PushWebViewController.m in Sources */,
 				EFEBD0971F95F033003F3F41 /* TLCityHeaderView.m in Sources */,
 				126931391F99F1EF00F6D414 /* NewProductTableViewCell.m in Sources */,
 				126931351F99EE5800F6D414 /* ListTableViewCell.m in Sources */,
+				12000CA01F9DD62600ECE3AE /* LoginView.m in Sources */,
 				1208DCEF1F9B0BEA00524BB4 /* ContentTableViewCell.m in Sources */,
 				EFF9EA681F9599F400E61B11 /* AppDelegate.m in Sources */,
 				EFEBD07E1F95DC26003F3F41 /* HTAFHTTPSessionManager.m in Sources */,

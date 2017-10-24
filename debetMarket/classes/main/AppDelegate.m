@@ -7,17 +7,27 @@
 //
 
 #import "AppDelegate.h"
-
+#import <IQKeyboardManager.h>
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
+- (void)setKeyboardManager
+{
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = YES;
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setMinimumDismissTimeInterval:1.0]; 
+}
 
 - (void)setupInit{
-    
   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+  [self setKeyboardManager];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

@@ -38,4 +38,12 @@
 #define kAdaptedFontSize(R)  kCHINESE_SYSTEM(kAdaptedWidth(R))
 #define kCHINESE_SYSTEM(x) [UIFont systemFontOfSize:x]
 
+
+
+
+
+//2、获取验证码接口
+#define verificationInterface @""
+//2、手机登陆接口
+#define LoginInterface @""
 #endif /* HTCommon_h */

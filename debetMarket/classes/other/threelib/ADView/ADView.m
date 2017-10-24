@@ -7,7 +7,7 @@
 //
 
 #import "ADView.h"
-#import "SDWebImageManager.h"
+#import <SDWebImagePrefetcher.h>
 @interface ADView()
 
 @property (nonatomic, strong) UIImageView *adView;
@@ -206,9 +206,7 @@
 {
     
     
-    
-    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:imageUrl] options:SDWebImageRetryFailed progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-        
+    [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:imageUrl] options:SDWebImageRetryFailed progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
         if (!error) {
             NSString *filePath = [self getFilePathWithImageName:imageName];
             if ([UIImagePNGRepresentation(image) writeToFile:filePath atomically:YES]) {// 保存成功
@@ -224,11 +222,8 @@
                 NSLog(@"保存失败");
             }
         }
-        
-
-        
-        
     }];
+
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 //        
 //        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];

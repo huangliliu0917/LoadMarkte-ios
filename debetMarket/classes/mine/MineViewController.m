@@ -7,9 +7,14 @@
 //
 
 #import "MineViewController.h"
+#import "BackView.h"
+#include <UIView+BlocksKit.h>
+#import "LoginViewController.h"
 
 @interface MineViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *loginS;
+@property (strong, nonatomic)  BackView * backBack;
 @end
 
 @implementation MineViewController
@@ -17,6 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"个人中心";
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
+    
+    self.loginS.imageView.backgroundColor = [UIColor redColor];
 }
 
 
@@ -36,14 +46,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    LWLog(@"%@", indexPath);
+    if (indexPath.section == 0) {
+        
+        
+        
+        LoginViewController * alet = [[LoginViewController alloc] init];
+        [self.view.window addSubview:alet.view];
+        
+//        BackView * back = [[BackView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+//        _backBack = back;
+//        [back bk_whenTapped:^{
+//            [back removeFromSuperview];
+//        }];
+//
+////        [self.view addSubview:back];
+//        [[UIApplication sharedApplication].keyWindow addSubview:back];
+    }
 }
-*/
 
 @end

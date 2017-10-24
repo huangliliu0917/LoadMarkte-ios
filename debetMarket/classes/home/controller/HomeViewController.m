@@ -47,6 +47,8 @@
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
+    
+    
 }
 
 
