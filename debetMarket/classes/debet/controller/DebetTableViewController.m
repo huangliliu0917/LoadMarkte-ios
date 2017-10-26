@@ -9,7 +9,7 @@
 #import "DebetTableViewController.h"
 #import "HeadIconView.h"
 #import "ContentTableViewCell.h"
-
+#import "DebetDetailViewController.h"
 
 @interface DebetTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -102,6 +102,12 @@
 }
 
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    DebetDetailViewController * debetDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DebetDetailViewController"];
+    [self.navigationController pushViewController:debetDetailViewController animated:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

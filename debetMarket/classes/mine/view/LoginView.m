@@ -150,6 +150,7 @@
     [_conformlBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [_conformlBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_conformlBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_conformlBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [_conformlBtn sizeToFit];
     _conformlBtn.tag = 101;
     [self addSubview:_conformlBtn];
@@ -164,8 +165,24 @@
 
 
 - (void)login{
-    
-    [HTNetworkingTool  HTNetworkingToolPost:<#(NSString *)#> parame:<#(NSMutableDictionary *)#> success:<#^(id json)success#> failure:<#^(NSError *error)failure#>]
+    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+#warning need parame
+    parame[@"mobile"] = self.phone.text;
+    parame[@"verifyCode"] = self.code.text;
+    [HTNetworkingTool  HTNetworkingToolPost:LoginInterface parame:parame success:^(id json) {
+        LWLog(@"%@",json);
+        if([[json objectForKey:@"resultCode"] intValue]){
+            
+            UserInfo * userInfo = [UserInfo mj_objectWithKeyValues:[json objectForKey:@"data"]];
+            [NSKeyedArchiver archiveRootObject:userInfo toFile:@"userInfo"];
+            [SVProgressHUD showSuccessWithStatus:[json objectForKey:@"resultMsg"]];
+        }else{
+            [SVProgressHUD showErrorWithStatus:[json objectForKey:@"resultMsg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",[error description]);
+    }];
 }
 - (void)buttonClick:(UIButton *)btn{
     
@@ -173,7 +190,6 @@
         if (!(self.code.text.length > 0) || !(self.phone.text.length > 0)) {
             [SVProgressHUD showInfoWithStatus:@"请入手机号或验证码"];
         }else{
-            
             
             if ([self.delegate respondsToSelector:@selector(LoginViewClick:andPhone:andVerCode:)]) {
                 [self.delegate LoginViewClick:1 andPhone:self.phone.text andVerCode:self.code.text];
@@ -194,6 +210,18 @@
     NSString *regex = @"^(1)\\d{10}$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:phoneNumber];
+}
+
+
+- (void)getVerification{
+    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+#warning need parame
+    parame[@"phone"] = self.phone.text;
+    [HTNetworkingTool  HTNetworkingToolPost:[NSString stringWithFormat:@"%@/%@",MainIpAddress,verificationInterface] parame:parame success:^(id json) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)timeBack:(UITapGestureRecognizer *)tap{

@@ -14,9 +14,18 @@
 
 @implementation HTTabBarController
 
++ (void)initialize{
+    [super initialize];
+    
+    UITabBarItem  * item = [UITabBarItem appearanceWhenContainedInInstancesOfClasses:@[[self class]]];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName:LWColor(236, 36, 43)} forState:UIControlStateSelected];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

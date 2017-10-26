@@ -15,6 +15,9 @@
 #define LWLog(...)
 #endif
 
+
+#define MainIpAddress @"http://192.168.1.45:8080/rest/api/"
+
 /**商户号*/
 #define DebetCustomerId @"4421"
 /**版本更新store*/
@@ -45,5 +48,5 @@
 //2、获取验证码接口
 #define verificationInterface @""
 //2、手机登陆接口
-#define LoginInterface @""
+#define LoginInterface @"user/login"
 #endif /* HTCommon_h */

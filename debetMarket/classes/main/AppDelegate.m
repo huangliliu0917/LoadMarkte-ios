@@ -34,6 +34,12 @@
     // Override point for customization after application launch.
     
     [self setupInit];
+    
+//    [HTNetworkingTool HTNetworkingToolPost:@"init" parame:nil success:^(id json) {
+//        LWLog(@"%@",[json description]);
+//    } failure:^(NSError *error) {
+//       LWLog(@"%@",[error description]);
+//    }];
    
     return YES;
 }

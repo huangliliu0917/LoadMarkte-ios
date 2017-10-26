@@ -10,6 +10,10 @@
 
 @interface HTNetworkingTool : NSObject
 
+
+//+ (instancetype)HTNetworkingShare;
+
+
 /*账户网络请求Get*/
 + (void)HTNetworkingToolGet:(NSString *)urlStr parame:(NSMutableDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
 
