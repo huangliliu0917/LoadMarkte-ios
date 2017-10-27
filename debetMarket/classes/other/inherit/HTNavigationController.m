@@ -75,7 +75,7 @@
 //    [NavBar setTintColor:TopNavTitleViewTitleColor];
     
     
-    [NavBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],NSFontAttributeName:kAdaptedFontSize(22)}];
+    [NavBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],NSFontAttributeName:kAdaptedFontSize(20)}];
     
     
 }
@@ -262,27 +262,20 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (self.viewControllers.count>0) {
-        
         //隐藏导航栏
         viewController.hidesBottomBarWhenPushed = YES;
-//
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [button setTitle:@"返回" forState:UIControlStateNormal];
-//        [button setImage:[UIImage imageNamed:@"main_title_left_back"] forState:UIControlStateNormal];
-////        [button setImage:[UIImage imageNamed:@"en2"] forState:UIControlStateHighlighted];
-////        button.size = CGSizeMake(80, 30);
-//        [button sizeToFit];
-//        // 让按钮内部的所有内容左对齐
-//        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//        // 让按钮的内容往左边偏移10
-//        button.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-        
-        
-      
-        //
-        //        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_more" hightIcon:@"navigationbar_more_highlighted" target:self action:@selector(more)];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:@"返回" forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"main_title_left_back"] forState:UIControlStateNormal];
+        [button sizeToFit];
+        button.titleLabel.font = kAdaptedFontSize(18);
+        // 让按钮内部的所有内容左对齐
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        // 让按钮的内容往左边偏移10
+        button.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];;
     }
-    
     [super pushViewController:viewController animated:YES];
 }
 

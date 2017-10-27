@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+
 @interface ContentView : UIView
 
 
@@ -15,5 +18,6 @@
  *  数据模型
  **/
 @property(nonatomic,strong) HomeListModel * homeListData;
+
 
 @end

@@ -7,12 +7,17 @@
 //
 
 #import "HomeTopView.h"
-
+#import <UIView+BlocksKit.h>
 @interface HomeTopView ()
 
+
+@property (weak, nonatomic) IBOutlet UIView *firstView;
+
 @property (weak, nonatomic) IBOutlet UILabel *firstLable;
+@property (weak, nonatomic) IBOutlet UIView *secondView;
 
 @property (weak, nonatomic) IBOutlet UILabel *secondLable;
+@property (weak, nonatomic) IBOutlet UIView *thirdView;
 
 @property (weak, nonatomic) IBOutlet UILabel *thirdLable;
 
@@ -26,6 +31,27 @@
     self.firstLable.font = kAdaptedFontSize(15);
     self.secondLable.font = kAdaptedFontSize(15);
     self.thirdLable.font = kAdaptedFontSize(15);
+    
+    
+    self.firstView.userInteractionEnabled = YES;
+    
+    [self.firstView bk_whenTapped:^{
+        if ([self.delegate respondsToSelector:@selector(HomeTopView:)]) {
+            [self.delegate HomeTopView:0];
+        }
+    }];
+    self.secondView.userInteractionEnabled = YES;
+    [self.secondView bk_whenTapped:^{
+        if ([self.delegate respondsToSelector:@selector(HomeTopView:)]) {
+            [self.delegate HomeTopView:1];
+        }
+    }];
+    self.thirdView.userInteractionEnabled = YES;
+    [self.thirdView bk_whenTapped:^{
+        if ([self.delegate respondsToSelector:@selector(HomeTopView:)]) {
+            [self.delegate HomeTopView:2];
+        }
+    }];
 }
 
 + (instancetype)HomeTopViewFromXib{

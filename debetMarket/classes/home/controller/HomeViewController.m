@@ -12,7 +12,7 @@
 #import "ContentView.h"
 
 
-@interface HomeViewController ()
+@interface HomeViewController ()<HomeTopViewDelegate>
 
 @property(nonatomic,strong) HomeTopView * homeTopView;
 @property(nonatomic,strong) HotPublish * hotPublish;
@@ -25,14 +25,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupInit];
+    
+    
+
 
 }
 
+- (void)HomeTopView:(int)type{
+    
+    PushWebViewController *vc = [[PushWebViewController alloc] init];
+    vc.funUrl = @"https://www.51nbapi.com/h5/login.html";
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)setupInit{
     self.navigationItem.title = @"贷款超市";
     
     HomeTopView * homeTopView = [HomeTopView HomeTopViewFromXib];
+    homeTopView.delegate = self;
     homeTopView.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(170));
     self.homeTopView = homeTopView;
     [self.view addSubview:homeTopView];

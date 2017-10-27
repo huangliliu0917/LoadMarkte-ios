@@ -16,6 +16,7 @@ target 'debetMarket' do
   pod 'UMengAnalytics-NO-IDFA'
   pod 'Masonry'
   pod 'MJExtension'
+  pod 'MJRefresh'
   target 'debetMarketTests' do
     inherit! :search_paths
     # Pods for testing

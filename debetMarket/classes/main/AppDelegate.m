@@ -35,6 +35,8 @@
     
     [self setupInit];
     
+ 
+    
 //    [HTNetworkingTool HTNetworkingToolPost:@"init" parame:nil success:^(id json) {
 //        LWLog(@"%@",[json description]);
 //    } failure:^(NSError *error) {

@@ -27,6 +27,16 @@
     [super viewDidLoad];
  
     
+    
+    [HTNetworkingTool HTNetworkingToolPost:@"project/category" parame:nil success:^(id json) {
+        
+        LWLog(@"%@",json);
+    } failure:^(NSError *error) {
+        LWLog(@"%@",[error description]);
+    }];
+    
+    
+    
     self.navigationItem.title = @"贷款";
     self.head = [[HeadIconView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth * 0.5)];
     self.tableView.tableHeaderView = self.head;

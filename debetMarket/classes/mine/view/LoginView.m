@@ -172,9 +172,9 @@
     [HTNetworkingTool  HTNetworkingToolPost:LoginInterface parame:parame success:^(id json) {
         LWLog(@"%@",json);
         if([[json objectForKey:@"resultCode"] intValue]){
-            
             UserInfo * userInfo = [UserInfo mj_objectWithKeyValues:[json objectForKey:@"data"]];
-            [NSKeyedArchiver archiveRootObject:userInfo toFile:@"userInfo"];
+            [NSKeyedArchiver archiveRootObject:userInfo toFile:KeyedArchive(@"userInfo")];
+            UserInfo * unUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
             [SVProgressHUD showSuccessWithStatus:[json objectForKey:@"resultMsg"]];
         }else{
             [SVProgressHUD showErrorWithStatus:[json objectForKey:@"resultMsg"]];

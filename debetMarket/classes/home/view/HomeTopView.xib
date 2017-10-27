@@ -117,8 +117,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="firstLable" destination="vJE-Lu-Vbp" id="G49-86-qbH"/>
+                <outlet property="firstView" destination="eKN-TD-4kc" id="Pr5-ta-VwQ"/>
                 <outlet property="secondLable" destination="rRy-Q0-g7D" id="Qzc-sT-y3L"/>
+                <outlet property="secondView" destination="TeZ-AZ-abw" id="b3a-6M-mQL"/>
                 <outlet property="thirdLable" destination="P3J-2k-3if" id="tyh-Or-XJt"/>
+                <outlet property="thirdView" destination="JA6-Ik-8FQ" id="OZx-r2-2On"/>
             </connections>
             <point key="canvasLocation" x="-22" y="-198"/>
         </view>

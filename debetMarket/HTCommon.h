@@ -16,7 +16,7 @@
 #endif
 
 
-#define MainIpAddress @"http://192.168.1.45:8080/rest/api/"
+#define MainIpAddress @"192.168.1.11:8080/rest/api/"
 
 /**商户号*/
 #define DebetCustomerId @"4421"
@@ -41,6 +41,7 @@
 #define kAdaptedFontSize(R)  kCHINESE_SYSTEM(kAdaptedWidth(R))
 #define kCHINESE_SYSTEM(x) [UIFont systemFontOfSize:x]
 
+#define KeyedArchive(s) ([[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:(s)])
 
 
 
