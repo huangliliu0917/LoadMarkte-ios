@@ -19,19 +19,11 @@
 @property(nonatomic,strong) ContentView * contenView;
 
 
-@property (weak, nonatomic) IBOutlet HomeTopView *homeTopViews;
+/**热门列表*/
+@property(nonatomic,strong) NSMutableArray * hotProjectList;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeTopHeight;
-
-
-@property (weak, nonatomic) IBOutlet ContentView *homeContent;
-
-
-///**热门列表*/
-//@property(nonatomic,strong) NSMutableArray * hotProjectList;
-//
-///**最新产品*/
-//@property(nonatomic,strong) NSMutableArray * newProjectList;
+/**最新产品*/
+@property(nonatomic,strong) NSMutableArray * newProjectList;
 
 @end
 
@@ -39,19 +31,19 @@
 
 
 
-//- (NSMutableArray *)hotProjectList{
-//    if (_hotProjectList == nil) {
-//        _hotProjectList = [NSMutableArray array];
-//    }
-//    return _hotProjectList;
-//}
-//
-//- (NSMutableArray *)newProjectList{
-//    if (_newProjectList == nil) {
-//        _newProjectList = [NSMutableArray array];
-//    }
-//    return _newProjectList;
-//}
+- (NSMutableArray *)hotProjectList{
+    if (_hotProjectList == nil) {
+        _hotProjectList = [NSMutableArray array];
+    }
+    return _hotProjectList;
+}
+
+- (NSMutableArray *)newProjectList{
+    if (_newProjectList == nil) {
+        _newProjectList = [NSMutableArray array];
+    }
+    return _newProjectList;
+}
 
 
 - (void)viewDidLoad {
@@ -88,27 +80,30 @@
     self.navigationItem.title = @"贷款超市";
     
     
-    self.homeTopHeight.constant = kAdaptedHeight(170);
-    self.homeTopView.delegate = self;
+//    self.homeTopHeight.constant = kAdaptedHeight(170);
+//    self.homeTopView.delegate = self;
     
-//    HomeTopView * homeTopView = [HomeTopView HomeTopViewFromXib];
-//    homeTopView.delegate = self;
-//    homeTopView.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(170));
-//    self.homeTopView = homeTopView;
-//    [self.view addSubview:homeTopView];
+    HomeTopView * homeTopView = [HomeTopView HomeTopViewFromXib];
+    homeTopView.delegate = self;
+    homeTopView.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(170));
+    self.homeTopView = homeTopView;
+    [self.view addSubview:homeTopView];
 //
-//    ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectMake(0, 170, KScreenWidth, KScreenHeight - )];
-////    contenView.hotProjectList = self.hotProjectList;
-////    contenView.NewListS = self.newProjectList;
-//    self.contenView = contenView;
-//    [self.view addSubview:contenView];
-//
-//    [self.contenView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.homeTopView.mas_bottom);
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.bottom.equalTo(self.view.mas_bottom);
-//    }];
+    
+    
+    
+    ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(homeTopView.frame), KScreenWidth, KScreenHeight - 64)];
+//    contenView.hotProjectList = self.hotProjectList;
+//    contenView.NewListS = self.newProjectList;
+    self.contenView = contenView;
+    [self.view addSubview:contenView];
+
+    [self.contenView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.homeTopView.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
     
     
 }
