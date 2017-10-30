@@ -16,7 +16,7 @@
 #endif
 
 
-#define MainIpAddress @"192.168.1.11:8080/rest/api/"
+#define MainIpAddress @"http://192.168.1.36:8080/rest/api/"
 
 /**商户号*/
 #define DebetCustomerId @"4421"

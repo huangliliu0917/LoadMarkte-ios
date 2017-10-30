@@ -43,6 +43,7 @@
     NSString * url = [NSString stringWithFormat:@"%@%@",MainIpAddress,urlStr];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    [manager.securityPolicy setAllowInvalidCertificates:YES];
 //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/json",@"text/html",@"application/json", @"text/plain", nil];
     manager.requestSerializer.timeoutInterval = 30;

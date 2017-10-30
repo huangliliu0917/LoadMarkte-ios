@@ -22,6 +22,8 @@
 		1208DCF01F9B0BEA00524BB4 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1208DCEE1F9B0BEA00524BB4 /* ContentTableViewCell.xib */; };
 		1208DCF31F9B0FD500524BB4 /* PushWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1208DCF11F9B0FD500524BB4 /* PushWebViewController.m */; };
 		1217F2781FA0381A001FCB27 /* DebetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2771FA0381A001FCB27 /* DebetDetailViewController.m */; };
+		122B797F1FA6D32A0023FDA2 /* FourListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 122B797D1FA6D32A0023FDA2 /* FourListTableViewCell.m */; };
+		122B79831FA702CC0023FDA2 /* HotListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 122B79821FA702CC0023FDA2 /* HotListView.m */; };
 		1230325F1FA2D7E000412BD5 /* blankpage_button_reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 123032561FA2D7E000412BD5 /* blankpage_button_reload@2x.png */; };
 		123032601FA2D7E000412BD5 /* UIView+EaseBlankPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 123032581FA2D7E000412BD5 /* UIView+EaseBlankPage.m */; };
 		123032611FA2D7E000412BD5 /* UIView+LoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230325A1FA2D7E000412BD5 /* UIView+LoadView.m */; };
@@ -123,6 +125,10 @@
 		1208DCF21F9B0FD500524BB4 /* PushWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushWebViewController.h; sourceTree = "<group>"; };
 		1217F2761FA0381A001FCB27 /* DebetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebetDetailViewController.h; sourceTree = "<group>"; };
 		1217F2771FA0381A001FCB27 /* DebetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebetDetailViewController.m; sourceTree = "<group>"; };
+		122B797C1FA6D32A0023FDA2 /* FourListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourListTableViewCell.h; sourceTree = "<group>"; };
+		122B797D1FA6D32A0023FDA2 /* FourListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FourListTableViewCell.m; sourceTree = "<group>"; };
+		122B79811FA702CC0023FDA2 /* HotListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotListView.h; sourceTree = "<group>"; };
+		122B79821FA702CC0023FDA2 /* HotListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotListView.m; sourceTree = "<group>"; };
 		123032561FA2D7E000412BD5 /* blankpage_button_reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blankpage_button_reload@2x.png"; sourceTree = "<group>"; };
 		123032571FA2D7E000412BD5 /* UIView+EaseBlankPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EaseBlankPage.h"; sourceTree = "<group>"; };
 		123032581FA2D7E000412BD5 /* UIView+EaseBlankPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EaseBlankPage.m"; sourceTree = "<group>"; };
@@ -310,6 +316,17 @@
 				1208DCEE1F9B0BEA00524BB4 /* ContentTableViewCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		122B79761FA6D03D0023FDA2 /* four */ = {
+			isa = PBXGroup;
+			children = (
+				122B797C1FA6D32A0023FDA2 /* FourListTableViewCell.h */,
+				122B797D1FA6D32A0023FDA2 /* FourListTableViewCell.m */,
+				122B79811FA702CC0023FDA2 /* HotListView.h */,
+				122B79821FA702CC0023FDA2 /* HotListView.m */,
+			);
+			path = four;
 			sourceTree = "<group>";
 		};
 		123032551FA2D7E000412BD5 /* EaseBlankPage */ = {
@@ -537,6 +554,7 @@
 		EFEBD0A71F9748D4003F3F41 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				122B79761FA6D03D0023FDA2 /* four */,
 				126931281F99DF2300F6D414 /* CircleBannerView.h */,
 				126931291F99DF2300F6D414 /* CircleBannerView.m */,
 				1269311E1F99AB0D00F6D414 /* HomeTopView.h */,
@@ -861,6 +879,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-debetMarket/Pods-debetMarket-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -948,6 +967,7 @@
 				12934B081F975B310090B36F /* MD5Encryption.m in Sources */,
 				12645F851F9B12DD00E758BD /* ADView.m in Sources */,
 				120440361FA082DD006EE6B0 /* BannerInfo.m in Sources */,
+				122B79831FA702CC0023FDA2 /* HotListView.m in Sources */,
 				EFEBD0981F95F033003F3F41 /* TLCityPickerController.m in Sources */,
 				EF6C68741F95A4D300DB3871 /* HTViewController.m in Sources */,
 				120440391FA0835B006EE6B0 /* UserInfo.m in Sources */,
@@ -976,6 +996,7 @@
 				12000C991F9D882D00ECE3AE /* HomeListModel.m in Sources */,
 				123032601FA2D7E000412BD5 /* UIView+EaseBlankPage.m in Sources */,
 				EFEBD0A11F95FBEF003F3F41 /* HTCheckVersionTool.m in Sources */,
+				122B797F1FA6D32A0023FDA2 /* FourListTableViewCell.m in Sources */,
 				126931261F99D15600F6D414 /* HotPublish.m in Sources */,
 				1208DCD71F9AF79F00524BB4 /* FourFormView.m in Sources */,
 				12000C961F9D87D800ECE3AE /* CenterViewCell.m in Sources */,
@@ -1158,12 +1179,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R246R3B5H;
+				DEVELOPMENT_TEAM = 96GEC3X62W;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/debetMarket/PrefixHeader.pch";
 				INFOPLIST_FILE = debetMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hutu.kaiermete.bameng;
+				PRODUCT_BUNDLE_IDENTIFIER = xz.XingZhang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1175,12 +1196,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R246R3B5H;
+				DEVELOPMENT_TEAM = 96GEC3X62W;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/debetMarket/PrefixHeader.pch";
 				INFOPLIST_FILE = debetMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hutu.kaiermete.bameng;
+				PRODUCT_BUNDLE_IDENTIFIER = xz.XingZhang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

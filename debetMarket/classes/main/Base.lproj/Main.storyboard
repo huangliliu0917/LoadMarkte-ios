@@ -925,14 +925,41 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZx-PO-F2h" customClass="HomeTopView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="144"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="144" id="I4a-5I-HWE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peq-7K-Xhw" customClass="ContentView">
+                                <rect key="frame" x="0.0" y="208" width="375" height="410"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.6459159001" blue="0.87561781900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="peq-7K-Xhw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1dk-vd-0ZM"/>
+                            <constraint firstItem="peq-7K-Xhw" firstAttribute="top" secondItem="zZx-PO-F2h" secondAttribute="bottom" id="CwU-oq-GBn"/>
+                            <constraint firstItem="zZx-PO-F2h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NaC-ds-ECv"/>
+                            <constraint firstItem="zZx-PO-F2h" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gPg-FM-hJJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="peq-7K-Xhw" secondAttribute="trailing" id="iA1-Z7-giR"/>
+                            <constraint firstItem="zZx-PO-F2h" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="o8X-to-cqL"/>
+                            <constraint firstItem="peq-7K-Xhw" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="wOP-9I-2fO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ofh-xF-Qa7"/>
+                    <connections>
+                        <outlet property="homeContent" destination="peq-7K-Xhw" id="ne0-of-cVZ"/>
+                        <outlet property="homeTopHeight" destination="I4a-5I-HWE" id="tVV-KY-szE"/>
+                        <outlet property="homeTopViews" destination="zZx-PO-F2h" id="b9c-3u-8xW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1334" y="-1917"/>
+            <point key="canvasLocation" x="1333.5999999999999" y="-1917.3913043478262"/>
         </scene>
     </scenes>
     <resources>

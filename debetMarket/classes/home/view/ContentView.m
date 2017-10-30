@@ -23,6 +23,8 @@
     
     if (self = [super initWithFrame:frame]) {
         
+        
+        self.backgroundColor = [UIColor orangeColor];
         [self initSetUp];
     }
     
@@ -32,37 +34,45 @@
 
 - (void)initSetUp{
     
+    ;
+    NSLog(@"%@",NSStringFromCGRect(self.frame));
+//    UITableView * tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStyleGrouped];
+    
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView = tableView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.backgroundColor = [UIColor redColor];
+    
     self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
     [self addSubview:tableView];
-    //[self.tableView registerClass:[ContentView class] forCellReuseIdentifier:@"xx"];
-   // [self.tableView registerClass:[ListTableViewCell class] forCellReuseIdentifier:@"ss"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"FourListTableViewCell" bundle:nil] forCellReuseIdentifier:@"FourListTableViewCell"];
+//    [self.tableView registerClass:[ListTableViewCell class] forCellReuseIdentifier:@"ss"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.mas_top);
-        make.bottom.equalTo(self.mas_bottom);
+        
+        make.edges.equalTo(self);
+//        make.left.equalTo(self.mas_left);
+//        make.right.equalTo(self.mas_right);
+//        make.top.equalTo(self.mas_top);
+//        make.bottom.equalTo(self.mas_bottom);
     }];
 }
 
 
 
-- (void)setHomeListData:(HomeListModel *)homeListData{
-    _homeListData = homeListData;
+- (void)ContentViewSetDate:(NSArray *)hotProjectList and:(NSArray *)NewListS{
+    _hotProjectList = hotProjectList;
+    _NewListS = NewListS;
     [self.tableView reloadData];
 }
 
-
-//section底部间距
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10;
-}
+////section底部间距
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 10;
+//}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -70,18 +80,36 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    
+    if (section == 0) {
+       return self.hotProjectList.count ? 1 : 0;
+    }else{
+       return self.NewListS.count ? 1 : 0;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-       CenterViewCell * cell =  (CenterViewCell *)[[CenterViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx"];
-        HomeListModel * h = [[HomeListModel alloc] init];
-        cell.homeListData = h;
+        
+        FourListTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"xx"];
+        if (cell == nil) {
+            cell = [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
+        }
+//       FourListTableViewCell * cell =   [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
+//        cell.backgroundColor = [UIColor blueColor];
+//        [cell layoutIfNeeded];
+//        cell.bounds = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(100));
+//        HomeListModel * h = [[HomeListModel alloc] init];
+//        cell.homeListData = h;
         return cell;
     }else{
-        ListTableViewCell * list = [[ListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ss"];
+        
+        ListTableViewCell * list = [tableView dequeueReusableCellWithIdentifier:@"ss"];
+        if (list == nil) {
+          list = [[ListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ss"];
+        }
         return list;
     }
 }
@@ -93,8 +121,13 @@
 
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    if (indexPath.section == 0) {
+//        return 88+15;
+//    }else{
+//      return  (KScreenWidth / 4.0 + 10) * (self.NewListS.count / 4);
+//    }
 //    
-//    return 111;
 //}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

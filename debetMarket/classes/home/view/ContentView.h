@@ -14,10 +14,14 @@
 @interface ContentView : UIView
 
 
-/**
- *  数据模型
- **/
-@property(nonatomic,strong) HomeListModel * homeListData;
+/**热门列表*/
+@property(nonatomic,strong) NSArray * hotProjectList;
+
+/**最新产品*/
+@property(nonatomic,strong) NSArray * NewListS;
+
+
+- (void) ContentViewSetDate:(NSArray *)hotProjectList and:(NSArray *)NewListS;
 
 
 @end
