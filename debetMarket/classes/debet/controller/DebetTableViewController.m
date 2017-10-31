@@ -47,18 +47,20 @@
 {
     LWLog(@"%@",[model mj_keyValues
                  ]);
+    [self getListWithCateGray:model];
 }
 
 
 - (void)getListWithCateGray:(CateGoryModel *)model{
     
     NSMutableDictionary * parame  = [NSMutableDictionary dictionary];
-    parame[@"Sid"] = @(1);
+    parame[@"Sid"] = @(model.categoryId);
     parame[@"pageIndex"] = @(1);
     [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:nil success:^(id json) {
         LWLog(@"%@",[json description]);
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
             NSArray * data = [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"] objectForKey:@"list"]];
+            [self.listData removeAllObjects];
             [self.listData addObjectsFromArray:data];
             [self.tableView reloadData];
         }
@@ -78,7 +80,7 @@
 //    self.head.backgroundColor = LWColor(236, 36, 43);
     //[self.view addSubview:self.head];
     
-    [self getListWithCateGray:nil];
+    
     
     [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil success:^(id json) {
         if([[json objectForKey:@"resultCode"] intValue] == 2000){
@@ -90,7 +92,8 @@
                 CGRect frame =  self.head.frame;
                 frame.size.height = height;
                 self.head.frame = frame;
-                [self.view layoutIfNeeded];
+                [self getListWithCateGray:[data firstObject]];
+//                [self.view layoutIfNeeded];
             }
         }
     } failure:^(NSError *error) {
@@ -170,6 +173,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     DebetDetailViewController * debetDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DebetDetailViewController"];
+    HomeListModel * model = [self.listData objectAtIndex:indexPath.row];
+    debetDetailViewController.model = model;
     [self.navigationController pushViewController:debetDetailViewController animated:YES];
 }
 /*

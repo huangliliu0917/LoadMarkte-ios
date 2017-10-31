@@ -10,4 +10,6 @@
 
 @interface DebetDetailViewController : UITableViewController
 
+@property(nonatomic,strong) HomeListModel * model;
+
 @end

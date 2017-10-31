@@ -25,11 +25,24 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *secondLable;
 
+@property (weak, nonatomic) IBOutlet UILabel *thirdLable;
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *rightImage;
+
+@property(nonatomic,strong) NSMutableArray * lableArray;
 
 @end
 
 @implementation ContentTableViewCell
+
+- (NSMutableArray *)lableArray{
+    if (_lableArray == nil) {
+        
+        _lableArray = [NSMutableArray array];
+    }
+    return _lableArray;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -47,6 +60,15 @@
     self.secondLable.layer.borderWidth = .6;
     self.secondLable.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
+    self.thirdLable.layer.cornerRadius = self.firstLable.frame.size.height * 0.5;
+    self.thirdLable.layer.masksToBounds = YES;
+    self.thirdLable.layer.borderWidth = .6;
+    self.thirdLable.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    
+    [self.lableArray addObject:self.firstLable];
+    [self.lableArray addObject:self.secondLable];
+    [self.lableArray addObject:self.thirdLable];
     _titleLable.font = kAdaptedFontSize(16);
 }
 
@@ -68,7 +90,7 @@
        _monthTitle.text = @"年利率";
     }
     
-    _debetLine.text = [NSString stringWithFormat:@"%@ %",model.interestRate];
+    _monthRate.text = [NSString stringWithFormat:@"%@ %%",model.interestRate];
     
     if (model.enableMoney.length) {
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
@@ -76,12 +98,41 @@
     }else{
         _debetLine.text = @"0 元";
     }
+    LWLog(@"%d-----%d",model.isHot,model.isNew);
+    if (model.isHot == 1) {
+        [_rightImage setImage:[UIImage imageNamed:@"tj"]];
+    }else{
+        
+        if(model.isNew == 1){
+            [_rightImage setImage:[UIImage imageNamed:@"xp"]];
+        }else{
+            [_rightImage setImage:nil];
+        }
+        
+    }
+    
+    
+    if (model.tag.length) {
+        NSArray * tags = [model.tag componentsSeparatedByString:@","];
+        NSInteger index = tags.count > 3 ? 3 : tags.count;
+        for (int i = 0; i < index; i ++) {
+            UILabel * title =  [self.lableArray objectAtIndex:i];
+            title.text = [NSString stringWithFormat:@"  %@  ",[tags objectAtIndex:i]];
+        }
+        
+    }else{
+        for (int i = 0; i < self.lableArray.count; i ++) {
+            UILabel * title =  [self.lableArray objectAtIndex:i];
+            title.text = nil;
+        }
+        
+    }
     
     
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+//    [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }

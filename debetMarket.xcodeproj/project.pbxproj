@@ -67,6 +67,13 @@
 		12934B071F975B310090B36F /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 12934B021F975B310090B36F /* GTMBase64.m */; };
 		12934B081F975B310090B36F /* MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 12934B051F975B310090B36F /* MD5Encryption.m */; };
 		12F33A231FA0285D00018F71 /* UIBarButtonItem+LHB.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F33A221FA0285D00018F71 /* UIBarButtonItem+LHB.m */; };
+		12FCBE9F1FA84BC200BF29BF /* HS_address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12FCBE931FA84BC200BF29BF /* HS_address.plist */; };
+		12FCBEA01FA84BC200BF29BF /* HSAddressPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCBE951FA84BC200BF29BF /* HSAddressPickerVC.m */; };
+		12FCBEA11FA84BC200BF29BF /* HSBasePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCBE971FA84BC200BF29BF /* HSBasePickerVC.m */; };
+		12FCBEA21FA84BC200BF29BF /* HSDatePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCBE991FA84BC200BF29BF /* HSDatePickerVC.m */; };
+		12FCBEA31FA84BC200BF29BF /* HSGenderPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCBE9B1FA84BC200BF29BF /* HSGenderPickerVC.m */; };
+		12FCBEA41FA84BC200BF29BF /* HSPickerViewTestVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12FCBE9C1FA84BC200BF29BF /* HSPickerViewTestVC.storyboard */; };
+		12FCBEA51FA84BC200BF29BF /* NSDate+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCBE9E1FA84BC200BF29BF /* NSDate+Date.m */; };
 		72EA155964C8A0852D673723 /* libPods-debetMarketTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BAA840C0FADCD4EC04AF49 /* libPods-debetMarketTests.a */; };
 		EF6C686F1F95A40500DB3871 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C686D1F95A40500DB3871 /* HomeViewController.m */; };
 		EF6C68741F95A4D300DB3871 /* HTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C68731F95A4D300DB3871 /* HTViewController.m */; };
@@ -229,6 +236,18 @@
 		12934B051F975B310090B36F /* MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encryption.m; sourceTree = "<group>"; };
 		12F33A211FA0285C00018F71 /* UIBarButtonItem+LHB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+LHB.h"; sourceTree = "<group>"; };
 		12F33A221FA0285D00018F71 /* UIBarButtonItem+LHB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+LHB.m"; sourceTree = "<group>"; };
+		12FCBE931FA84BC200BF29BF /* HS_address.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = HS_address.plist; sourceTree = "<group>"; };
+		12FCBE941FA84BC200BF29BF /* HSAddressPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAddressPickerVC.h; sourceTree = "<group>"; };
+		12FCBE951FA84BC200BF29BF /* HSAddressPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAddressPickerVC.m; sourceTree = "<group>"; };
+		12FCBE961FA84BC200BF29BF /* HSBasePickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBasePickerVC.h; sourceTree = "<group>"; };
+		12FCBE971FA84BC200BF29BF /* HSBasePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBasePickerVC.m; sourceTree = "<group>"; };
+		12FCBE981FA84BC200BF29BF /* HSDatePickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDatePickerVC.h; sourceTree = "<group>"; };
+		12FCBE991FA84BC200BF29BF /* HSDatePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDatePickerVC.m; sourceTree = "<group>"; };
+		12FCBE9A1FA84BC200BF29BF /* HSGenderPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSGenderPickerVC.h; sourceTree = "<group>"; };
+		12FCBE9B1FA84BC200BF29BF /* HSGenderPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSGenderPickerVC.m; sourceTree = "<group>"; };
+		12FCBE9C1FA84BC200BF29BF /* HSPickerViewTestVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HSPickerViewTestVC.storyboard; sourceTree = "<group>"; };
+		12FCBE9D1FA84BC200BF29BF /* NSDate+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Date.h"; sourceTree = "<group>"; };
+		12FCBE9E1FA84BC200BF29BF /* NSDate+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Date.m"; sourceTree = "<group>"; };
 		32A5DF793F2D5546A068DD8A /* Pods-debetMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-debetMarket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-debetMarket/Pods-debetMarket.debug.xcconfig"; sourceTree = "<group>"; };
 		5EA340D942C0101693E82C7A /* Pods-debetMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-debetMarketTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-debetMarketTests/Pods-debetMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		920053BA5BCB883FC1B74DC0 /* libPods-debetMarketUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-debetMarketUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,6 +530,25 @@
 			path = Encryption;
 			sourceTree = "<group>";
 		};
+		12FCBE921FA84BC200BF29BF /* HSPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				12FCBE931FA84BC200BF29BF /* HS_address.plist */,
+				12FCBE941FA84BC200BF29BF /* HSAddressPickerVC.h */,
+				12FCBE951FA84BC200BF29BF /* HSAddressPickerVC.m */,
+				12FCBE961FA84BC200BF29BF /* HSBasePickerVC.h */,
+				12FCBE971FA84BC200BF29BF /* HSBasePickerVC.m */,
+				12FCBE981FA84BC200BF29BF /* HSDatePickerVC.h */,
+				12FCBE991FA84BC200BF29BF /* HSDatePickerVC.m */,
+				12FCBE9A1FA84BC200BF29BF /* HSGenderPickerVC.h */,
+				12FCBE9B1FA84BC200BF29BF /* HSGenderPickerVC.m */,
+				12FCBE9C1FA84BC200BF29BF /* HSPickerViewTestVC.storyboard */,
+				12FCBE9D1FA84BC200BF29BF /* NSDate+Date.h */,
+				12FCBE9E1FA84BC200BF29BF /* NSDate+Date.m */,
+			);
+			path = HSPickerView;
+			sourceTree = "<group>";
+		};
 		1A63A6B90608426A91096617 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +616,7 @@
 		EFEBD0831F95E46E003F3F41 /* threelib */ = {
 			isa = PBXGroup;
 			children = (
+				12FCBE921FA84BC200BF29BF /* HSPickerView */,
 				1229DA141FA7431400C97938 /* SDWebImage */,
 				12645F821F9B12D100E758BD /* ADView */,
 				12934AFE1F975B310090B36F /* Encryption */,
@@ -886,7 +925,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFF9EA731F9599F400E61B11 /* LaunchScreen.storyboard in Resources */,
+				12FCBEA41FA84BC200BF29BF /* HSPickerViewTestVC.storyboard in Resources */,
 				1269313A1F99F1EF00F6D414 /* NewProductTableViewCell.xib in Resources */,
+				12FCBE9F1FA84BC200BF29BF /* HS_address.plist in Resources */,
 				126931221F99AB6500F6D414 /* HomeTopView.xib in Resources */,
 				EFF9EA701F9599F400E61B11 /* Assets.xcassets in Resources */,
 				1229DA351FA7431400C97938 /* LICENSE in Resources */,
@@ -1072,11 +1113,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12FCBEA01FA84BC200BF29BF /* HSAddressPickerVC.m in Sources */,
 				1229DA441FA7431400C97938 /* UIView+WebCacheOperation.m in Sources */,
 				EFEBD0961F95F033003F3F41 /* TLCityGroupCell.m in Sources */,
 				EFEBD0861F95E4C6003F3F41 /* HTNetworkingTool.m in Sources */,
 				1208DCDB1F9AF89600524BB4 /* DebetTableViewController.m in Sources */,
 				12934B081F975B310090B36F /* MD5Encryption.m in Sources */,
+				12FCBEA11FA84BC200BF29BF /* HSBasePickerVC.m in Sources */,
 				12645F851F9B12DD00E758BD /* ADView.m in Sources */,
 				120440361FA082DD006EE6B0 /* BannerInfo.m in Sources */,
 				1229DA421FA7431400C97938 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1122,6 +1165,7 @@
 				122B797F1FA6D32A0023FDA2 /* FourListTableViewCell.m in Sources */,
 				126931261F99D15600F6D414 /* HotPublish.m in Sources */,
 				1208DCD71F9AF79F00524BB4 /* FourFormView.m in Sources */,
+				12FCBEA51FA84BC200BF29BF /* NSDate+Date.m in Sources */,
 				12000C961F9D87D800ECE3AE /* CenterViewCell.m in Sources */,
 				126931201F99AB0D00F6D414 /* HomeTopView.m in Sources */,
 				123032621FA2D7E000412BD5 /* XZEaseBlankPageView.m in Sources */,
@@ -1132,11 +1176,13 @@
 				126931391F99F1EF00F6D414 /* NewProductTableViewCell.m in Sources */,
 				126931351F99EE5800F6D414 /* ListTableViewCell.m in Sources */,
 				12000CA01F9DD62600ECE3AE /* LoginView.m in Sources */,
+				12FCBEA31FA84BC200BF29BF /* HSGenderPickerVC.m in Sources */,
 				123032611FA2D7E000412BD5 /* UIView+LoadView.m in Sources */,
 				1208DCEF1F9B0BEA00524BB4 /* ContentTableViewCell.m in Sources */,
 				1229DA3E1FA7431400C97938 /* SDWebImagePrefetcher.m in Sources */,
 				123032661FA2DE4200412BD5 /* UIView+SetLayer.m in Sources */,
 				123032631FA2D7E000412BD5 /* XZLoadView.m in Sources */,
+				12FCBEA21FA84BC200BF29BF /* HSDatePickerVC.m in Sources */,
 				128AF64C1F9F2BCF0076E0DD /* HTTableViewCell.m in Sources */,
 				EFF9EA681F9599F400E61B11 /* AppDelegate.m in Sources */,
 				EFEBD07E1F95DC26003F3F41 /* HTAFHTTPSessionManager.m in Sources */,
