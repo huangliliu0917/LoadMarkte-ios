@@ -7,7 +7,7 @@
 //
 
 #import "SettingViewController.h"
-#import <SDImageCache.h>
+#import "SDImageCache.h"
 @interface SettingViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *cacheLable;
 @property (weak, nonatomic) IBOutlet UILabel *versionLable;

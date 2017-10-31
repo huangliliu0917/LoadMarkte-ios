@@ -10,4 +10,7 @@
 
 @interface ContentTableViewCell : UITableViewCell
 
+
+@property(nonatomic,strong) HomeListModel * model;
+
 @end

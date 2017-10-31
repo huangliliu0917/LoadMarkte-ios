@@ -59,7 +59,6 @@
             //[self.hotProjectList addObjectsFromArray:hotProjectList];
             NSArray * newProjectList =  [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"]  objectForKey:@"newProjectList"]];
              //[self.newProjectList addObjectsFromArray:newProjectList];
-            
             [self.contenView ContentViewSetDate:hotProjectList and:newProjectList];
             
         }
@@ -92,9 +91,12 @@
     
     
     
-    ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(homeTopView.frame), KScreenWidth, KScreenHeight - 64)];
+//    ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(homeTopView.frame), KScreenWidth, KScreenHeight - 64)];
 //    contenView.hotProjectList = self.hotProjectList;
 //    contenView.NewListS = self.newProjectList;
+    
+    ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectZero];
+    
     self.contenView = contenView;
     [self.view addSubview:contenView];
 
@@ -102,7 +104,9 @@
         make.top.equalTo(self.homeTopView.mas_bottom);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom).mas_offset(0);
+        
+        
     }];
     
     

@@ -24,7 +24,7 @@
     if (self = [super initWithFrame:frame]) {
         
         
-        self.backgroundColor = [UIColor orangeColor];
+        self.backgroundColor = [UIColor blueColor];
         [self initSetUp];
     }
     
@@ -42,25 +42,29 @@
     self.tableView = tableView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 100;
+    self.tableView.estimatedRowHeight = 500;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.backgroundColor = [UIColor redColor];
+//    self.tableView.backgroundColor = [UIColor orangeColor];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
     [self addSubview:tableView];
 //    [self.tableView registerNib:[UINib nibWithNibName:@"FourListTableViewCell" bundle:nil] forCellReuseIdentifier:@"FourListTableViewCell"];
 //    [self.tableView registerClass:[ListTableViewCell class] forCellReuseIdentifier:@"ss"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.edges.equalTo(self);
-//        make.left.equalTo(self.mas_left);
-//        make.right.equalTo(self.mas_right);
-//        make.top.equalTo(self.mas_top);
-//        make.bottom.equalTo(self.mas_bottom);
+
+//        make.edges.equalTo(self);
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
     }];
 }
 
-
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+//    self.tableView.frame = self.frame;
+}
 
 - (void)ContentViewSetDate:(NSArray *)hotProjectList and:(NSArray *)NewListS{
     _hotProjectList = hotProjectList;
@@ -120,15 +124,15 @@
 }
 
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//
-//    if (indexPath.section == 0) {
-//        return 88+15;
-//    }else{
-//      return  (KScreenWidth / 4.0 + 10) * (self.NewListS.count / 4);
-//    }
-//    
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (indexPath.section == 0) {
+        return 88+15;
+    }else{
+      return  (KScreenWidth / 4.0 + 10) * (self.NewListS.count / 4);
+    }
+    
+}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     

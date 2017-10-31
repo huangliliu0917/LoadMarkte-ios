@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CateGoryModel.h"
 @interface NewProductTableViewCell : UICollectionViewCell
+
+
+@property(nonatomic,strong)  CateGoryModel * data;
+
 
 @end

@@ -35,5 +35,6 @@
 #import "HomeListModel.h"
 #import "HotListView.h"
 #import "NewProductTableViewCell.h"
+#import "CateGoryModel.h"
 
 #endif /* PrefixHeader_pch */

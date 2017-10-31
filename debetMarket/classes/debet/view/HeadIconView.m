@@ -24,29 +24,62 @@
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        [self setupInit];
+//        [self setupInit];
         
 //        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
 
+- (void)setDataArray:(NSMutableArray *)dataArray{
+    _dataArray = dataArray;
+    
+    [self setupInit];
+    
+//    for (int i  = 0; i < 6; i++) {
+//        NewProductTableViewCell * cell = [self.itemArray objectAtIndex:i];
+//        cell.data = [dataArray objectAtIndex:i];
+//
+//    }
+    
+}
 
+/**
+ * 分类点击
+ */
+- (void)cateGray:(UITapGestureRecognizer *)tap{
+    if ([self.delegate respondsToSelector:@selector(HeadIconClick:)]) {
+        [self.delegate HeadIconClick:[self.dataArray objectAtIndex:tap.view.tag]];
+    }
+}
 
 - (void)setupInit{
     CGFloat with = (KScreenWidth) * 0.25;
     CGFloat height = with;
-    
-    for (int i  = 0; i < 8; i++) {
+    CGFloat margin = 5;
+    for (int i  = 0; i < self.dataArray.count; i++) {
         NewProductTableViewCell * cell = [[[NSBundle mainBundle] loadNibNamed:@"NewProductTableViewCell" owner:nil options:nil] lastObject];
         cell.tag = i;
         int col = i % 4;
         int row = i / 4;
         cell.frame = CGRectMake(with * col , height * row, with, height);
         [self.itemArray addObject:cell];
+        cell.data = [self.dataArray objectAtIndex:i];
+        UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cateGray:)];
+        cell.userInteractionEnabled = YES;
+        [cell addGestureRecognizer:ges];
         [self addSubview:cell];
         
     }
+   NewProductTableViewCell * cell = [self.itemArray lastObject];
+    
+    CGRect fram = self.frame;
+    fram.size.height = CGRectGetMaxY(cell.frame) + 5;
  
+}
+
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
 }
 @end

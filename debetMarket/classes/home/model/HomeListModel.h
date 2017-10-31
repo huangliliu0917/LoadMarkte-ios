@@ -18,7 +18,7 @@
 @property(nonatomic,assign) NSNumber * deadline;
 @property(nonatomic,assign) NSNumber * deadlineUnit;
 @property(nonatomic,assign) NSNumber * desc;
-@property(nonatomic,assign) NSNumber * enableMoney;
+@property(nonatomic,copy) NSString * enableMoney;
 @property(nonatomic,assign) NSNumber * fastestGetTime;
 @property(nonatomic,assign) NSNumber * Id;
 @property(nonatomic,copy) NSNumber * interestRate;
@@ -29,7 +29,7 @@
 @property(nonatomic,copy) NSNumber * maxMoney;
 @property(nonatomic,copy) NSString * name;
 @property(nonatomic,copy) NSString * phone;
-@property(nonatomic,assign) int tag;
+@property(nonatomic,copy) NSString * tag;
 @property(nonatomic,assign) int topSortNum;
 
 

@@ -76,6 +76,11 @@
         CGFloat x = (with + margin) * col + margin;
         CGFloat y = (height + margin) * row + margin;
         HotListView * cell = [[HotListView alloc] initWithFrame:CGRectMake(x, y, with, height)];
+        cell.userInteractionEnabled = YES;
+        cell.tag = i;
+        UITapGestureRecognizer * get =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hotClick:)];
+        [cell addGestureRecognizer:get];
+        
         [self.cellArray addObject:cell];
         cell.backgroundColor = [UIColor orangeColor];
         [BgView addSubview:cell];
@@ -96,4 +101,7 @@
     
 }
 
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    
+}
 @end

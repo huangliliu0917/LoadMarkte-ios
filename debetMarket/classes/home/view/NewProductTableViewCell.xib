@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="90" height="85"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gj" translatesAutoresizingMaskIntoConstraints="NO" id="iHy-7s-RUG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gj" translatesAutoresizingMaskIntoConstraints="NO" id="iHy-7s-RUG">
                         <rect key="frame" x="15" y="0.0" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="iHy-7s-RUG" secondAttribute="height" multiplier="1:1" id="JDO-vC-wVg"/>
@@ -45,6 +45,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="95" height="97"/>
+            <connections>
+                <outlet property="iconView" destination="iHy-7s-RUG" id="lzt-tm-Rtb"/>
+                <outlet property="nameLable" destination="NUO-uG-mzI" id="o8T-ma-CDp"/>
+            </connections>
             <point key="canvasLocation" x="47" y="80.5"/>
         </collectionViewCell>
     </objects>
