@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol TestViewDelegate <NSObject>
+
+- (void)TestViewClick:(HomeListModel *)model;
+
+
+@end
+
 @interface TestView : UIView
+
+@property(nonatomic,strong) NSArray * dataArray;
+
+- (instancetype)initWithFrame:(CGRect)frame andData:(NSArray <HomeListModel *>*)data;
+
+
+@property(nonatomic,weak) id <TestViewDelegate> delegate;
 
 @end

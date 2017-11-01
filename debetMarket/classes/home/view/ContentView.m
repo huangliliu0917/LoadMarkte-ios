@@ -10,7 +10,8 @@
 #import "ListTableViewCell.h"
 #import "NewProductTitle.h"
 
-@interface ContentView()<UITableViewDelegate,UITableViewDataSource>
+@interface ContentView()<UITableViewDelegate,UITableViewDataSource,FourListTableViewCellDelegate
+,ListTableViewCellDelegate>
 
 @property(nonatomic,strong) UITableView * tableView;
 
@@ -22,8 +23,6 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     
     if (self = [super initWithFrame:frame]) {
-        
-        
         self.backgroundColor = [UIColor blueColor];
         [self initSetUp];
     }
@@ -93,6 +92,21 @@
     
 }
 
+- (void)FourListTableViewCellClick:(HomeListModel *)model{
+    
+    LWLog(@"%@", [model mj_keyValues]);
+    
+    
+}
+
+
+
+- (void)ListTableViewCellClick:(HomeListModel *)model{
+    LWLog(@"%@", [model mj_keyValues]);
+
+    [self.delegate ContentViewDelegate:model];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
@@ -101,19 +115,15 @@
         if (cell == nil) {
             cell = [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
         }
-//       FourListTableViewCell * cell =   [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
-//        cell.backgroundColor = [UIColor blueColor];
-//        [cell layoutIfNeeded];
-//        cell.bounds = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(100));
-//        HomeListModel * h = [[HomeListModel alloc] init];
-//        cell.homeListData = h;
+        cell.delegate = self;
         return cell;
     }else{
-        
         ListTableViewCell * list = [tableView dequeueReusableCellWithIdentifier:@"ss"];
+
         if (list == nil) {
-          list = [[ListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ss"];
+            list = [[ListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ss" WithData:self.NewListS];
         }
+        list.delegate = self;
         return list;
     }
 }

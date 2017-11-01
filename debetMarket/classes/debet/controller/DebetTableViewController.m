@@ -136,7 +136,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    LWLog(@"%lu",self.listData.count);
+    LWLog(@"%lu",(unsigned long)self.listData.count);
     return self.listData.count;
 }
 

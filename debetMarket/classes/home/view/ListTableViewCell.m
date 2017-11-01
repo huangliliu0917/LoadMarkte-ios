@@ -10,51 +10,79 @@
 #import "NewProductTableViewCell.h"
 #import "TestView.h"
 
-@interface ListTableViewCell()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ListTableViewCell()<UICollectionViewDelegate,UICollectionViewDataSource,TestViewDelegate>
 @property (nonatomic, strong) UICollectionView *bannerCollectionView;
 @property (nonatomic, strong) TestView * test;
+
+/**最新产品列表*/
+@property (nonatomic, strong) NSArray * dataArray;
+
+
+@property(nonatomic,strong) NSMutableArray * itemArrays;
 @end
 
 
 @implementation ListTableViewCell
 
-//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-//    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-//
-//        [self.contentView addSubview:self.bannerCollectionView];
-//
-//        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//            make.top.equalTo(self.contentView.mas_top);
-//            make.left.equalTo(self.contentView.mas_left);
-//            make.right.equalTo(self.contentView.mas_right);
-//            make.bottom.equalTo(self.contentView.mas_bottom);
-//        }];
+- (NSMutableArray *)itemArrays{
+    if (_itemArrays == nil) {
+        _itemArrays = [NSMutableArray array];
+    }
+    return _itemArrays;
+}
+
+
+//- (void)TestViewClick:(HomeListModel *)model{
+//    if ([self.delegate respondsToSelector:@selector(ListTableViewCellClick:)]) {
+//        [self.delegate ListTableViewCellClick:model];
 //    }
-//
-//    return self;
 //}
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithData:(NSArray<HomeListModel *> *)data{
+    
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        TestView * test = [[TestView alloc] init];
-        self.test = test;
-        [self.contentView addSubview:test];
+        self.backgroundColor = [UIColor clearColor];
+//        CGFloat height =  ((data.count -1 / 4) + 1) * ((KScreenWidth  - 5 * 5) / 4);
+//        TestView * test = [[TestView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, height) andData:data];
+//        test.userInteractionEnabled = YES;
+//        test.dataArray = data;
+//        self.test = test;
+//        [self.contentView addSubview:test];
+//
+        self.dataArray = data;
         
-        [self.test mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.left.equalTo(self.contentView.mas_left);
-            make.right.equalTo(self.contentView.mas_right);
-            make.top.equalTo(self.contentView.mas_top);
-            make.bottom.equalTo(self.contentView.mas_bottom);
-        }];
-      
+        CGFloat margin = 5.0;
+        CGFloat with = (KScreenWidth  - 5 * margin) / 4;
+        CGFloat height = with;
+        
+        for (int i  = 0; i < data.count; i++) {
+            NewProductTableViewCell * cell = [[[NSBundle mainBundle] loadNibNamed:@"NewProductTableViewCell" owner:nil options:nil] lastObject];
+            cell.tag = i;
+            cell.userInteractionEnabled = YES;
+            cell.tag = i;
+            UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemClick:)];
+            [cell addGestureRecognizer:ges];
+            cell.model = [self.dataArray objectAtIndex:i];
+            int col = i % 4;
+            int row = i / 4;
+            cell.frame = CGRectMake((margin + with) * col + margin, (margin + height) * row + margin, with, height);
+            [self addSubview:cell];
+            [self.itemArrays addObject:cell];
+        }
+
     }
-    
     return self;
 }
 
+
+- (void)itemClick:(UITapGestureRecognizer *)tap{
+    
+   
+    [self.delegate ListTableViewCellClick: [self.dataArray objectAtIndex:tap.view.tag] ];
+    
+    LWLog(@"xx");
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

@@ -55,6 +55,15 @@
     return self;
 }
 
+- (void)hotClick:(UITapGestureRecognizer *)tap{
+    
+    LWLog(@"%lu",tap.view.tag);
+    if ([self.delegate respondsToSelector:@selector(FourListTableViewCellClick:)]) {
+        HomeListModel * model = [self.dataArray objectAtIndex:tap.view.tag];
+        [self.delegate FourListTableViewCellClick:model];
+    }
+}
+
 
 - (void)setUpInit{
     
@@ -62,6 +71,7 @@
 //    int row = 2;
     
     UIView * BgView =  [[UIView alloc] init];
+    BgView.userInteractionEnabled = YES;
     self.BgView = BgView;
     BgView.backgroundColor = [UIColor redColor];
     [self addSubview:BgView];
@@ -75,14 +85,21 @@
         int row = i / 2;
         CGFloat x = (with + margin) * col + margin;
         CGFloat y = (height + margin) * row + margin;
+        
+        HomeListModel * model = [self.dataArray objectAtIndex:i];
+        
+        LWLog(@"%@",[model mj_keyValues]);
+        
         HotListView * cell = [[HotListView alloc] initWithFrame:CGRectMake(x, y, with, height)];
-        cell.userInteractionEnabled = YES;
+        cell.model = model;
         cell.tag = i;
+        cell.userInteractionEnabled = YES;
+        
         UITapGestureRecognizer * get =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hotClick:)];
         [cell addGestureRecognizer:get];
         
         [self.cellArray addObject:cell];
-        cell.backgroundColor = [UIColor orangeColor];
+//        cell.backgroundColor = [UIColor orangeColor];
         [BgView addSubview:cell];
         
     }

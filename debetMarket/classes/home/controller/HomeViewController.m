@@ -10,9 +10,10 @@
 #import "HomeTopView.h"
 #import "HotPublish.h"
 #import "ContentView.h"
+#import "DebetDetailViewController.h"
 
 
-@interface HomeViewController ()<HomeTopViewDelegate>
+@interface HomeViewController ()<HomeTopViewDelegate,ContentViewDelegate>
 
 @property(nonatomic,strong) HomeTopView * homeTopView;
 @property(nonatomic,strong) HotPublish * hotPublish;
@@ -96,10 +97,9 @@
 //    contenView.NewListS = self.newProjectList;
     
     ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectZero];
-    
     self.contenView = contenView;
     [self.view addSubview:contenView];
-
+    contenView.delegate = self;
     [self.contenView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.homeTopView.mas_bottom);
         make.left.equalTo(self.view.mas_left);
@@ -118,5 +118,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)ContentViewDelegate:(HomeListModel *)model{
+    
+    DebetDetailViewController * debetDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DebetDetailViewController"];
+//    HomeListModel * model = [self.listData objectAtIndex:indexPath.row];
+    debetDetailViewController.model = model;
+    [self.navigationController pushViewController:debetDetailViewController animated:YES];
+}
 @end

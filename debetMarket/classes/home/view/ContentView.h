@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 
+@protocol ContentViewDelegate <NSObject>
+
+- (void)ContentViewDelegate:(HomeListModel *)model;
+
+@end
 
 
 @interface ContentView : UIView
@@ -23,5 +28,7 @@
 
 - (void) ContentViewSetDate:(NSArray *)hotProjectList and:(NSArray *)NewListS;
 
+
+@property(nonatomic,weak) id <ContentViewDelegate> delegate;
 
 @end

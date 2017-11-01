@@ -10,4 +10,6 @@
 
 @interface HotListView : UIView
 
+@property(nonatomic,strong) HomeListModel * model;
+
 @end

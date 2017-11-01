@@ -8,10 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+@protocol FourListTableViewCellDelegate <NSObject>
+
+- (void)FourListTableViewCellClick:(HomeListModel *)model;
+
+@end
+
+
 @interface FourListTableViewCell : UITableViewCell
 
 @property(nonatomic,strong) NSArray * datas;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithData:(NSArray <HomeListModel *>*)data;
+
+
+@property(nonatomic,weak) id <FourListTableViewCellDelegate> delegate;
 
 @end

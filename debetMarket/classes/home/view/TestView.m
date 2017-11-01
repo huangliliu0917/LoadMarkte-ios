@@ -32,26 +32,40 @@
     return _itemArrays;
 }
 
-- (instancetype)init{
-    if (self = [super init]) {
-        
-        [self setupInit];
-        self.backgroundColor = [UIColor orangeColor];
-    }
+- (instancetype)initWithFrame:(CGRect)frame andData:(NSArray <HomeListModel *>*)data{
     
+    if (self = [super initWithFrame:frame]) {
+        
+        self.dataArray  = data;
+        [self setupInit];
+//        self.backgroundColor = [UIColor orangeColor];
+    }
     return self;
 }
 
+- (void)itemClick:(UITapGestureRecognizer * )tap{
+    if ([self.delegate respondsToSelector:@selector(TestViewClick:)]) {
+        [self.delegate TestViewClick:[self.dataArray objectAtIndex:tap.view.tag]];
+    }
+}
 
 - (void)setupInit{
     
-    CGFloat margin = kAdaptedHeight(5.0);
+    CGFloat margin = 5.0;
     CGFloat with = (KScreenWidth  - 5 * margin) / 4;
     CGFloat height = with;
     
-    for (int i  = 0; i < 11; i++) {
+    LWLog(@"%lu",(unsigned long)self.dataArray.count);
+    
+    
+    for (int i  = 0; i < self.dataArray.count; i++) {
         NewProductTableViewCell * cell = [[[NSBundle mainBundle] loadNibNamed:@"NewProductTableViewCell" owner:nil options:nil] lastObject];
         cell.tag = i;
+        cell.userInteractionEnabled = YES;
+        cell.tag = i;
+        UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemClick:)];
+        [cell addGestureRecognizer:ges];
+        
         int col = i % 4;
         int row = i / 4;
         cell.frame = CGRectMake((margin + with) * col + margin, (margin + height) * row + margin, with, height);
@@ -64,7 +78,7 @@
 //
 //    }
     
-    NewProductTableViewCell * cell  = [self.itemArrays lastObject];
+//    NewProductTableViewCell * cell  = [self.itemArrays lastObject];
     
 //    UIImageView * imageview = [[UIImageView alloc] init];
 //    self.imagetest = imageview;
@@ -91,9 +105,9 @@
 //        make.height.mas_equalTo(kAdaptedHeight(20));
 //    }];
     
-     [self mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.bottom.equalTo(cell.mas_bottom);
-     }];
+//     [self mas_makeConstraints:^(MASConstraintMaker *make) {
+//         make.bottom.equalTo(cell.mas_bottom);
+//     }];
 }
 
 @end

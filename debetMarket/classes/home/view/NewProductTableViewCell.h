@@ -13,5 +13,5 @@
 
 @property(nonatomic,strong)  CateGoryModel * data;
 
-
+@property(nonatomic,strong)  HomeListModel * model;
 @end

@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol ListTableViewCellDelegate <NSObject>
+
+- (void)ListTableViewCellClick:(HomeListModel *) model;
+
+@end
+
 
 @interface ListTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier WithData:(NSArray<HomeListModel *> *)data;
+
+@property(nonatomic,weak) id <ListTableViewCellDelegate> delegate;
 
 @end
