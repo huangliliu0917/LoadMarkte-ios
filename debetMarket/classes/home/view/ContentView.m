@@ -94,8 +94,8 @@
 
 - (void)FourListTableViewCellClick:(HomeListModel *)model{
     
-    LWLog(@"%@", [model mj_keyValues]);
-    
+//    LWLog(@"%@", [model mj_keyValues]);
+    [self.delegate ContentViewDelegate:model];
     
 }
 
@@ -137,7 +137,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section == 0) {
-        return 88+15;
+        return 143;
     }else{
       return  (KScreenWidth / 4.0 + 10) * (self.NewListS.count / 4);
     }

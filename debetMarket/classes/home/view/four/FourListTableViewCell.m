@@ -57,7 +57,7 @@
 
 - (void)hotClick:(UITapGestureRecognizer *)tap{
     
-    LWLog(@"%lu",tap.view.tag);
+    LWLog(@"%ld",tap.view.tag);
     if ([self.delegate respondsToSelector:@selector(FourListTableViewCellClick:)]) {
         HomeListModel * model = [self.dataArray objectAtIndex:tap.view.tag];
         [self.delegate FourListTableViewCellClick:model];
@@ -70,15 +70,15 @@
 //    int col = 2;
 //    int row = 2;
     
-    UIView * BgView =  [[UIView alloc] init];
-    BgView.userInteractionEnabled = YES;
-    self.BgView = BgView;
-    BgView.backgroundColor = [UIColor redColor];
-    [self addSubview:BgView];
+//    UIView * BgView =  [[UIView alloc] init];
+//    BgView.userInteractionEnabled = YES;
+//    self.BgView = BgView;
+//    BgView.backgroundColor = [UIColor redColor];
+//    [self addSubview:BgView];
     
     CGFloat margin = 5;
     CGFloat with = (KScreenWidth - 5 * 3)* 0.5;
-    CGFloat height = 44;
+    CGFloat height = (143 - 15) * 0.5;
     NSInteger index = self.dataArray.count > 4 ? 4: self.dataArray.count;
     for (int i = 0; i < index; i++) {
         int col = i % 2;
@@ -99,16 +99,18 @@
         [cell addGestureRecognizer:get];
         
         [self.cellArray addObject:cell];
+        
+        [self.contentView addSubview:cell];
 //        cell.backgroundColor = [UIColor orangeColor];
-        [BgView addSubview:cell];
+       
         
     }
-    HotListView * cell = [self.cellArray lastObject];
-    [BgView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.edges.equalTo(self.contentView);
-        make.bottom.equalTo(cell.mas_bottom);
-    }];
+//    HotListView * cell = [self.cellArray lastObject];
+//    [BgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.edges.equalTo(self.contentView);
+//        make.bottom.equalTo(cell.mas_bottom);
+//    }];
 //    HotListView * cell = (HotListView *)[self.cellArray lastObject];
 //
 //    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
