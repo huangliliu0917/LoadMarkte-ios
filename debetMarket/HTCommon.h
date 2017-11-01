@@ -47,7 +47,7 @@
 
 
 //2、获取验证码接口
-#define verificationInterface @""
+#define verificationInterface @"sendVerifyCode"
 //2、手机登陆接口
 #define LoginInterface @"user/login"
 #endif /* HTCommon_h */

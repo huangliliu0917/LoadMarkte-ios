@@ -214,12 +214,16 @@
 
 - (void)getVerification{
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
-#warning need parame
-    parame[@"phone"] = self.phone.text;
-    [HTNetworkingTool  HTNetworkingToolPost:[NSString stringWithFormat:@"%@/%@",MainIpAddress,verificationInterface] parame:parame success:^(id json) {
-        
+    parame[@"mobile"] = self.phone.text;
+    [HTNetworkingTool  HTNetworkingToolPost:verificationInterface parame:parame success:^(id json) {
+        LWLog(@"%@",json);
+        if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
+            [SVProgressHUD showSuccessWithStatus:[json objectForKey:@"resultMsg"]];
+        }else{
+            [SVProgressHUD showErrorWithStatus:[json objectForKey:@"resultMsg"]];
+        }
     } failure:^(NSError *error) {
-        
+        LWLog(@"%@",[error description]);
     }];
 }
 
@@ -230,7 +234,7 @@
     if (![self checkTel:self.phone.text]) {
         [SVProgressHUD showInfoWithStatus:@"请输入正确手机号"];
     }else{
-        
+        [self getVerification];
         [self settime:timeLable];
     }
 }

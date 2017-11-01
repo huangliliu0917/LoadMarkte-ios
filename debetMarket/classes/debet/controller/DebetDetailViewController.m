@@ -349,9 +349,10 @@
         LoginViewController * alet = [[LoginViewController alloc] init];
         [self.view.window addSubview:alet.view];
     }else{
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:self.model.applyUrl]]) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.model.applyUrl]];
-        }
+        PushWebViewController *vc = [[PushWebViewController alloc] init];
+        LWLog(@"%@",[self.model mj_keyValues]);
+        vc.funUrl = self.model.applyUrl;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
