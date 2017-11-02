@@ -10,7 +10,7 @@
 
 @interface HomeListModel : NSObject
 
-@property(nonatomic,assign) NSNumber * applicationMaterial;
+@property(nonatomic,copy) NSString * applicationMaterial;
 @property(nonatomic,assign) NSNumber *  applyType;
 @property(nonatomic,copy) NSString * applyUrl;
 @property(nonatomic,assign) NSNumber *  categories;

@@ -115,6 +115,7 @@
         if (cell == nil) {
             cell = [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         return cell;
     }else{
@@ -123,6 +124,7 @@
         if (list == nil) {
             list = [[ListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ss" WithData:self.NewListS];
         }
+        list.selectionStyle = UITableViewCellSelectionStyleNone;
         list.delegate = self;
         return list;
     }
@@ -152,7 +154,7 @@
         hot.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(50));
         return hot;
     }else{
-        NewProductTitle * view = [[NewProductTitle alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 44)];
+        NewProductTitle * view = [[NewProductTitle alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth,  kAdaptedHeight(50))];
 //        view.backgroundColor = [UIColor blackColor];
         return view;
         

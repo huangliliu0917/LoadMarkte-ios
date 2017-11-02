@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "HSGenderPickerVC.h"
 #import "LoginViewController.h"
+#import "AppTableViewCell.h"
 
 @interface DebetDetailViewController ()<HSGenderPickerVCDelegate>
 
@@ -75,9 +76,15 @@
 @property(nonatomic,assign) int current;
 
 
+
+
 @end
 
 @implementation DebetDetailViewController
+
+
+
+
 
 - (NSMutableArray *)lableArray{
     if (_lableArray == nil) {
@@ -159,7 +166,8 @@
     self.navigationItem.title = _model.name;
     
     UserInfo * unUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
-  
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 500;
     [self setupInit];
     
     NSMutableDictionary * parame  = [NSMutableDictionary dictionary];
@@ -175,6 +183,18 @@
     } failure:^(NSError *error) {
         LWLog(@"%@",[error description]);
     }];
+}
+
+
+- (NSString *) getMoneyBack:(NSString *)money andDay:(NSString *)day withRate:(HomeListModel *)model{
+    int inMoney = [[[money componentsSeparatedByString:@" "] firstObject] intValue];
+    int inDay = [[[day componentsSeparatedByString:@" "] firstObject] intValue];
+    
+    CGFloat step1 = (10000 * [model.interestRate floatValue] * inMoney) / 10000;
+    CGFloat step2 = inMoney * 1.0 / inDay + step1;
+    
+    LWLog(@"%f",step2);
+    return [NSString stringWithFormat:@"%.2f 元",step2];
 }
 
 - (void)setupInit:(HomeListModel *)model{
@@ -204,14 +224,17 @@
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
         self.moneyArray = [money copy];
         _daikuanMoney.text = [NSString stringWithFormat:@"%@ ~ %@元",[money firstObject],[money lastObject]];
+        _daikuanMoneyRight.text =  [NSString stringWithFormat:@"%@ 元",[money firstObject]];
     }else{
         _daikuanMoney.text = @"0 元";
+        _daikuanMoneyRight.text = @"0 元";
     }
     
     if (model.deadline.length) {
         NSArray * money =  [model.deadline componentsSeparatedByString:@","];
         self.dayArray = [money copy];
         _fenqifanwei.text = [NSString stringWithFormat:@"%@ ~ %@天",[money firstObject],[money lastObject]];
+        _fenqiDay.text = [NSString stringWithFormat:@"%@ 天",[money firstObject]];
     }else{
         _daikuanMoney.text = @"0 天";
     }
@@ -229,6 +252,7 @@
     
     _fastDayLable.text = [NSString stringWithFormat:@"%@ 天",model.fastestGetTime];
     
+    _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:model];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -272,13 +296,29 @@
     if (_current == 0) {
         
         _daikuanMoneyRight.text = [NSString stringWithFormat:@"%@ 元",gender];
+        _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:self.model];
     }else{
         
         _fenqiDay.text =  [NSString stringWithFormat:@"%@ 天",gender];
+        _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:self.model];
     }
     LWLog(@"%@",gender);
     
 }
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    if (indexPath.section == 2 && indexPath.row == 1) {
+//       AppTableViewCell * cell =  [[AppTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defome" and:self.model];
+//        return cell;
+//    }else{
+//        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+//    }
+return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+
 //
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Incomplete implementation, return the number of sections
