@@ -147,7 +147,7 @@
     
     _conformlBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _conformlBtn.tag = 201;
-    [_conformlBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [_conformlBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [_conformlBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_conformlBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_conformlBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
@@ -166,15 +166,17 @@
 
 - (void)login{
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
-#warning need parame
     parame[@"mobile"] = self.phone.text;
     parame[@"verifyCode"] = self.code.text;
     [HTNetworkingTool  HTNetworkingToolPost:LoginInterface parame:parame success:^(id json) {
         LWLog(@"%@",json);
-        if([[json objectForKey:@"resultCode"] intValue]){
+        if([[json objectForKey:@"resultCode"] intValue] == 2000){
             UserInfo * userInfo = [UserInfo mj_objectWithKeyValues:[json objectForKey:@"data"]];
             [NSKeyedArchiver archiveRootObject:userInfo toFile:KeyedArchive(@"userInfo")];
             [SVProgressHUD showSuccessWithStatus:[json objectForKey:@"resultMsg"]];
+            if ([self.delegate respondsToSelector:@selector(LOginViewResult:)]) {
+                [self.delegate LOginViewResult:nil];
+            }
         }else{
             [SVProgressHUD showErrorWithStatus:[json objectForKey:@"resultMsg"]];
         }
@@ -278,10 +280,15 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField == self.phone) {
-        if (textField.text.length > 10) return NO;
+        if (textField.text.length > 10) {
+            textField.text = [textField.text substringToIndex:10];
+        }
+        
     }
     if (textField == self.code) {
-        if (textField.text.length > 5) return NO;
+        if (textField.text.length > 5) {
+            textField.text = [textField.text substringToIndex:5];
+        }
     }
     
     return YES;

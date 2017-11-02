@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginViewController.h"
 
-
-@protocol LoginViewDelegate <NSObject>
+@protocol LoginViewDelegate <LoginViewControllerDelegate>
 
 
 /**
@@ -17,7 +17,7 @@
  **/
 - (void)LoginViewClick:(int)type andPhone:(NSString *)phoneNumber andVerCode:(NSString *)code;
 
-
+//- (void)LOginViewResult;
 
 @end
 

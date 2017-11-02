@@ -37,11 +37,13 @@
     
  
     
-//    [HTNetworkingTool HTNetworkingToolPost:@"init" parame:nil success:^(id json) {
-//        LWLog(@"%@",[json description]);
-//    } failure:^(NSError *error) {
-//       LWLog(@"%@",[error description]);
-//    }];
+    //获取首页数据
+    [HTNetworkingTool HTNetworkingToolPost:@"init" parame:nil success:^(id json) {
+        LWLog(@"%@",[json description]);
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",[error description]);
+    }];
    
     return YES;
 }

@@ -11,13 +11,14 @@
 #include <UIView+BlocksKit.h>
 #import "LoginViewController.h"
 
-@interface MineViewController ()
+@interface MineViewController ()<LoginViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *loginS;
 @property (strong, nonatomic)  BackView * backBack;
 
 @property (weak, nonatomic) IBOutlet UILabel *loginNameLable;
 
+//@property (weak, nonatomic) UIViewController * LoginViewController;
 @end
 
 @implementation MineViewController
@@ -65,6 +66,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         LoginViewController * alet = [[LoginViewController alloc] init];
+        alet.delegate = self;
         [self.view.window addSubview:alet.view];
     }else{
         if (indexPath.row == 0) {
@@ -79,6 +81,15 @@
             [self.navigationController showViewController:setVC sender:nil];
         }
     }
+}
+
+/**
+ * 登录成功通知
+ **/
+- (void)LOginViewResult:(HTViewController *)vc{
+    UserInfo * user =  (UserInfo *)[NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
+    _loginNameLable.text = [user.realName copy];
+    LWLog(@"xxxxx%@",[user mj_keyValues]);
 }
 
 @end

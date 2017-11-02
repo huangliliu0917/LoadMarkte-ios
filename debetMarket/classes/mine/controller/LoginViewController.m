@@ -44,6 +44,17 @@
     
 }
 
+- (void)LOginViewResult:(HTViewController *)vc{
+    
+    
+    LWLog(@"xxxxx");
+    [UIView animateWithDuration:1 animations:^{
+        [self.view removeFromSuperview];
+        [self.delegate LOginViewResult:self];
+    }];
+    LWLog(@"xxxxx");
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
