@@ -21,7 +21,7 @@
 //用户token 
 @property(nonatomic,strong) NSNumber * isFreeze;
 
-@property(nonatomic,strong) NSNumber * account;
+@property(nonatomic,copy) NSString * account;
 
 @property(nonatomic,copy) NSString * idCard;
 

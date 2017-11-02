@@ -75,5 +75,16 @@
 */
 
 - (IBAction)loginOutButton:(id)sender {
+    
+    UIAlertController * alerc = [UIAlertController alertControllerWithTitle:@"账号提示" message:@"是否退出当前帐号" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alerc addAction:action1];
+    UIAlertAction * action2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[NSFileManager defaultManager] removeItemAtPath:KeyedArchive(@"userInfo") error:nil];
+//        [NSKeyedArchiver archiveRootObject:nil toFile:KeyedArchive(@"userInfo")];
+    }];
+    [alerc addAction:action2];
+    
+    [self presentViewController:alerc animated:YES completion:nil];
 }
 @end

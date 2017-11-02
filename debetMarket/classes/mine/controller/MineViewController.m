@@ -23,6 +23,17 @@
 
 @implementation MineViewController
 
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    UserInfo * user =  (UserInfo *)[NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
+    if (user != nil) {
+        _loginNameLable.text = [user.account copy];
+    }else{
+        _loginNameLable.text = @"未登录";
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -88,7 +99,7 @@
  **/
 - (void)LOginViewResult:(HTViewController *)vc{
     UserInfo * user =  (UserInfo *)[NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
-    _loginNameLable.text = [user.realName copy];
+    _loginNameLable.text = [user.account copy];
     LWLog(@"xxxxx%@",[user mj_keyValues]);
 }
 
