@@ -36,5 +36,8 @@
 #import "HotListView.h"
 #import "NewProductTableViewCell.h"
 #import "CateGoryModel.h"
+#import <MJRefresh.h>
+#import "InsetLable.h"
+
 
 #endif /* PrefixHeader_pch */

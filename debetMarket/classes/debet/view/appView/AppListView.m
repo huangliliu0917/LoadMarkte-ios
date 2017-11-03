@@ -13,6 +13,7 @@
 @property (nonatomic ,strong) UIImageView * pictrueImageView;
 @property (nonatomic ,strong) UILabel * titleLabel;
 
+
 @end
 @implementation AppListView
 
@@ -31,10 +32,10 @@
         }];
         [self addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.pictrueImageView.mas_top).offset(10);
+//            make.top.mas_equalTo(self.pictrueImageView.mas_top).offset(10);
             make.centerY.mas_equalTo(self.pictrueImageView.mas_centerY);
-//            make.left.mas_equalTo(self.pictrueImageView).offset(10);
-//            make.right.mas_equalTo(self).offset(-10);
+            make.left.mas_equalTo(self.pictrueImageView).offset(10);
+            make.right.mas_equalTo(self).offset(-10);
 //            make.bottom.mas_equalTo(self).offset(-10);
         }];
     }

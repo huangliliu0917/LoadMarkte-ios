@@ -10,7 +10,7 @@
 #import "HeadIconView.h"
 #import "ContentTableViewCell.h"
 #import "DebetDetailViewController.h"
-
+#import "UIView+EaseBlankPage.h"
 @interface DebetTableViewController ()<UITableViewDelegate,UITableViewDataSource,HeadIconViewDelegate>
 
 @property(nonatomic,strong) HeadIconView * head;
@@ -20,9 +20,16 @@
 @property(nonatomic,strong) NSMutableArray  * headData;
 
 @property(nonatomic,strong) NSMutableArray  * listData;
+
+
+@property(nonatomic,assign) NSInteger pageIndex;
+
+@property (nonatomic,strong) CateGoryModel * currentCategray;
+
 @end
 
 @implementation DebetTableViewController
+
 
 
 - (NSMutableArray *)listData{
@@ -47,29 +54,48 @@
 {
     LWLog(@"%@",[model mj_keyValues
                  ]);
+    self.pageIndex = 0;
+    _currentCategray = model;
+    [self.listData removeAllObjects];
     [self getListWithCateGray:model];
 }
 
+- (void)addMore{
+    [self getListWithCateGray:self.currentCategray];
+}
 
 - (void)getListWithCateGray:(CateGoryModel *)model{
-    
+    LWLog(@"%@",[model mj_keyValues]);
     NSMutableDictionary * parame  = [NSMutableDictionary dictionary];
     parame[@"Sid"] = @(model.categoryId);
-    parame[@"pageIndex"] = @(1);
+    parame[@"pageIndex"] = @(self.pageIndex + 1);
+    [SVProgressHUD showWithStatus:nil];
     [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:nil success:^(id json) {
         LWLog(@"%@",[json description]);
+        
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
             NSArray * data = [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"] objectForKey:@"list"]];
             [self.listData removeAllObjects];
             [self.listData addObjectsFromArray:data];
+            self.pageIndex = [[[json objectForKey:@"data"] objectForKey:@"pageIndex"] integerValue];
             [self.tableView reloadData];
         }
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         LWLog(@"%@",[error description]);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self getListWithCateGray:_currentCategray];
+        });
     }];
     
     
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,25 +106,7 @@
 //    self.head.backgroundColor = LWColor(236, 36, 43);
     //[self.view addSubview:self.head];
     
-    
-    
-    [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil success:^(id json) {
-        if([[json objectForKey:@"resultCode"] intValue] == 2000){
-            NSArray * data =  [CateGoryModel mj_objectArrayWithKeyValuesArray:[json objectForKey:@"data"]];
-            [self.headData addObjectsFromArray:data];
-            if (data.count > 0){
-                self.head.dataArray = [NSMutableArray arrayWithArray:data];
-                CGFloat height =  (((data.count - 1)  / 4 + 1) * (KScreenWidth) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
-                CGRect frame =  self.head.frame;
-                frame.size.height = height;
-                self.head.frame = frame;
-                [self getListWithCateGray:[data firstObject]];
-//                [self.view layoutIfNeeded];
-            }
-        }
-    } failure:^(NSError *error) {
-        LWLog(@"%@",[error description]);
-    }];
+    self.pageIndex = 0;
     
     
     
@@ -117,6 +125,49 @@
 //    self.content.contentInset = UIEdgeInsetsMake(kAdaptedHeight(15), 0, 0, 0);
     //self.content.backgroundColor = [UIColor lightGrayColor];
     //[self.view addSubview:self.content];
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//       
+//        LWLog(@"xxx");
+//        
+//        
+//    }];
+    [self loadNewData];
+    
+    MJRefreshNormalHeader * head = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+
+    MJRefreshBackNormalFooter * footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(addMore)];
+    self.tableView.mj_header = head;
+    self.tableView.mj_footer = footer;
+//    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)loadNewData{
+    
+    [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil success:^(id json) {
+        
+         LWLog(@"%@",json);
+        if([[json objectForKey:@"resultCode"] intValue] == 2000){
+            NSArray * data =  [CateGoryModel mj_objectArrayWithKeyValuesArray:[json objectForKey:@"data"]];
+            [self.headData addObjectsFromArray:data];
+            
+            self.head.dataArray = [NSMutableArray arrayWithArray:data];
+            CGFloat height =  (((data.count - 1)  / 4 + 1) * (KScreenWidth) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
+            CGRect frame =  self.head.frame;
+            frame.size.height = height;
+            self.head.frame = frame;
+            _currentCategray = [data firstObject];
+            [self getListWithCateGray:[data firstObject]];
+            
+        }
+        [self.tableView.mj_header endRefreshing];
+    } failure:^(NSError *error) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self loadNewData];
+        });
+        LWLog(@"%@",[error description]);
+    }];
+    
 }
 
 

@@ -68,6 +68,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *lijishengqing;
 
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemCell;
 
 @property(nonatomic,strong) NSMutableArray * lableArray;
 
@@ -76,13 +77,53 @@
 @property(nonatomic,assign) int current;
 
 
+@property(nonatomic,strong) NSArray * titleArray;
+@property(nonatomic,strong) NSArray * imagesArray;
 
 
+@property (weak, nonatomic) IBOutlet UIView *view1;
+
+@property (weak, nonatomic) IBOutlet UIView *view2;
+@property (weak, nonatomic) IBOutlet UIView *view3;
+@property (weak, nonatomic) IBOutlet UIView *view4;
+@property (weak, nonatomic) IBOutlet UIView *view5;
+@property (weak, nonatomic) IBOutlet UIView *view6;
+@property (weak, nonatomic) IBOutlet UIView *view7;
+
+@property (nonatomic,strong) NSArray * viewArray;
 @end
 
 @implementation DebetDetailViewController
 
 
+
+
+
+- (NSArray *)viewArray{
+    
+    if (_viewArray == nil) {
+        _viewArray = @[_view1,_view2,_view3,_view4,_view5,_view6,_view7];
+    }
+    return _viewArray;
+}
+
+
+- (NSArray *)titleArray{
+    
+    if (_titleArray == nil) {
+        _titleArray = @[@"基本信息",@"身份信息",@"工作信息",@"运营商验证",@"电商验证",@"授权征信查询",@"联系人信息"];
+    }
+    
+    return _titleArray;
+}
+
+
+- (NSArray *)imagesArray{
+    if (_imagesArray == nil) {
+        _imagesArray = @[@"jbxx",@"sfxx",@"gzxx",@"sjyz",@"dsyz",@"zxcx",@"lxrxx"];
+    }
+    return _imagesArray;
+}
 
 
 
@@ -101,9 +142,9 @@
     self.iconView.layer.masksToBounds = YES;
     
     self.nameLable.font = kAdaptedFontSize(18);
-    self.firstLable.font = kAdaptedFontSize(16);
-    self.secondLable.font = kAdaptedFontSize(16);
-    self.thirdLable.font = kAdaptedFontSize(16);
+    self.firstLable.font = kAdaptedFontSize(13);
+    self.secondLable.font = kAdaptedFontSize(13);
+    self.thirdLable.font = kAdaptedFontSize(13);
     
 //    self.firstLable.layer.cornerRadius = self.firstLable.frame.size.height * 0.5;
 //    self.firstLable.layer.masksToBounds = YES;
@@ -158,6 +199,9 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
     
+    [self.itemCell setSeparatorInset:UIEdgeInsetsMake(0, MAXFLOAT, 0, 0)];
+//    self.itemCell.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
 
 - (void)viewDidLoad {
@@ -165,6 +209,8 @@
     
     self.navigationItem.title = _model.name;
     
+    
+
     UserInfo * unUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 500;
@@ -179,6 +225,7 @@
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
             HomeListModel * model = [HomeListModel mj_objectWithKeyValues:[json objectForKey:@"data"]];
             [self setupInit:model];
+            
         }
     } failure:^(NSError *error) {
         LWLog(@"%@",[error description]);
@@ -186,16 +233,7 @@
 }
 
 
-- (NSString *) getMoneyBack:(NSString *)money andDay:(NSString *)day withRate:(HomeListModel *)model{
-    int inMoney = [[[money componentsSeparatedByString:@" "] firstObject] intValue];
-    int inDay = [[[day componentsSeparatedByString:@" "] firstObject] intValue];
-    
-    CGFloat step1 = (10000 * [model.interestRate floatValue] * inMoney) / 10000;
-    CGFloat step2 = inMoney * 1.0 / inDay + step1;
-    
-    LWLog(@"%f",step2);
-    return [NSString stringWithFormat:@"%.2f 元",step2];
-}
+
 
 - (void)setupInit:(HomeListModel *)model{
     
@@ -253,6 +291,25 @@
     _fastDayLable.text = [NSString stringWithFormat:@"%@ 天",model.fastestGetTime];
     
     _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:model];
+    
+
+    NSArray * appArr = [model.applicationMaterial componentsSeparatedByString:@","];
+    for (int i = 0; i < appArr.count; i++) {
+        UIView * view = [self.viewArray objectAtIndex:i];
+        view.hidden = NO;
+        for (int j = 0; j < view.subviews.count; j++) {
+            UIView * item = [view.subviews objectAtIndex:j];
+            if ([item isKindOfClass:[UIImageView class]]) {
+                UIImageView * im = (UIImageView *)item;
+                [im setImage:[UIImage imageNamed:[self.imagesArray objectAtIndex:i]]];
+            }else{
+                UILabel * im = (UILabel *)item;
+                im.text = [self.titleArray objectAtIndex:i];
+            }
+        }
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -307,16 +364,20 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
 //    if (indexPath.section == 2 && indexPath.row == 1) {
-//       AppTableViewCell * cell =  [[AppTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defome" and:self.model];
+//        
+//        AppTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"defome"];
+//        if (cell == nil) {
+//            cell = [[AppTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defome"];
+//        }
 //        return cell;
 //    }else{
 //        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 //    }
-return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-}
+////return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+//}
 
 
 //
@@ -395,5 +456,17 @@ return [super tableView:tableView cellForRowAtIndexPath:indexPath];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
+- (NSString *) getMoneyBack:(NSString *)money andDay:(NSString *)day withRate:(HomeListModel *)model{
+    int inMoney = [[[money componentsSeparatedByString:@" "] firstObject] intValue];
+    int inDay = [[[day componentsSeparatedByString:@" "] firstObject] intValue];
+    
+    CGFloat step1 = (10000 * [model.interestRate floatValue] * inMoney) / 10000;
+    CGFloat step2 = inMoney * 1.0 / inDay + step1;
+    
+    LWLog(@"%f",step2);
+    return [NSString stringWithFormat:@"%.2f 元",step2];
+}
+
 
 @end

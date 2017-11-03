@@ -124,7 +124,7 @@
         if (list == nil) {
             list = [[ListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ss" WithData:self.NewListS];
         }
-        list.selectionStyle = UITableViewCellSelectionStyleNone;
+//        list.selectionStyle = UITableViewCellSelectionStyleNone;
         list.delegate = self;
         return list;
     }

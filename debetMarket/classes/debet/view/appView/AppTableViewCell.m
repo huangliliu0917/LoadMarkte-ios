@@ -39,6 +39,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        LWLog(@"%@",[model mj_keyValues]);
         // 创建一个装载九宫格的容器
         _containerView = [[UIView alloc] init];
         [self.contentView addSubview:_containerView];
@@ -53,13 +54,18 @@
 //            view.backgroundColor = [UIColor randomColor];
             [_containerView addSubview:view];
         }
-       
+        
+        LWLog(@"%lu",(unsigned long)_containerView.subviews.count);
+//       mas_distributeSudokuViewsWithFixedItemWidth
+//        [_containerView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
         //水平方向控件间隔固定等间隔
-        [_containerView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:15 leadSpacing:10 tailSpacing:10];
+//        [_containerView.subviews mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:15 leadSpacing:10 tailSpacing:10];
 //        [_containerView.subviews makeConstraints:^(MASConstraintMaker *make) {
 //            make.top.equalTo(50);
 //            make.height.equalTo(70);
 //        }];
+        
+       
         
     }
     

@@ -16,8 +16,8 @@
 #endif
 
 
-//#define MainIpAddress @"http://loanmarket.51flashmall.com:8081/rest/api/"
-#define MainIpAddress @"http://192.168.1.86:8080/rest/api/"
+#define MainIpAddress @"http://loanmarket.51flashmall.com:8081/rest/api/"
+//#define MainIpAddress @"http://192.168.1.86:8080/rest/api/"
 
 /**商户号*/
 #define DebetCustomerId @"4421"

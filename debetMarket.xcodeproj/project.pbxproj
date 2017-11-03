@@ -23,6 +23,8 @@
 		1208DCF31F9B0FD500524BB4 /* PushWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1208DCF11F9B0FD500524BB4 /* PushWebViewController.m */; };
 		120AE8E11FAAF44D00399257 /* AppTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 120AE8E01FAAF44D00399257 /* AppTableViewCell.m */; };
 		120AE8E51FAAF72500399257 /* AppListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 120AE8E41FAAF72500399257 /* AppListView.m */; };
+		120AE8E81FAB0B5E00399257 /* itemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 120AE8E71FAB0B5E00399257 /* itemView.m */; };
+		120AE8EB1FAB1F5B00399257 /* InsetLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 120AE8EA1FAB1F5B00399257 /* InsetLable.m */; };
 		1217F2781FA0381A001FCB27 /* DebetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1217F2771FA0381A001FCB27 /* DebetDetailViewController.m */; };
 		1229DA351FA7431400C97938 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1229DA151FA7431400C97938 /* LICENSE */; };
 		1229DA361FA7431400C97938 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1229DA161FA7431400C97938 /* README.md */; };
@@ -153,6 +155,10 @@
 		120AE8E01FAAF44D00399257 /* AppTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppTableViewCell.m; sourceTree = "<group>"; };
 		120AE8E31FAAF72500399257 /* AppListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppListView.h; sourceTree = "<group>"; };
 		120AE8E41FAAF72500399257 /* AppListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppListView.m; sourceTree = "<group>"; };
+		120AE8E61FAB0B5E00399257 /* itemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = itemView.h; sourceTree = "<group>"; };
+		120AE8E71FAB0B5E00399257 /* itemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = itemView.m; sourceTree = "<group>"; };
+		120AE8E91FAB1F5B00399257 /* InsetLable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsetLable.h; sourceTree = "<group>"; };
+		120AE8EA1FAB1F5B00399257 /* InsetLable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsetLable.m; sourceTree = "<group>"; };
 		1217F2761FA0381A001FCB27 /* DebetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebetDetailViewController.h; sourceTree = "<group>"; };
 		1217F2771FA0381A001FCB27 /* DebetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebetDetailViewController.m; sourceTree = "<group>"; };
 		1229DA151FA7431400C97938 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -403,6 +409,8 @@
 				120AE8E01FAAF44D00399257 /* AppTableViewCell.m */,
 				120AE8E31FAAF72500399257 /* AppListView.h */,
 				120AE8E41FAAF72500399257 /* AppListView.m */,
+				120AE8E61FAB0B5E00399257 /* itemView.h */,
+				120AE8E71FAB0B5E00399257 /* itemView.m */,
 			);
 			path = appView;
 			sourceTree = "<group>";
@@ -617,6 +625,8 @@
 				EFEBD07D1F95DC26003F3F41 /* HTAFHTTPSessionManager.m */,
 				128AF64A1F9F2BCF0076E0DD /* HTTableViewCell.h */,
 				128AF64B1F9F2BCF0076E0DD /* HTTableViewCell.m */,
+				120AE8E91FAB1F5B00399257 /* InsetLable.h */,
+				120AE8EA1FAB1F5B00399257 /* InsetLable.m */,
 			);
 			path = inherit;
 			sourceTree = "<group>";
@@ -1137,6 +1147,7 @@
 				EFEBD0861F95E4C6003F3F41 /* HTNetworkingTool.m in Sources */,
 				1208DCDB1F9AF89600524BB4 /* DebetTableViewController.m in Sources */,
 				12934B081F975B310090B36F /* MD5Encryption.m in Sources */,
+				120AE8E81FAB0B5E00399257 /* itemView.m in Sources */,
 				12FCBEA11FA84BC200BF29BF /* HSBasePickerVC.m in Sources */,
 				12645F851F9B12DD00E758BD /* ADView.m in Sources */,
 				120440361FA082DD006EE6B0 /* BannerInfo.m in Sources */,
@@ -1188,6 +1199,7 @@
 				12FCBEA51FA84BC200BF29BF /* NSDate+Date.m in Sources */,
 				12000C961F9D87D800ECE3AE /* CenterViewCell.m in Sources */,
 				126931201F99AB0D00F6D414 /* HomeTopView.m in Sources */,
+				120AE8EB1FAB1F5B00399257 /* InsetLable.m in Sources */,
 				123032621FA2D7E000412BD5 /* XZEaseBlankPageView.m in Sources */,
 				12000CA51F9DD9FB00ECE3AE /* BackView.m in Sources */,
 				1208DCF31F9B0FD500524BB4 /* PushWebViewController.m in Sources */,

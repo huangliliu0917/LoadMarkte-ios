@@ -69,7 +69,14 @@
     [self.lableArray addObject:self.firstLable];
     [self.lableArray addObject:self.secondLable];
     [self.lableArray addObject:self.thirdLable];
-    _titleLable.font = kAdaptedFontSize(16);
+    _titleLable.font = kAdaptedFontSize(18);
+    _monthTitle.font = kAdaptedFontSize(15);
+    _monthRate.font = kAdaptedFontSize(15);
+    
+    _debetLineTitle.font = kAdaptedFontSize(15);
+    
+    _debetLine.font = kAdaptedFontSize(15);
+   
 }
 
 
@@ -98,7 +105,7 @@
     }else{
         _debetLine.text = @"0 元";
     }
-    LWLog(@"%d-----%d",model.isHot,model.isNew);
+//    LWLog(@"%d-----%d",model.isHot,model.isNew);
     if (model.isHot == 1) {
         [_rightImage setImage:[UIImage imageNamed:@"tj"]];
     }else{
