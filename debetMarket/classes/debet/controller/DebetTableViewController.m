@@ -213,6 +213,7 @@
     ContentTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"productCell"];
     if (cell == nil) {
         cell = (ContentTableViewCell *)[[[NSBundle mainBundle] loadNibNamed:@"ContentTableViewCell" owner:nil options:nil] lastObject];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     HomeListModel * model = [self.listData objectAtIndex:indexPath.row];
     cell.model = model;

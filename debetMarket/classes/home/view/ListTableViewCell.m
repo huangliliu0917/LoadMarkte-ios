@@ -42,7 +42,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        self.backgroundColor = [UIColor clearColor];
+//        self.backgroundColor = [UIColor clearColor];
 //        CGFloat height =  ((data.count -1 / 4) + 1) * ((KScreenWidth  - 5 * 5) / 4);
 //        TestView * test = [[TestView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, height) andData:data];
 //        test.userInteractionEnabled = YES;

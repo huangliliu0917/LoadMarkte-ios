@@ -45,7 +45,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    self.tableView.backgroundColor = [UIColor orangeColor];
     
-//    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 10, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
     [self addSubview:tableView];
 //    [self.tableView registerNib:[UINib nibWithNibName:@"FourListTableViewCell" bundle:nil] forCellReuseIdentifier:@"FourListTableViewCell"];
 //    [self.tableView registerClass:[ListTableViewCell class] forCellReuseIdentifier:@"ss"];
@@ -141,7 +141,7 @@
     if (indexPath.section == 0) {
         return 143;
     }else{
-      return  (KScreenWidth / 4.0 + 10) * (self.NewListS.count / 4);
+      return (KScreenWidth - 5 * 5) / 4.0 + (((self.NewListS.count - 1) / 4 + 1)  + 1)* 5;
     }
     
 }

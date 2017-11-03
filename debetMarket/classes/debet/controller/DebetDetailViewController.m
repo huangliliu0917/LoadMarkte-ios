@@ -145,23 +145,7 @@
     self.firstLable.font = kAdaptedFontSize(13);
     self.secondLable.font = kAdaptedFontSize(13);
     self.thirdLable.font = kAdaptedFontSize(13);
-    
-//    self.firstLable.layer.cornerRadius = self.firstLable.frame.size.height * 0.5;
-//    self.firstLable.layer.masksToBounds = YES;
-//    self.firstLable.layer.borderWidth = .6;
-//    self.firstLable.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//
-//    self.secondLable.layer.cornerRadius = self.firstLable.frame.size.height * 0.5;
-//    self.secondLable.layer.masksToBounds = YES;
-//    self.secondLable.layer.borderWidth = .6;
-//    self.secondLable.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//
-//    self.thirdLable.layer.cornerRadius = self.firstLable.frame.size.height * 0.5;
-//    self.thirdLable.layer.masksToBounds = YES;
-//    self.thirdLable.layer.borderWidth = .6;
-//    self.thirdLable.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    
-    
+
     [self.lableArray addObject:self.firstLable];
     [self.lableArray addObject:self.secondLable];
     [self.lableArray addObject:self.thirdLable];
@@ -173,26 +157,21 @@
     self.fenqiLable.font = kAdaptedFontSize(18);
     self.fenqifanwei.font = kAdaptedFontSize(16);
     self.fenqiDay.font = kAdaptedFontSize(16);
-    
 
     self.dayBackMoneyLable.font = kAdaptedFontSize(18);
     self.dayBackMoneyTitleLable.font = kAdaptedFontSize(16);
   
-    
     self.rateLable.font = kAdaptedFontSize(18);
     self.dayRateTitleLable.font = kAdaptedFontSize(16);
     
-
     self.fastDayLable.font = kAdaptedFontSize(18);
     self.fastDayLableTitle.font = kAdaptedFontSize(16);
     
-
     self.shengqinlable.font = kAdaptedFontSize(18);
     self.foutFirstLable.font = kAdaptedFontSize(18);
     self.fourSecondLable.font = kAdaptedFontSize(18);
     self.fourThreeLable.font = kAdaptedFontSize(18);
     self.fourFourLable.font = kAdaptedFontSize(18);
-
 
     self.lijishengqing.layer.cornerRadius = 5;
     self.lijishengqing.layer.masksToBounds = YES;
@@ -216,6 +195,9 @@
     self.tableView.estimatedRowHeight = 500;
     [self setupInit];
     
+    
+//    LWLog(@"%@",[self.model mj_keyValues]);
+    
     NSMutableDictionary * parame  = [NSMutableDictionary dictionary];
     parame[@"projectId"] = self.model.loanId;
     parame[@"userId"] = unUserInfo == nil ? @(0) : unUserInfo.userId;
@@ -233,6 +215,14 @@
 }
 
 
+- (NSString *)getRang:(NSString *)money{
+    
+    if (money.length > 5) {
+        int rang = [money intValue] / 10000;
+        return [NSString stringWithFormat:@"%d万",rang];
+    }
+    return money;
+}
 
 
 - (void)setupInit:(HomeListModel *)model{
@@ -261,8 +251,8 @@
     if (model.enableMoney.length) {
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
         self.moneyArray = [money copy];
-        _daikuanMoney.text = [NSString stringWithFormat:@"%@ ~ %@元",[money firstObject],[money lastObject]];
-        _daikuanMoneyRight.text =  [NSString stringWithFormat:@"%@ 元",[money firstObject]];
+        _daikuanMoney.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
+        _daikuanMoneyRight.text =  [NSString stringWithFormat:@"%@元",[self getRang:[money firstObject]]];
     }else{
         _daikuanMoney.text = @"0 元";
         _daikuanMoneyRight.text = @"0 元";

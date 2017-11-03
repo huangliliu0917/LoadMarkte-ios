@@ -11,23 +11,23 @@
 @interface HomeListModel : NSObject
 
 @property(nonatomic,copy) NSString * applicationMaterial;
-@property(nonatomic,assign) NSNumber *  applyType;
+@property(nonatomic,assign) int  applyType;
 @property(nonatomic,copy) NSString * applyUrl;
-@property(nonatomic,assign) NSNumber *  categories;
+@property(nonatomic,copy) NSString *  categories;
 @property(nonatomic,copy) NSString * contacter;
-@property(nonatomic,assign) NSNumber *  createTime;
+@property(nonatomic,strong) NSNumber *  createTime;
 @property(nonatomic,copy) NSString * deadline;
-@property(nonatomic,assign) NSNumber * deadlineUnit;
-@property(nonatomic,assign) NSNumber * desc;
+@property(nonatomic,strong) NSNumber * deadlineUnit;
+@property(nonatomic,copy) NSString * desc;
 @property(nonatomic,copy) NSString * enableMoney;
-@property(nonatomic,assign) NSNumber * fastestGetTime;
-@property(nonatomic,assign) NSNumber * loanId;
+@property(nonatomic,strong) NSNumber * fastestGetTime;
+@property(nonatomic,strong) NSNumber * loanId;
 @property(nonatomic,copy) NSString * interestRate;
 @property(nonatomic,assign) int isDelete;
 @property(nonatomic,assign) int  isHot;
 @property(nonatomic,assign) int isNew;
 @property(nonatomic,copy) NSString * logo;
-@property(nonatomic,copy) NSNumber * maxMoney;
+@property(nonatomic,strong) NSNumber * maxMoney;
 @property(nonatomic,copy) NSString * name;
 @property(nonatomic,copy) NSString * phone;
 @property(nonatomic,copy) NSString * tag;

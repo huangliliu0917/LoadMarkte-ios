@@ -79,7 +79,14 @@
    
 }
 
-
+- (NSString *)getRang:(NSString *)money{
+    
+    if (money.length > 5) {
+        NSInteger rang = [money doubleValue] / 10000;
+        return [NSString stringWithFormat:@"%d万",rang];
+    }
+    return money;
+}
 
 - (void)setModel:(HomeListModel *)model{
     
@@ -101,7 +108,7 @@
     
     if (model.enableMoney.length) {
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
-        _debetLine.text = [NSString stringWithFormat:@"%@ ~ %@元",[money firstObject],[money lastObject]];
+        _debetLine.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
     }else{
         _debetLine.text = @"0 元";
     }

@@ -53,6 +53,7 @@
     
     
     //获取首页数据
+    [SVProgressHUD showWithStatus:nil];
     [HTNetworkingTool HTNetworkingToolPost:@"project/index" parame:nil success:^(id json) {
         LWLog(@"%@",[json description]);
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
@@ -63,7 +64,9 @@
             [self.contenView ContentViewSetDate:hotProjectList and:newProjectList];
             
         }
+        [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
         LWLog(@"%@",[error description]);
     }];
 
