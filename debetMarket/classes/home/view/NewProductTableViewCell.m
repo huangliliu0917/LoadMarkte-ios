@@ -30,14 +30,14 @@
 - (void)setData:(CateGoryModel *)data{
     _data = data;
     
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:data.icon] placeholderImage:nil options:SDWebImageRetryFailed];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:data.icon] placeholderImage:[UIImage imageNamed:@"default"] options:SDWebImageRetryFailed];
     self.nameLable.text = [data.name copy];
 }
 
 
 - (void)setModel:(HomeListModel *)model{
     _model = model;
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:nil options:SDWebImageRetryFailed];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"] options:SDWebImageRetryFailed];
     self.nameLable.text = [model.name copy];
 }
 @end

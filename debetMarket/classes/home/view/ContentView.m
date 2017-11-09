@@ -41,8 +41,8 @@
     self.tableView = tableView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 500;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 500;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    self.tableView.backgroundColor = [UIColor orangeColor];
     
     self.tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
@@ -141,7 +141,9 @@
     if (indexPath.section == 0) {
         return 143;
     }else{
-      return (KScreenWidth - 5 * 5) / 4.0 + (((self.NewListS.count - 1) / 4 + 1)  + 1)* 5;
+        
+      
+      return ((KScreenWidth - 5 * 5) / 4.0) * ((self.NewListS.count - 1) / 4 + 1) + (((self.NewListS.count - 1) / 4 + 1)  + 1)* 5;
     }
     
 }
@@ -151,6 +153,9 @@
     if (section == 0) {
         
         HotPublish * hot = [HotPublish HotPublishViewCreate];
+        UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeMore)];
+        [hot addGestureRecognizer:ges];
+        hot.userInteractionEnabled = YES;
         hot.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(50));
         return hot;
     }else{
@@ -163,4 +168,8 @@
     
 }
 
+- (void)seeMore{
+    
+    [self.delegate seeMore];
+}
 @end

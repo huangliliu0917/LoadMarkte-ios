@@ -13,6 +13,7 @@
 
 - (void)ContentViewDelegate:(HomeListModel *)model;
 
+- (void)seeMore;
 @end
 
 

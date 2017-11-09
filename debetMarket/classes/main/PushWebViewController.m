@@ -262,66 +262,66 @@
         decisionHandler(WKNavigationResponsePolicyCancel);
     }
  
-        if ([url rangeOfString:@"qq"].location !=  NSNotFound) {
-            decisionHandler(WKNavigationResponsePolicyAllow);
-        }
-        if ([url rangeOfString:@"/usercenter/login.aspx"].location !=  NSNotFound || [url rangeOfString:@"/invite/mobilelogin.aspx?"].location != NSNotFound || [url rangeOfString:@"/usercenter/verifymobile.aspx?"].location != NSNotFound) {
-            
+//        if ([url rangeOfString:@"qq"].location !=  NSNotFound) {
+//            decisionHandler(WKNavigationResponsePolicyAllow);
+//        }
+//        if ([url rangeOfString:@"/usercenter/login.aspx"].location !=  NSNotFound || [url rangeOfString:@"/invite/mobilelogin.aspx?"].location != NSNotFound || [url rangeOfString:@"/usercenter/verifymobile.aspx?"].location != NSNotFound) {
+//            
+////            decisionHandler(WKNavigationResponsePolicyCancel);
+////            LanchViewController * launchViewController = [[LanchViewController alloc] init];
+////            launchViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+////            [self presentViewController:launchViewController animated:YES completion:nil];
+//            
+//        }else if ([url rangeOfString:@"/usercenter/bindingweixin.aspx"].location != NSNotFound) {
+//            
 //            decisionHandler(WKNavigationResponsePolicyCancel);
-//            LanchViewController * launchViewController = [[LanchViewController alloc] init];
-//            launchViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//            [self presentViewController:launchViewController animated:YES completion:nil];
-            
-        }else if ([url rangeOfString:@"/usercenter/bindingweixin.aspx"].location != NSNotFound) {
-            
-            decisionHandler(WKNavigationResponsePolicyCancel);
-        }else if ([url rangeOfString:@"/usercenter/appaccountswitcher.aspx"].location != NSNotFound) {
-            decisionHandler(WKNavigationResponsePolicyCancel);
-        }else if([url rangeOfString:@"appalipay.aspx"].location != NSNotFound){
- 
-            decisionHandler(WKNavigationResponsePolicyCancel);
-        }else if ([url rangeOfString:@"im.html"].location != NSNotFound || [url rangeOfString:@"/webChannel.html"].location != NSNotFound){
-
-            decisionHandler(WKNavigationResponsePolicyAllow);
-        }else{
-
-            if (![temp isEqualToString:self.funUrl]) {
-                if ([temp.lowercaseString isEqualToString:self.funUrl.lowercaseString]) {
-                    decisionHandler(WKNavigationResponsePolicyAllow);
-                }else {
-                    
-                    NSRange spe = [temp rangeOfString:@"#0"];
-                    if (spe.location != NSNotFound ) {//找到了
-                        NSString * hou = [temp substringToIndex:spe.location];
-                        LWLog(@"%@",hou);
-                        if ([[hou lowercaseString] isEqualToString:[self.funUrl lowercaseString]]) {
-                            decisionHandler(WKNavigationResponsePolicyAllow);
-                        }else{
-                            decisionHandler(WKNavigationResponsePolicyCancel);
-                            PushWebViewController * funWeb =  [[PushWebViewController alloc] init];
-                            funWeb.funUrl = temp;
-                            [self.navigationController pushViewController:funWeb animated:YES];
-                            self.tabBarController.tabBar.hidden = YES;
-                            self.navigationItem.title = nil;
-//                            [self.webView.scrollView.mj_header endRefreshing];
-                        }
-                        
-                    }else{
-                        decisionHandler(WKNavigationResponsePolicyCancel);
-                        PushWebViewController * funWeb =  [[PushWebViewController alloc] init];
-                        funWeb.funUrl = temp;
-                        [self.navigationController pushViewController:funWeb animated:YES];
-                        self.tabBarController.tabBar.hidden = YES;
-                        self.navigationItem.title = nil;
-//                        [self.webView.scrollView.mj_header endRefreshing];
-                        
-                    }
-                    
-                    
-                }
-            }
-        }
-        
+//        }else if ([url rangeOfString:@"/usercenter/appaccountswitcher.aspx"].location != NSNotFound) {
+//            decisionHandler(WKNavigationResponsePolicyCancel);
+//        }else if([url rangeOfString:@"appalipay.aspx"].location != NSNotFound){
+// 
+//            decisionHandler(WKNavigationResponsePolicyCancel);
+//        }else if ([url rangeOfString:@"im.html"].location != NSNotFound || [url rangeOfString:@"/webChannel.html"].location != NSNotFound){
+//
+//            decisionHandler(WKNavigationResponsePolicyAllow);
+//        }else{
+//
+//            if (![temp isEqualToString:self.funUrl]) {
+//                if ([temp.lowercaseString isEqualToString:self.funUrl.lowercaseString]) {
+//                    decisionHandler(WKNavigationResponsePolicyAllow);
+//                }else {
+//                    
+//                    NSRange spe = [temp rangeOfString:@"#0"];
+//                    if (spe.location != NSNotFound ) {//找到了
+//                        NSString * hou = [temp substringToIndex:spe.location];
+//                        LWLog(@"%@",hou);
+//                        if ([[hou lowercaseString] isEqualToString:[self.funUrl lowercaseString]]) {
+//                            decisionHandler(WKNavigationResponsePolicyAllow);
+//                        }else{
+//                            decisionHandler(WKNavigationResponsePolicyCancel);
+//                            PushWebViewController * funWeb =  [[PushWebViewController alloc] init];
+//                            funWeb.funUrl = temp;
+//                            [self.navigationController pushViewController:funWeb animated:YES];
+//                            self.tabBarController.tabBar.hidden = YES;
+//                            self.navigationItem.title = nil;
+////                            [self.webView.scrollView.mj_header endRefreshing];
+//                        }
+//                        
+//                    }else{
+//                        decisionHandler(WKNavigationResponsePolicyCancel);
+//                        PushWebViewController * funWeb =  [[PushWebViewController alloc] init];
+//                        funWeb.funUrl = temp;
+//                        [self.navigationController pushViewController:funWeb animated:YES];
+//                        self.tabBarController.tabBar.hidden = YES;
+//                        self.navigationItem.title = nil;
+////                        [self.webView.scrollView.mj_header endRefreshing];
+//                        
+//                    }
+//                    
+//                    
+//                }
+//            }
+//        }
+//        
         decisionHandler(WKNavigationResponsePolicyAllow);
   
     

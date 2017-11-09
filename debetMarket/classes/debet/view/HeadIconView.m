@@ -54,7 +54,7 @@
 }
 
 - (void)setupInit{
-    CGFloat with = (KScreenWidth) * 0.25;
+    CGFloat with = (KScreenWidth - 25) * 0.25;
     CGFloat height = with;
     CGFloat margin = 5;
     for (int i  = 0; i < self.dataArray.count; i++) {
@@ -62,7 +62,7 @@
         cell.tag = i;
         int col = i % 4;
         int row = i / 4;
-        cell.frame = CGRectMake(with * col , height * row, with, height);
+        cell.frame = CGRectMake((margin + with) * col + margin , (margin + height) * row + margin, with, height);
         [self.itemArray addObject:cell];
         cell.data = [self.dataArray objectAtIndex:i];
         UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cateGray:)];

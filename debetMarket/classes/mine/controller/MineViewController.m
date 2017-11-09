@@ -85,6 +85,11 @@
             
         }else if(indexPath.row == 1){
             
+            PushWebViewController *vc = [[PushWebViewController alloc] init];
+            vc.funUrl = @"http://loanmarket.kanhuotu.cn/forend/person/about";
+            [self.navigationController pushViewController:vc animated:YES];
+            
+            
             
         }else{
             

@@ -46,12 +46,27 @@
     return _newProjectList;
 }
 
-
+- (void)getInit{
+    //获取首页数据
+    UserInfo * user =  (UserInfo *)[NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
+    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+    if (user == nil) {
+        parame[@"userId"] = user.userId;
+    }else{
+        parame[@"userId"] = @(0);
+    }
+    [HTNetworkingTool HTNetworkingToolPost:@"user/init" parame:parame success:^(id json) {
+        LWLog(@"%@",[json description]);
+        
+    } failure:^(NSError *error) {
+        LWLog(@"%@",[error description]);
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupInit];
     
-    
+    [self getInit];
     //获取首页数据
     [SVProgressHUD showWithStatus:nil];
     [HTNetworkingTool HTNetworkingToolPost:@"project/index" parame:nil success:^(id json) {
@@ -74,8 +89,15 @@
 
 - (void)HomeTopView:(int)type{
     
+    LWLog(@"%d",type);
+    NSString * url;
+    if (type == 0) {
+        url = @"https://www.51nbapi.com/h5/login.html";
+    }else if(type == 1){
+        url = @"https://b.jianbing.com/hs/appgjj/?from=huotu";
+    }
     PushWebViewController *vc = [[PushWebViewController alloc] init];
-    vc.funUrl = @"https://www.51nbapi.com/h5/login.html";
+    vc.funUrl = [url copy];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -108,14 +130,15 @@
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom).mas_offset(0);
-        
-        
     }];
     
     
 }
 
-
+- (void)seeMore{
+    
+    [self.tabBarController setSelectedIndex:1];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

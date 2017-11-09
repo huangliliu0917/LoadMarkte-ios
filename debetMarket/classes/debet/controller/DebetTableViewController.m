@@ -70,6 +70,7 @@
     parame[@"Sid"] = @(model.categoryId);
     parame[@"pageIndex"] = @(self.pageIndex + 1);
     [SVProgressHUD showWithStatus:nil];
+    LWLog(@"%@",parame);
     [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:nil success:^(id json) {
         LWLog(@"%@",[json description]);
         
@@ -151,7 +152,7 @@
             [self.headData addObjectsFromArray:data];
             
             self.head.dataArray = [NSMutableArray arrayWithArray:data];
-            CGFloat height =  (((data.count - 1)  / 4 + 1) * (KScreenWidth) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
+            CGFloat height =  (((data.count - 1)  / 4 + 1) * (KScreenWidth - 25) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
             CGRect frame =  self.head.frame;
             frame.size.height = height;
             self.head.frame = frame;

@@ -54,7 +54,7 @@
 - (void)setModel:(HomeListModel *)model{
     _model = model;
     
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:nil];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"]];
     _titleLable.text = model.name;
     
     NSString * rate;

@@ -227,7 +227,7 @@
 
 - (void)setupInit:(HomeListModel *)model{
     
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:nil options:SDWebImageProgressiveDownload];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"] options:SDWebImageProgressiveDownload];
     _nameLable.text = model.name;
     
     if (model.tag.length) {
@@ -251,7 +251,11 @@
     if (model.enableMoney.length) {
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
         self.moneyArray = [money copy];
-        _daikuanMoney.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
+        if (money.count == 1) {
+           _daikuanMoney.text = [NSString stringWithFormat:@"%@元",[self getRang:[money firstObject]]];
+        }else{
+           _daikuanMoney.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
+        }
         _daikuanMoneyRight.text =  [NSString stringWithFormat:@"%@元",[self getRang:[money firstObject]]];
     }else{
         _daikuanMoney.text = @"0 元";
@@ -280,7 +284,9 @@
     
     _fastDayLable.text = [NSString stringWithFormat:@"%@ 天",model.fastestGetTime];
     
-    _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:model];
+    
+    LWLog(@"%@-----%@",_daikuanMoneyRight.text,_fenqiDay.text);
+    _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fenqiDay.text withRate:model];
     
 
     NSArray * appArr = [model.applicationMaterial componentsSeparatedByString:@","];
@@ -347,6 +353,7 @@
     }else{
         
         _fenqiDay.text =  [NSString stringWithFormat:@"%@ 天",gender];
+       
         _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:self.model];
     }
     LWLog(@"%@",gender);
@@ -448,10 +455,10 @@
 }
 
 - (NSString *) getMoneyBack:(NSString *)money andDay:(NSString *)day withRate:(HomeListModel *)model{
-    int inMoney = [[[money componentsSeparatedByString:@" "] firstObject] intValue];
-    int inDay = [[[day componentsSeparatedByString:@" "] firstObject] intValue];
+    int inMoney = [money floatValue];
+    int inDay = [day intValue];
     
-    CGFloat step1 = (10000 * [model.interestRate floatValue] * inMoney) / 10000;
+    CGFloat step1 = (10000 * [model.interestRate floatValue] * 0.01 * inMoney) / 10000;
     CGFloat step2 = inMoney * 1.0 / inDay + step1;
     
     LWLog(@"%f",step2);

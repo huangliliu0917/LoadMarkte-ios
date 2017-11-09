@@ -92,7 +92,9 @@
     
     LWLog(@"%@",model.name);
     _model = model;
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:nil];
+    
+    
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"]];
     _titleLable.text = model.name;
     
     // 0 日利率 1 月利率  2 年利率
@@ -108,7 +110,12 @@
     
     if (model.enableMoney.length) {
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
-        _debetLine.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
+        if (money.count == 1) {
+            _debetLine.text = [NSString stringWithFormat:@"%@元",[self getRang:[money firstObject]]];
+        }else{
+           _debetLine.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
+        }
+        
     }else{
         _debetLine.text = @"0 元";
     }
