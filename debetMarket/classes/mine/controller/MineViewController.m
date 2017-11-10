@@ -81,7 +81,9 @@
         [self.view.window addSubview:alet.view];
     }else{
         if (indexPath.row == 0) {
-            
+            PushWebViewController *vc = [[PushWebViewController alloc] init];
+            vc.funUrl = @"http://loanmarket.kanhuotu.cn/forend/project/loanProcess";
+            [self.navigationController pushViewController:vc animated:YES];
             
         }else if(indexPath.row == 1){
             

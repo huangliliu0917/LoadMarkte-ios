@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <IQKeyboardManager.h>
+
 @interface AppDelegate ()
 
 @end
@@ -22,23 +23,16 @@
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = YES;
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setMinimumDismissTimeInterval:1.0]; 
+    [SVProgressHUD setMinimumDismissTimeInterval:1.0];
 }
-
-- (void)setupInit{
-  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-  [self setKeyboardManager];
+-(void)setupInit{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [self setKeyboardManager];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     [self setupInit];
-    
- 
-    
-    
-   
     return YES;
 }
 
