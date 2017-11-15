@@ -120,9 +120,10 @@
         return cell;
     }else{
         ListTableViewCell * list = [tableView dequeueReusableCellWithIdentifier:@"ss"];
-
+       
         if (list == nil) {
             list = [[ListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ss" WithData:self.NewListS];
+             list.selectionStyle = UITableViewCellSelectionStyleNone;
         }
 //        list.selectionStyle = UITableViewCellSelectionStyleNone;
         list.delegate = self;

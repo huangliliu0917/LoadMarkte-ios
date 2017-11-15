@@ -248,10 +248,25 @@
         }
     }
     
+    NSString * unit ;
+    // 0 日利率 1 月利率  2 年利率
+    if([model.deadlineUnit intValue] == 0){
+        unit = @"天";
+    }else if([model.deadlineUnit intValue] == 1){
+        unit = @"月";
+    }else{
+        unit = @"年";
+    }
+    
     if (model.enableMoney.length) {
+        
+       
+        
+        
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
         self.moneyArray = [money copy];
         if (money.count == 1) {
+            
            _daikuanMoney.text = [NSString stringWithFormat:@"%@元",[self getRang:[money firstObject]]];
         }else{
            _daikuanMoney.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
@@ -265,10 +280,11 @@
     if (model.deadline.length) {
         NSArray * money =  [model.deadline componentsSeparatedByString:@","];
         self.dayArray = [money copy];
-        _fenqifanwei.text = [NSString stringWithFormat:@"%@ ~ %@天",[money firstObject],[money lastObject]];
-        _fenqiDay.text = [NSString stringWithFormat:@"%@ 天",[money firstObject]];
+        _fenqifanwei.text = [NSString stringWithFormat:@"%@ ~ %@%@",[money firstObject],[money lastObject],unit];
+        _fenqiDay.text = [NSString stringWithFormat:@"%@ %@",[money firstObject],unit];
     }else{
-        _daikuanMoney.text = @"0 天";
+        
+        _daikuanMoney.text = [NSString stringWithFormat:@"0 %@",unit];
     }
     
     // 0 日利率 1 月利率  2 年利率
@@ -282,7 +298,7 @@
     _rateLable.text = [NSString stringWithFormat:@" %@ %%",model.interestRate];
     
     
-    _fastDayLable.text = [NSString stringWithFormat:@"%@ 天",model.fastestGetTime];
+    _fastDayLable.text = [NSString stringWithFormat:@"%@ %@",model.fastestGetTime,unit];
     
     
     LWLog(@"%@-----%@",_daikuanMoneyRight.text,_fenqiDay.text);
@@ -332,7 +348,18 @@
         }else if(indexPath.row == 1){
             _current = 1;
             HSGenderPickerVC *vc = [[HSGenderPickerVC alloc] init];
-            vc.titleUnit = @"请选择分期时间(天)";
+            
+            NSString * unit ;
+            // 0 日利率 1 月利率  2 年利率
+            if([self.model.deadlineUnit intValue] == 0){
+                unit = @"天";
+            }else if([self.model.deadlineUnit intValue] == 1){
+                unit = @"月";
+            }else{
+                unit = @"年";
+            }
+            
+            vc.titleUnit = [NSString stringWithFormat:@"请选择分期时间(%@)",unit];
             vc.delegate = self;
             vc.genderArray = [[NSArray alloc] initWithObjects:self.dayArray, nil];
             [self presentViewController:vc animated:YES completion:nil];
@@ -456,12 +483,15 @@
 
 - (NSString *) getMoneyBack:(NSString *)money andDay:(NSString *)day withRate:(HomeListModel *)model{
     int inMoney = [money floatValue];
-    int inDay = [day intValue];
+    int inDay = [day floatValue];
+    
     
     CGFloat step1 = (10000 * [model.interestRate floatValue] * 0.01 * inMoney) / 10000;
     CGFloat step2 = inMoney * 1.0 / inDay + step1;
+    if(inDay == 0){
+       return [NSString stringWithFormat:@"0 元"];
+    }
     
-    LWLog(@"%f",step2);
     return [NSString stringWithFormat:@"%.2f 元",step2];
 }
 

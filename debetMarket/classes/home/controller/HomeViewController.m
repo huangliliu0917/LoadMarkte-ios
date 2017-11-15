@@ -67,6 +67,13 @@
     [self setupInit];
     
     [self getInit];
+    
+    [self getHomeDate];
+
+}
+
+- (void)getHomeDate{
+    
     //获取首页数据
     [SVProgressHUD showWithStatus:nil];
     [HTNetworkingTool HTNetworkingToolPost:@"project/index" parame:nil success:^(id json) {
@@ -75,16 +82,19 @@
             NSArray * hotProjectList =  [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"]  objectForKey:@"hotProjectList"]];
             //[self.hotProjectList addObjectsFromArray:hotProjectList];
             NSArray * newProjectList =  [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"]  objectForKey:@"newProjectList"]];
-             //[self.newProjectList addObjectsFromArray:newProjectList];
+            //[self.newProjectList addObjectsFromArray:newProjectList];
             [self.contenView ContentViewSetDate:hotProjectList and:newProjectList];
             
         }
         [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self getHomeDate];
+        });
+        
         LWLog(@"%@",[error description]);
     }];
-
 }
 
 - (void)HomeTopView:(int)type{
@@ -95,6 +105,8 @@
         url = @"https://www.51nbapi.com/h5/login.html";
     }else if(type == 1){
         url = @"https://b.jianbing.com/hs/appgjj/?from=huotu";
+    }else{
+        url = @"http://shebao.caijigaoshou.cn";
     }
     PushWebViewController *vc = [[PushWebViewController alloc] init];
     vc.funUrl = [url copy];
