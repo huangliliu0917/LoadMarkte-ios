@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,15 +21,15 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gj" translatesAutoresizingMaskIntoConstraints="NO" id="iHy-7s-RUG">
-                        <rect key="frame" x="15" y="0.0" width="60" height="60"/>
+                        <rect key="frame" x="22" y="0.0" width="46" height="46"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="iHy-7s-RUG" secondAttribute="height" multiplier="1:1" id="JDO-vC-wVg"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现金借款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUO-uG-mzI">
-                        <rect key="frame" x="0.0" y="60" width="90" height="25"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="0.0" y="46" width="90" height="39"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.42769703269999998" green="0.42723253369999997" blue="0.4432156384" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -37,8 +37,8 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="NUO-uG-mzI" secondAttribute="trailing" id="7QN-YS-04K"/>
                 <constraint firstAttribute="bottom" secondItem="NUO-uG-mzI" secondAttribute="bottom" id="8CB-ov-8xC"/>
-                <constraint firstAttribute="trailing" secondItem="iHy-7s-RUG" secondAttribute="trailing" constant="15" id="LHw-ih-VBZ"/>
-                <constraint firstItem="iHy-7s-RUG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Nfy-bx-J97"/>
+                <constraint firstAttribute="trailing" secondItem="iHy-7s-RUG" secondAttribute="trailing" constant="22" id="LHw-ih-VBZ"/>
+                <constraint firstItem="iHy-7s-RUG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="22" id="Nfy-bx-J97"/>
                 <constraint firstItem="NUO-uG-mzI" firstAttribute="top" secondItem="iHy-7s-RUG" secondAttribute="bottom" id="RP4-pg-Cfd"/>
                 <constraint firstItem="iHy-7s-RUG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="poN-ku-xPW"/>
                 <constraint firstItem="NUO-uG-mzI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zes-ED-ARy"/>

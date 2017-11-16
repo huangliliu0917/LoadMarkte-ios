@@ -16,6 +16,7 @@
 
 /**图像*/
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet UITableViewCell *dibucell;
 
 /**标签*/
 @property (weak, nonatomic) IBOutlet UILabel *nameLable;
@@ -137,7 +138,7 @@
 
 - (void)setupInit{
     
-
+    _dibucell.separatorInset = UIEdgeInsetsMake(0, KScreenWidth, 0, 0);
     self.iconView.layer.cornerRadius = 5;
     self.iconView.layer.masksToBounds = YES;
     
@@ -257,7 +258,7 @@
     }else{
         unit = @"年";
     }
-    
+    self.dayBackMoneyTitleLable.text = [NSString stringWithFormat:@"每%@应还",unit];
     if (model.enableMoney.length) {
         
        
@@ -298,7 +299,7 @@
     _rateLable.text = [NSString stringWithFormat:@" %@ %%",model.interestRate];
     
     
-    _fastDayLable.text = [NSString stringWithFormat:@"%@ %@",model.fastestGetTime,unit];
+    _fastDayLable.text = [NSString stringWithFormat:@"%@ 天",model.fastestGetTime];
     
     
     LWLog(@"%@-----%@",_daikuanMoneyRight.text,_fenqiDay.text);
@@ -306,6 +307,7 @@
     
 
     NSArray * appArr = [model.applicationMaterial componentsSeparatedByString:@","];
+    
     for (int i = 0; i < appArr.count; i++) {
         UIView * view = [self.viewArray objectAtIndex:i];
         view.hidden = NO;
@@ -313,10 +315,10 @@
             UIView * item = [view.subviews objectAtIndex:j];
             if ([item isKindOfClass:[UIImageView class]]) {
                 UIImageView * im = (UIImageView *)item;
-                [im setImage:[UIImage imageNamed:[self.imagesArray objectAtIndex:i]]];
+                [im setImage:[UIImage imageNamed:[self.imagesArray objectAtIndex:[[appArr objectAtIndex:i] integerValue]]]];
             }else{
                 UILabel * im = (UILabel *)item;
-                im.text = [self.titleArray objectAtIndex:i];
+                im.text = [self.titleArray objectAtIndex:[[appArr objectAtIndex:i] integerValue]];
             }
         }
     }
@@ -372,18 +374,20 @@
 
 -(void)genderPicker:(HSGenderPickerVC*)genderPicker
     selectedGernder:(NSString*)gender{
-    
+    LWLog(@"%@",gender);
     if (_current == 0) {
         
+        LWLog(@"%@",gender);
         _daikuanMoneyRight.text = [NSString stringWithFormat:@"%@ 元",gender];
-        _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:self.model];
+        //[self getMoneyBack:_daikuanMoneyRight.text andDay:_fenqiDay.text withRate:model];
+        _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fenqiDay.text withRate:self.model];
     }else{
         
         _fenqiDay.text =  [NSString stringWithFormat:@"%@ 天",gender];
        
-        _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fastDayLable.text withRate:self.model];
+        _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fenqiDay.text withRate:self.model];
     }
-    LWLog(@"%@",gender);
+    
     
 }
 

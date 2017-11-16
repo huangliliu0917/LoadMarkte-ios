@@ -114,7 +114,7 @@
 }
 
 - (void)setupInit{
-    self.navigationItem.title = @"贷款超市";
+    self.navigationItem.title = @"小贷超市";
     
     
 //    self.homeTopHeight.constant = kAdaptedHeight(170);

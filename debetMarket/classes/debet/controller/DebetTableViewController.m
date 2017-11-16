@@ -61,27 +61,37 @@
 }
 
 - (void)addMore{
+    //self.pageIndex += 1;
     [self getListWithCateGray:self.currentCategray];
 }
 
 - (void)getListWithCateGray:(CateGoryModel *)model{
     LWLog(@"%@",[model mj_keyValues]);
     NSMutableDictionary * parame  = [NSMutableDictionary dictionary];
-    parame[@"Sid"] = @(model.categoryId);
-    parame[@"pageIndex"] = @(self.pageIndex + 1);
+    
+    parame[@"categoryId"] = model == nil ? @(0) : @(model.categoryId);
+    parame[@"pageIndex"] = @(++self.pageIndex);
+    parame[@"pageSize"] = @(10);
+    parame[@"topNum"] = @(0);
+    parame[@"isHot"] = @(-1);
+    parame[@"isNew"] = @(-1);
     [SVProgressHUD showWithStatus:nil];
     LWLog(@"%@",parame);
-    [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:nil success:^(id json) {
+    [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:parame success:^(id json) {
         LWLog(@"%@",[json description]);
         
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
             NSArray * data = [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"] objectForKey:@"list"]];
-            [self.listData removeAllObjects];
+            LWLog(@"%ld",(long)self.pageIndex);
+            if (self.pageIndex == 1) {
+                [self.listData removeAllObjects];
+            }
             [self.listData addObjectsFromArray:data];
             self.pageIndex = [[[json objectForKey:@"data"] objectForKey:@"pageIndex"] integerValue];
+            LWLog(@"%ld",(long)self.pageIndex);
             [self.tableView reloadData];
         }
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
         [self.tableView.mj_header endRefreshing];
         [SVProgressHUD dismiss];
@@ -144,6 +154,7 @@
 
 - (void)loadNewData{
     
+    self.pageIndex = 0;
     [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil success:^(id json) {
         
          LWLog(@"%@",json);
@@ -152,12 +163,12 @@
             [self.headData addObjectsFromArray:data];
             
             self.head.dataArray = [NSMutableArray arrayWithArray:data];
-            CGFloat height =  (((data.count - 1)  / 4 + 1) * (KScreenWidth - 25) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
+            CGFloat height = data.count == 0? 0 : (((data.count - 1)  / 4 + 1) * (KScreenWidth - 25) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
             CGRect frame =  self.head.frame;
             frame.size.height = height;
             self.head.frame = frame;
             _currentCategray = [data firstObject];
-            [self getListWithCateGray:[data firstObject]];
+            [self getListWithCateGray:nil];
             
         }
         [self.tableView.mj_header endRefreshing];

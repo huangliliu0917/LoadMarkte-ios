@@ -45,7 +45,7 @@
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    self.tableView.backgroundColor = [UIColor orangeColor];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(15, 0, -25, 0);
     [self addSubview:tableView];
 //    [self.tableView registerNib:[UINib nibWithNibName:@"FourListTableViewCell" bundle:nil] forCellReuseIdentifier:@"FourListTableViewCell"];
 //    [self.tableView registerClass:[ListTableViewCell class] forCellReuseIdentifier:@"ss"];

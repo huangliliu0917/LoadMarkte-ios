@@ -265,7 +265,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
 
                 lable.backgroundColor = [UIColor lightGrayColor];
-                [lable setText:[NSString stringWithFormat:@"%@秒重新发送",strTime]];
+                [lable setText:[NSString stringWithFormat:@" %@秒重新发送 ",strTime]];
 
             });
             timeout--;

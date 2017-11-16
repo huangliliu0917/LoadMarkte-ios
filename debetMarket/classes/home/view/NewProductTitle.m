@@ -42,16 +42,16 @@
     [self addSubview:red];
     
     [red mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(kAdaptedHeight(5));
+        make.top.equalTo(self.mas_top).offset(kAdaptedHeight(8));
         make.left.equalTo(self.mas_left).offset(kAdaptedHeight(10));
-         make.bottom.equalTo(self.mas_bottom).offset(-kAdaptedHeight(5));
+         make.bottom.equalTo(self.mas_bottom).offset(-kAdaptedHeight(8));
         make.width.mas_equalTo(kAdaptedWidth(4));
     }];
     
     UILabel * new = [[UILabel alloc] init];
     [self addSubview:new];
     new.text = @"最新产品";
-    new.font = kAdaptedFontSize(16);
+    new.font = kAdaptedFontSize(15);
     [new mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.left.equalTo(red).offset(kAdaptedHeight(10));

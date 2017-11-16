@@ -75,7 +75,7 @@
 //    [NavBar setTintColor:TopNavTitleViewTitleColor];
     
     
-    [NavBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],NSFontAttributeName:kAdaptedFontSize(20)}];
+    [NavBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     
 }
@@ -265,10 +265,11 @@
         //隐藏导航栏
         viewController.hidesBottomBarWhenPushed = YES;
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setTitle:@"返回" forState:UIControlStateNormal];
+//        [button setTitle:@"返回" forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"main_title_left_back"] forState:UIControlStateNormal];
-        [button sizeToFit];
-        button.titleLabel.font = kAdaptedFontSize(18);
+//        [button sizeToFit];
+        button.bounds = CGRectMake(0, 0, 25, 25);
+//        button.titleLabel.font = kAdaptedFontSize(15);
         // 让按钮内部的所有内容左对齐
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         // 让按钮的内容往左边偏移10

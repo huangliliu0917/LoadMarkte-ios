@@ -1383,12 +1383,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96GEC3X62W;
+				DEVELOPMENT_TEAM = M32T9GDHXC;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/debetMarket/PrefixHeader.pch";
 				INFOPLIST_FILE = debetMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xz.XingZhang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.guohai.xiaodaimarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1400,12 +1400,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96GEC3X62W;
+				DEVELOPMENT_TEAM = M32T9GDHXC;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/debetMarket/PrefixHeader.pch";
 				INFOPLIST_FILE = debetMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xz.XingZhang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.guohai.xiaodaimarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

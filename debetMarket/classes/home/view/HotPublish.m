@@ -29,7 +29,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.firstLable.font = kAdaptedFontSize(18);
+    self.firstLable.font = kAdaptedFontSize(15);
     self.secondLable.font = kAdaptedFontSize(14);
     // Initialization code
 }

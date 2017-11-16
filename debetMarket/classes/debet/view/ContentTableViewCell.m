@@ -62,8 +62,8 @@
     
     self.thirdLable.layer.cornerRadius = self.firstLable.frame.size.height * 0.5;
     self.thirdLable.layer.masksToBounds = YES;
-    self.thirdLable.layer.borderWidth = .6;
-    self.thirdLable.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.thirdLable.layer.borderWidth = .5;
+    self.thirdLable.layer.borderColor = LWColor(190, 190, 192).CGColor;
     
     
     [self.lableArray addObject:self.firstLable];
@@ -83,7 +83,7 @@
     
     if (money.length > 5) {
         NSInteger rang = [money doubleValue] / 10000;
-        return [NSString stringWithFormat:@"%d万",rang];
+        return [NSString stringWithFormat:@"%ld万",rang];
     }
     return money;
 }
@@ -105,8 +105,13 @@
     }else{
        _monthTitle.text = @"年利率";
     }
-    
-    _monthRate.text = [NSString stringWithFormat:@"%@ %%",model.interestRate];
+    NSString * aa ;
+    if (model.interestRate.length > 4) {
+        aa = [model.interestRate substringToIndex:4];
+    }else{
+        aa = model.interestRate;
+    }
+    _monthRate.text = [NSString stringWithFormat:@"%@ %%",aa];
     
     if (model.enableMoney.length) {
         NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
@@ -132,15 +137,22 @@
         
     }
     
-    
+    LWLog(@"%@---%@",model.name,model.tag);
     if (model.tag.length) {
         NSArray * tags = [model.tag componentsSeparatedByString:@","];
         NSInteger index = tags.count > 3 ? 3 : tags.count;
         for (int i = 0; i < index; i ++) {
             UILabel * title =  [self.lableArray objectAtIndex:i];
+            title.hidden = NO;
             title.text = [NSString stringWithFormat:@"  %@  ",[tags objectAtIndex:i]];
         }
         
+        if (index < 3) {
+            for (NSUInteger i = tags.count; i < 3; i++) {
+                UILabel * title =  [self.lableArray objectAtIndex:i];
+                title.hidden = YES;
+            }
+        }
     }else{
         for (int i = 0; i < self.lableArray.count; i ++) {
             UILabel * title =  [self.lableArray objectAtIndex:i];
