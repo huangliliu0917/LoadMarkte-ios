@@ -9,9 +9,11 @@
 #import "ContentView.h"
 #import "ListTableViewCell.h"
 #import "NewProductTitle.h"
+#import "HotListScrowTableViewCell.h"
+
 
 @interface ContentView()<UITableViewDelegate,UITableViewDataSource,FourListTableViewCellDelegate
-,ListTableViewCellDelegate>
+,ListTableViewCellDelegate,HotListScrowTableViewCellDelegate>
 
 @property(nonatomic,strong) UITableView * tableView;
 
@@ -111,13 +113,22 @@
     
     if (indexPath.section == 0) {
         
-        FourListTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"xx"];
+        HotListScrowTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"xx"];
         if (cell == nil) {
-            cell = [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
+            cell = [[HotListScrowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         return cell;
+        
+        
+        //FourListTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"xx"];
+//        if (cell == nil) {
+//            cell = [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.delegate = self;
+//        return cell;
     }else{
         ListTableViewCell * list = [tableView dequeueReusableCellWithIdentifier:@"ss"];
        
@@ -167,6 +178,12 @@
     }
     
     
+}
+
+- (void)HotItemClick:(HomeListModel *)model{
+    
+    LWLog(@"%@",[model mj_keyValues]);
+    [self.delegate ContentViewDelegate:model];
 }
 
 - (void)seeMore{

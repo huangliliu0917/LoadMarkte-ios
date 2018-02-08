@@ -11,7 +11,7 @@
 #import "HotPublish.h"
 #import "ContentView.h"
 #import "DebetDetailViewController.h"
-
+#import "HeiMingViewController.h"
 
 @interface HomeViewController ()<HomeTopViewDelegate,ContentViewDelegate>
 
@@ -46,27 +46,34 @@
     return _newProjectList;
 }
 
-- (void)getInit{
-    //获取首页数据
-    UserInfo * user =  (UserInfo *)[NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
-    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
-    if (user == nil) {
-        parame[@"userId"] = user.userId;
-    }else{
-        parame[@"userId"] = @(0);
-    }
-    [HTNetworkingTool HTNetworkingToolPost:@"user/init" parame:parame success:^(id json) {
-        LWLog(@"%@",[json description]);
-        
-    } failure:^(NSError *error) {
-        LWLog(@"%@",[error description]);
-    }];
-}
+//- (void)getInit{
+//    //获取首页数据
+//    UserInfo * user =  (UserInfo *)[NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
+//    NSMutableDictionary * parame = [NSMutableDictionary dictionary];
+//    if (user == nil) {
+//        parame[@"userId"] = user.userId;
+//    }else{
+//        parame[@"userId"] = @(0);
+//    }
+//    [HTNetworkingTool HTNetworkingToolPost:@"user/init" parame:parame isHud:YES  success:^(id json) {
+//        LWLog(@"%@",[json description]);
+//
+//    } failure:^(NSError *error) {
+//        LWLog(@"%@",[error description]);
+//    }];
+//}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupInit];
     
-    [self getInit];
+    AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    delegate.currentVC = self;
+    
+    self.navigationItem.title = @"首页";
+    //[self getInit];
     
     [self getHomeDate];
 
@@ -76,8 +83,8 @@
     
     //获取首页数据
     [SVProgressHUD showWithStatus:nil];
-    [HTNetworkingTool HTNetworkingToolPost:@"project/index" parame:nil success:^(id json) {
-        LWLog(@"%@",[json description]);
+    [HTNetworkingTool HTNetworkingToolPost:@"project/index" parame:nil isHud:NO  success:^(id json) {
+        LWLog(@"%@",json);
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
             NSArray * hotProjectList =  [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"]  objectForKey:@"hotProjectList"]];
             //[self.hotProjectList addObjectsFromArray:hotProjectList];
@@ -98,23 +105,23 @@
 }
 
 - (void)HomeTopView:(int)type{
-    
-    LWLog(@"%d",type);
-    NSString * url;
-    if (type == 0) {
-        url = @"https://www.51nbapi.com/h5/login.html";
-    }else if(type == 1){
-        url = @"https://b.jianbing.com/hs/appgjj/?from=huotu";
+
+    if (type == 1) {
+        HeiMingDanCaXunTableViewController * vc = [[HeiMingDanCaXunTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        vc.cate = 1;
+        vc.type = 0;
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
-        url = @"http://shebao.caijigaoshou.cn";
+        HeiMingViewController * vc = [[HeiMingViewController alloc] init];
+        vc.type = type;
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    PushWebViewController *vc = [[PushWebViewController alloc] init];
-    vc.funUrl = [url copy];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+
 }
 
 - (void)setupInit{
-    self.navigationItem.title = @"小贷超市";
+    self.navigationItem.title = AppName;
     
     
 //    self.homeTopHeight.constant = kAdaptedHeight(170);
@@ -122,7 +129,10 @@
     
     HomeTopView * homeTopView = [HomeTopView HomeTopViewFromXib];
     homeTopView.delegate = self;
-    homeTopView.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(170));
+    
+    LWLog(@"%f-----%f",KScreenHeight,KScreenWidth);
+    LWLog(@"%f-----%f",kScreenHeightRatio,kAdaptedHeight(170));
+    homeTopView.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(180));
     self.homeTopView = homeTopView;
     [self.view addSubview:homeTopView];
 //

@@ -28,9 +28,9 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
-    self.firstLable.font = kAdaptedFontSize(15);
-    self.secondLable.font = kAdaptedFontSize(15);
-    self.thirdLable.font = kAdaptedFontSize(15);
+    self.firstLable.font = kAdaptedFontSize(14);
+    self.secondLable.font = kAdaptedFontSize(14);
+    self.thirdLable.font = kAdaptedFontSize(14);
     
     
     self.firstView.userInteractionEnabled = YES;

@@ -10,7 +10,7 @@
 #import "MD5Encryption.h"
 #import <WebKit/WebKit.h>
 
-@interface PushWebViewController ()<WKUIDelegate,WKNavigationDelegate>
+@interface PushWebViewController ()<WKUIDelegate,WKNavigationDelegate,shujumoheDelegate>
 
 @property (strong, nonatomic) WKWebView *webView;
 
@@ -78,7 +78,8 @@
     [super viewDidLoad];
     
     
-//    [self.navigationController setNavigationBarHidden:YES];
+    AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    delegate.currentVC = self;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -261,77 +262,52 @@
     if ([url isEqualToString:@"about:blank"]) {
         decisionHandler(WKNavigationResponsePolicyCancel);
     }
- 
-//        if ([url rangeOfString:@"qq"].location !=  NSNotFound) {
-//            decisionHandler(WKNavigationResponsePolicyAllow);
-//        }
-//        if ([url rangeOfString:@"/usercenter/login.aspx"].location !=  NSNotFound || [url rangeOfString:@"/invite/mobilelogin.aspx?"].location != NSNotFound || [url rangeOfString:@"/usercenter/verifymobile.aspx?"].location != NSNotFound) {
-//            
-////            decisionHandler(WKNavigationResponsePolicyCancel);
-////            LanchViewController * launchViewController = [[LanchViewController alloc] init];
-////            launchViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-////            [self presentViewController:launchViewController animated:YES completion:nil];
-//            
-//        }else if ([url rangeOfString:@"/usercenter/bindingweixin.aspx"].location != NSNotFound) {
-//            
-//            decisionHandler(WKNavigationResponsePolicyCancel);
-//        }else if ([url rangeOfString:@"/usercenter/appaccountswitcher.aspx"].location != NSNotFound) {
-//            decisionHandler(WKNavigationResponsePolicyCancel);
-//        }else if([url rangeOfString:@"appalipay.aspx"].location != NSNotFound){
-// 
-//            decisionHandler(WKNavigationResponsePolicyCancel);
-//        }else if ([url rangeOfString:@"im.html"].location != NSNotFound || [url rangeOfString:@"/webChannel.html"].location != NSNotFound){
-//
-//            decisionHandler(WKNavigationResponsePolicyAllow);
-//        }else{
-//
-//            if (![temp isEqualToString:self.funUrl]) {
-//                if ([temp.lowercaseString isEqualToString:self.funUrl.lowercaseString]) {
-//                    decisionHandler(WKNavigationResponsePolicyAllow);
-//                }else {
-//                    
-//                    NSRange spe = [temp rangeOfString:@"#0"];
-//                    if (spe.location != NSNotFound ) {//找到了
-//                        NSString * hou = [temp substringToIndex:spe.location];
-//                        LWLog(@"%@",hou);
-//                        if ([[hou lowercaseString] isEqualToString:[self.funUrl lowercaseString]]) {
-//                            decisionHandler(WKNavigationResponsePolicyAllow);
-//                        }else{
-//                            decisionHandler(WKNavigationResponsePolicyCancel);
-//                            PushWebViewController * funWeb =  [[PushWebViewController alloc] init];
-//                            funWeb.funUrl = temp;
-//                            [self.navigationController pushViewController:funWeb animated:YES];
-//                            self.tabBarController.tabBar.hidden = YES;
-//                            self.navigationItem.title = nil;
-////                            [self.webView.scrollView.mj_header endRefreshing];
-//                        }
-//                        
-//                    }else{
-//                        decisionHandler(WKNavigationResponsePolicyCancel);
-//                        PushWebViewController * funWeb =  [[PushWebViewController alloc] init];
-//                        funWeb.funUrl = temp;
-//                        [self.navigationController pushViewController:funWeb animated:YES];
-//                        self.tabBarController.tabBar.hidden = YES;
-//                        self.navigationItem.title = nil;
-////                        [self.webView.scrollView.mj_header endRefreshing];
-//                        
-//                    }
-//                    
-//                    
-//                }
-//            }
-//        }
-//        
-        decisionHandler(WKNavigationResponsePolicyAllow);
-  
     
-
+    if ([url rangeOfString:@"gh_credit://authtaobao"].location !=  NSNotFound) {
+        decisionHandler(WKNavigationResponsePolicyCancel);
+        [self openAfterthing:0];
+    }else{
+        decisionHandler(WKNavigationResponsePolicyAllow);
+    }
 
 }
 
 
+/**
+ <#Description#>
 
+ @param type 0 淘宝  1 京东
+ */
+- (void)openAfterthing:(int)type{
+    
+ 
+    PBBaseReq *br = [PBBaseReq new];
+    br.partnerCode=partner_code;//合作方code
+    br.partnerKey = partner_key;//合作方key
+    br.channel_code = @"005003";//授权渠道code
+    /*
+     基础设置
+     如果不用自定义PBBaseSet，withBaseSet传nil
+     如果只用某一个颜色、字体大小、图片，创建PBBaseSet对象，给相应颜色、字体大小、图片的对象即可.
+     */
+    PBBaseSet *set = [PBBaseSet new];
+    //导航栏颜色
+    set.navBGColor = [UIColor colorWithRed:123/255.f green:12/255.f blue:12/255.f alpha:1];
+    //导航栏标题颜色
+    set.navTitleColor = [UIColor colorWithRed:123/255.f green:123/255.f blue:12/255.f alpha:1];
+    //导航栏标题字体
+    set.navTitleFont = [UIFont systemFontOfSize:19];
+    //导航栏按钮图片
+    set.backBtnImage = [UIImage imageNamed:@"icon_back_PB"];
+    
+    [shujumohePB openPBPluginAtViewController:self withDelegate:self withReq:br withBaseSet:set];
+    
+}
 
+- (void)thePBMissionWithCode:(NSString *)code withMessage:(NSString *)message{
+    
+    LWLog(@"%@",code);
+}
 
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {

@@ -8,6 +8,6 @@
 
 #import "HTViewController.h"
 
-@interface MineViewController : HTTableViewController
+@interface MineViewController : UITableViewController
 
 @end

@@ -17,8 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    delegate.currentVC = self;
+//    AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    delegate.currentVC = self;
     // Do any additional setup after loading the view.
 }
 

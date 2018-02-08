@@ -77,7 +77,7 @@
     parame[@"isNew"] = @(-1);
     [SVProgressHUD showWithStatus:nil];
     LWLog(@"%@",parame);
-    [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:parame success:^(id json) {
+    [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:parame isHud:YES  success:^(id json) {
         LWLog(@"%@",[json description]);
         
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
@@ -117,6 +117,10 @@
 //    self.head.backgroundColor = LWColor(236, 36, 43);
     //[self.view addSubview:self.head];
     
+    AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    delegate.currentVC = self;
+    
+    
     self.pageIndex = 0;
     
     
@@ -155,15 +159,15 @@
 - (void)loadNewData{
     
     self.pageIndex = 0;
-    [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil success:^(id json) {
+    [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil isHud:YES success:^(id json) {
         
          LWLog(@"%@",json);
         if([[json objectForKey:@"resultCode"] intValue] == 2000){
-            NSArray * data =  [CateGoryModel mj_objectArrayWithKeyValuesArray:[json objectForKey:@"data"]];
+            NSArray * data =  [CateGoryModel mj_objectArrayWithKeyValuesArray:[json objectForKey:@"data"][@"list"]];
             [self.headData addObjectsFromArray:data];
             
             self.head.dataArray = [NSMutableArray arrayWithArray:data];
-            CGFloat height = data.count == 0? 0 : (((data.count - 1)  / 4 + 1) * (KScreenWidth - 25) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
+            CGFloat height = data.count == 0? 0 : (((data.count - 1)  / 4 + 1) * (KScreenWidth - 50) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
             CGRect frame =  self.head.frame;
             frame.size.height = height;
             self.head.frame = frame;
@@ -205,19 +209,17 @@
 
 
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//
-//    return KScreenHeight * 0.25;
-//}
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//
-//
-//    HeadIconView * head = [[HeadIconView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight * 0.25)];
-//    head.backgroundColor = [UIColor redColor];
-//    return head;
-//
-//
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+
+    return 10;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView * slider = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 10)];
+    slider.backgroundColor = LWColor(241, 242, 243);
+    return slider;
+
+
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -285,7 +287,7 @@
 }
 */
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 10;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 10;
+//}
 @end

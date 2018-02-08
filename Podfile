@@ -6,8 +6,8 @@ target 'debetMarket' do
   # use_frameworks!
 
   # Pods for debetMarket
-  pod 'AFNetworking', '~> 3.0'
-  # pod 'SDWebImage', '~> 4.1.0'
+  pod 'AFNetworking'
+  pod 'SDWebImage'
   pod 'MBProgressHUD'
   pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   pod 'IQKeyboardManager'

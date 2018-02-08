@@ -94,7 +94,7 @@
     _model = model;
     
     
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:AppIconName]];
     _titleLable.text = model.name;
     
     // 0 日利率 1 月利率  2 年利率

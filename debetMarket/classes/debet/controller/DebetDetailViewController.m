@@ -9,7 +9,6 @@
 #import "DebetDetailViewController.h"
 #import "UIImageView+WebCache.h"
 #import "HSGenderPickerVC.h"
-#import "LoginViewController.h"
 #import "AppTableViewCell.h"
 
 @interface DebetDetailViewController ()<HSGenderPickerVCDelegate>
@@ -189,7 +188,8 @@
     
     self.navigationItem.title = _model.name;
     
-    
+    AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    delegate.currentVC = self;
 
     UserInfo * unUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -203,7 +203,8 @@
     parame[@"projectId"] = self.model.loanId;
     parame[@"userId"] = unUserInfo == nil ? @(0) : unUserInfo.userId;
     LWLog(@"%@",parame);
-    [HTNetworkingTool HTNetworkingToolPost:@"project/detail" parame:parame success:^(id json) {
+   
+    [HTNetworkingTool HTNetworkingToolPost:@"project/detail" parame:parame isHud:YES success:^(id json) {
         LWLog(@"%@",[json description]);
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
             HomeListModel * model = [HomeListModel mj_objectWithKeyValues:[json objectForKey:@"data"]];
@@ -228,7 +229,7 @@
 
 - (void)setupInit:(HomeListModel *)model{
     
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"] options:SDWebImageProgressiveDownload];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:AppIconName] options:SDWebImageProgressiveDownload];
     _nameLable.text = model.name;
     
     if (model.tag.length) {
@@ -475,8 +476,8 @@
 - (IBAction)lijishengqing:(id)sender {
     UserInfo * unUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
     if (unUserInfo == nil) {
-        LoginViewController * alet = [[LoginViewController alloc] init];
-        [self.view.window addSubview:alet.view];
+//        LoginViewController * alet = [[LoginViewController alloc] init];
+//        [self.view.window addSubview:alet.view];
     }else{
         PushWebViewController *vc = [[PushWebViewController alloc] init];
         LWLog(@"%@",[self.model mj_keyValues]);

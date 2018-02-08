@@ -9,35 +9,15 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+
+#ifdef __OBJC__
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-#import "SettingViewController.h"
-#import "HTTableViewCell.h"
-#import "HTViewController.h"
+
 #import "HTCommon.h"
-#import "HTNetworkingTool.h"
-#import "HTCheckVersionTool.h"
-#import "AppDelegate.h"
-#import "MyCoreLocation.h"
-#import "HTTableViewController.h"
-#import "HotPublish.h"
-#import "HTNetworkingTool.h"
-#import <SVProgressHUD.h>
-#import "HomeListModel.h"
-#import <Masonry/Masonry.h>
-#import "CenterViewCell.h"
-#import "UIBarButtonItem+LHB.h"
-#import <MJExtension.h>
-#import "UserInfo.h"
-#import <UIView+BlocksKit.h>
-#import "PushWebViewController.h"
-#import "FourListTableViewCell.h"
-#import "HomeListModel.h"
-#import "HotListView.h"
-#import "NewProductTableViewCell.h"
-#import "CateGoryModel.h"
-#import <MJRefresh.h>
-#import "InsetLable.h"
+#import "Common.h"
+
+#endif
 
 
 #endif /* PrefixHeader_pch */

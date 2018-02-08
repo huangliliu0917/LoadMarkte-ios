@@ -68,19 +68,26 @@
     LWLog(@"xxxx");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row == 0){
-        
-        self.cacheLable.text = @"0M";
+        UserRegisterViewController * uer = [[UserRegisterViewController alloc] init];
+        uer.type = 1;
+        [self.navigationController pushViewController:uer animated:YES];
     }
 }
 
 - (IBAction)loginOutButton:(id)sender {
     
-    UIAlertController * alerc = [UIAlertController alertControllerWithTitle:@"账号提示" message:@"是否退出当前帐号" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController * alerc = [UIAlertController alertControllerWithTitle:@"退出账号" message:@"确定是否退出当前帐号" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction * action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alerc addAction:action1];
     UIAlertAction * action2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[NSFileManager defaultManager] removeItemAtPath:KeyedArchive(@"userInfo") error:nil];
 //        [NSKeyedArchiver archiveRootObject:nil toFile:KeyedArchive(@"userInfo")];
+        LoginViewController * uer = [[LoginViewController alloc] init];
+        HTNavigationController * nav = [[HTNavigationController alloc] initWithRootViewController:uer];
+        [self presentViewController:nav animated:YES completion:^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        
     }];
     [alerc addAction:action2];
     

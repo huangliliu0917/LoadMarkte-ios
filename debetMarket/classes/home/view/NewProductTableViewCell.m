@@ -23,6 +23,8 @@
     [super awakeFromNib];
     // Initialization code
     self.backgroundColor = [UIColor whiteColor];
+    _iconView.layer.cornerRadius = 5;
+    _iconView.layer.masksToBounds = YES;
     _nameLable.font = kAdaptedFontSize(15);
 }
 
@@ -30,14 +32,14 @@
 - (void)setData:(CateGoryModel *)data{
     _data = data;
     
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:data.icon] placeholderImage:[UIImage imageNamed:@"default"] options:SDWebImageRetryFailed];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:data.icon] placeholderImage:[UIImage imageNamed:AppIconName] options:SDWebImageRetryFailed];
     self.nameLable.text = [data.name copy];
 }
 
 
 - (void)setModel:(HomeListModel *)model{
     _model = model;
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"] options:SDWebImageRetryFailed];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:AppIconName] options:SDWebImageRetryFailed];
     self.nameLable.text = [model.name copy];
 }
 @end

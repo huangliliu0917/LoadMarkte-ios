@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HotListView : UIView
+@interface HotListView : UICollectionViewCell
 
 @property(nonatomic,strong) HomeListModel * model;
 

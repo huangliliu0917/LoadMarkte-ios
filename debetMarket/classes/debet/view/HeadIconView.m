@@ -54,7 +54,7 @@
 }
 
 - (void)setupInit{
-    CGFloat with = (KScreenWidth - 25) * 0.25;
+    CGFloat with = (KScreenWidth - 50) * 0.25;
     CGFloat height = with;
     CGFloat margin = 5;
     for (int i  = 0; i < self.dataArray.count; i++) {
@@ -70,6 +70,7 @@
         [cell addGestureRecognizer:ges];
         [self addSubview:cell];
         
+//        cell.backgroundColor = [UIColor redColor];
     }
    NewProductTableViewCell * cell = [self.itemArray lastObject];
     

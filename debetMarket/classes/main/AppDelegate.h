@@ -12,7 +12,13 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) UIViewController * currentVC;
+//0=变包，1=正常包,默认变包
+@property (nonatomic,assign) int packageType;
+
+
+@property (nonatomic,strong) UIViewController * currentVC;
+
+@property (nonatomic,copy) NSString * returnUrl;
 
 @end
 

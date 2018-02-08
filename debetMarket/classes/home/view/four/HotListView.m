@@ -28,22 +28,28 @@
 //        self.backgroundColor = [UIColor orangeColor];
       
         _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, frame.size.height - 10, frame.size.height - 10)];
+        _iconView.layer.cornerRadius = 5;
+        _iconView.layer.masksToBounds = YES;
         _iconView.contentMode = UIViewContentModeScaleAspectFit ;
-        [self addSubview:_iconView];
+        [self.contentView addSubview:_iconView];
         
        
         
         _titleLable = [[UILabel alloc] init];
-        [self addSubview:_titleLable];
+        [self.contentView addSubview:_titleLable];
         _titleLable.font = kAdaptedFontSize(15);
         _titleLable.frame = CGRectMake(CGRectGetMaxX(_iconView.frame) + 5, 10, frame.size.width - (CGRectGetMaxX(_iconView.frame) + 5), 20);
         
         
         _fuLbale = [[UILabel alloc] init];
-        [self addSubview:_fuLbale];
+        [self.contentView addSubview:_fuLbale];
         _fuLbale.font = kAdaptedFontSize(13);
         _fuLbale.textColor = [UIColor lightGrayColor];
-        _fuLbale.frame = CGRectMake(CGRectGetMaxX(_iconView.frame) + 5, CGRectGetMaxY(_titleLable.frame) + 5, frame.size.width - (CGRectGetMaxX(_iconView.frame) + 5), 20);
+        _fuLbale.frame = CGRectMake(CGRectGetMaxX(_iconView.frame) + 5, CGRectGetMaxY(_titleLable.frame) + 1, frame.size.width - (CGRectGetMaxX(_iconView.frame) + 5), 20);
+        
+        //self.backgroundColor = LWColor(242, 243, 244);
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = YES;
         
     }
     
@@ -54,7 +60,7 @@
 - (void)setModel:(HomeListModel *)model{
     _model = model;
     
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:@"default"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:[UIImage imageNamed:AppIconName]];
     _titleLable.text = model.name;
     
     NSString * rate;

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LaunchViewController.h"
 #import <IQKeyboardManager.h>
 
 @interface AppDelegate ()
@@ -14,6 +15,44 @@
 @end
 
 @implementation AppDelegate
+
+
+// 分享
+- (void)setUpShareSdk{
+   
+    //WeChatAPPID：wxf580ba86542fa392
+    //WeChatAppSecret:88bcab4be33caeadd7ada1da1a1bb6b1
+    [ShareSDK registerActivePlatforms:@[
+                                        @(SSDKPlatformTypeWechat),
+                                        ]
+                             onImport:^(SSDKPlatformType platformType)
+     {
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
+                 break;
+             default:
+                 break;
+         }
+     }
+                      onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     {
+         
+         switch (platformType)
+         {
+                 
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:WeChatAPPID
+                                       appSecret:WeChatAppSecret];
+                 break;
+             default:
+                 break;
+         }
+     }];
+}
+
+
 
 - (void)setKeyboardManager
 {
@@ -23,6 +62,7 @@
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = YES;
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
     [SVProgressHUD setMinimumDismissTimeInterval:1.0];
 }
 -(void)setupInit{
@@ -32,7 +72,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [self setupInit];
+    //[self setupInit];
+    
+    
+    [self setUpShareSdk];
+    
+    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    self.window.backgroundColor = [UIColor whiteColor];
+    LaunchViewController * launch = [[LaunchViewController alloc] init];
+    //HTTabBarController * tab = [[HTTabBarController alloc] init];
+    self.window.rootViewController = launch;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -61,6 +112,41 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+//// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        // 支付跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+        }];
+
+        // 授权跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processAuth_V2Result:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            // 解析 auth code
+            NSString *result = resultDic[@"result"];
+            NSString *authCode = nil;
+            if (result.length>0) {
+                NSArray *resultArr = [result componentsSeparatedByString:@"&"];
+                for (NSString *subResult in resultArr) {
+                    if (subResult.length > 10 && [subResult hasPrefix:@"auth_code="]) {
+                        authCode = [subResult substringFromIndex:10];
+                        break;
+                    }
+                }
+            }
+            if([resultDic[@"resultStatus"] intValue] == 6001){
+                PushWebViewController * pa = [[PushWebViewController alloc] init];
+                pa.funUrl = self.returnUrl;
+                [self.currentVC.navigationController pushViewController:pa animated:YES];
+            }
+            NSLog(@"授权结果 authCode = %@", authCode?:@"");
+        }];
+    }
+    return YES;
 }
 
 
