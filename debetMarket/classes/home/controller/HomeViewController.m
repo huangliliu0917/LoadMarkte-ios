@@ -138,7 +138,7 @@
 //
     
     
-    
+    [[HTCheckVersionTool sharedCheckManager] checkVersion:self];
 //    ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(homeTopView.frame), KScreenWidth, KScreenHeight - 64)];
 //    contenView.hotProjectList = self.hotProjectList;
 //    contenView.NewListS = self.newProjectList;

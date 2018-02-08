@@ -25,7 +25,7 @@
 #define HTSecretKey @"4165a8d240b29af3f41818d10599d0d1"
 
 /**版本更新store*/
-#define AppleID  @"1215556282"
+#define AppleID  @"1346399726"
 
 
 #define appScheme @"com.guohai.xiaodaimarket"

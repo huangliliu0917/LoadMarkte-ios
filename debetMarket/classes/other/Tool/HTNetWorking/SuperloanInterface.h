@@ -15,6 +15,7 @@
 
 
 #ifdef DEBUG //api/sys/init
+//#define MainIpAddress @"http://zhengxin.51huotao.com/api"
 #define MainIpAddress @"http://zhengxin.51huotao.com/api"
 #else
 #define MainIpAddress @"http://zhengxin.51morecash.com/api"

@@ -103,6 +103,9 @@
 //        OutFitUserModel * usermodel = [OutFitUserModel outFitUserModelGetFromCache];
 //        self.funUrl = [NSString stringWithFormat:@"http://m.xingzhuangmall.com/UserCenter/Index.aspx?customerid=4886&userType=%d&userid=%d",usermodel.userType,usermodel.userId];
     }
+    //gh_credit://authTaobao
+    //NSURL * urlStr = [NSURL URLWithString:@"gh_credit_authtaobao"
+//                      ];
     NSURL * urlStr = [NSURL URLWithString:self.funUrl];
     NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
     [self.webView loadRequest:req];
@@ -247,30 +250,49 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
-     decisionHandler(WKNavigationActionPolicyAllow);
-}
-
-
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    
     LWLog(@"decidePolicyForNavigationResponse");
     NSString *temp = webView.URL.absoluteString;
+    LWLog(@"%@",temp);
+    LWLog(@"decidePolicyForNavigationResponse");
+    //NSString *temp = webView.URL.absoluteString;
     LWLog(@"%@",temp);
     NSString *url = [temp lowercaseString];
     
     if ([url isEqualToString:@"about:blank"]) {
-        decisionHandler(WKNavigationResponsePolicyCancel);
+        decisionHandler(WKNavigationActionPolicyCancel);
     }
     
-    if ([url rangeOfString:@"gh_credit://authtaobao"].location !=  NSNotFound) {
-        decisionHandler(WKNavigationResponsePolicyCancel);
+    if ([url rangeOfString:@"gh_credit_authtaobao"].location !=  NSNotFound) {
+        decisionHandler(WKNavigationActionPolicyCancel);
         [self openAfterthing:0];
     }else{
-        decisionHandler(WKNavigationResponsePolicyAllow);
+        decisionHandler(WKNavigationActionPolicyAllow);
     }
 
+    
 }
+
+
+
+//- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+//
+//    LWLog(@"decidePolicyForNavigationResponse");
+//    NSString *temp = webView.URL.absoluteString;
+//    LWLog(@"%@",temp);
+//    NSString *url = [temp lowercaseString];
+//
+//    if ([url isEqualToString:@"about:blank"]) {
+//        decisionHandler(WKNavigationResponsePolicyCancel);
+//    }
+//
+//    if ([url rangeOfString:@"gh_credit_authtaobao"].location !=  NSNotFound) {
+//        decisionHandler(WKNavigationResponsePolicyCancel);
+//        [self openAfterthing:0];
+//    }else{
+//        decisionHandler(WKNavigationResponsePolicyAllow);
+//    }
+//
+//}
 
 
 /**
@@ -292,9 +314,9 @@
      */
     PBBaseSet *set = [PBBaseSet new];
     //导航栏颜色
-    set.navBGColor = [UIColor colorWithRed:123/255.f green:12/255.f blue:12/255.f alpha:1];
+    set.navBGColor = AppMainColor;
     //导航栏标题颜色
-    set.navTitleColor = [UIColor colorWithRed:123/255.f green:123/255.f blue:12/255.f alpha:1];
+    set.navTitleColor = [UIColor whiteColor];
     //导航栏标题字体
     set.navTitleFont = [UIFont systemFontOfSize:19];
     //导航栏按钮图片
@@ -307,6 +329,16 @@
 - (void)thePBMissionWithCode:(NSString *)code withMessage:(NSString *)message{
     
     LWLog(@"%@",code);
+    if ([code intValue] == 0) {
+        
+//        [[HTTool HTToolShare] showAlertWithController:self andTitle:@"查询结果" andMessage:@"您的查询请求，已提交,稍后请去订单列表查看信息" conform:^{
+//            [self.navigationController popViewControllerAnimated:YES];
+//        } cancle:nil];
+        
+        [SVProgressHUD showSuccessWithStatus:@"请求已提交，请去订单列表查看"];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

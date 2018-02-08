@@ -11,7 +11,7 @@
 #import "OrderModel.h"
 #import "OrderDetailTableViewController.h"
 
-@interface OrderTableViewController ()
+@interface OrderTableViewController ()<shujumoheDelegate>
 
 @property(nonatomic,strong) NSMutableArray * listArray;
 
@@ -149,13 +149,66 @@
         [self.navigationController pushViewController:order animated:YES];
     }else{
         if (orderModel.thirdAuthUrl && orderModel.thirdAuthUrl.length) {
-            PushWebViewController * vc =[[PushWebViewController alloc] init];
-            vc.funUrl = orderModel.thirdAuthUrl;
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([orderModel.thirdAuthUrl rangeOfString:@"gh_credit://authTaobao"].location != NSNotFound) {
+                [self openAfterthing:0];
+            }else{
+                PushWebViewController * vc =[[PushWebViewController alloc] init];
+                vc.funUrl = orderModel.thirdAuthUrl;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
         }
     }
     
 }
+
+/**
+ Description
+ @param type 0 淘宝  1 京东
+ */
+- (void)openAfterthing:(int)type{
+    
+    
+    PBBaseReq *br = [PBBaseReq new];
+    br.partnerCode=partner_code;//合作方code
+    br.partnerKey = partner_key;//合作方key
+    br.channel_code = @"005003";//授权渠道code
+    /*
+     基础设置
+     如果不用自定义PBBaseSet，withBaseSet传nil
+     如果只用某一个颜色、字体大小、图片，创建PBBaseSet对象，给相应颜色、字体大小、图片的对象即可.
+     */
+    PBBaseSet *set = [PBBaseSet new];
+    //导航栏颜色
+    set.navBGColor = AppMainColor;
+    //导航栏标题颜色
+    set.navTitleColor = [UIColor whiteColor];
+    //导航栏标题字体
+    set.navTitleFont = [UIFont systemFontOfSize:19];
+    //导航栏按钮图片
+    set.backBtnImage = [UIImage imageNamed:@"main_title_left_back"];
+    
+    [shujumohePB openPBPluginAtViewController:self withDelegate:self withReq:br withBaseSet:set];
+    
+}
+
+- (void)thePBMissionWithCode:(NSString *)code withMessage:(NSString *)message{
+    
+    LWLog(@"%@---%@",code,message);
+    if ([code intValue] == 0) {
+        
+//        UIAlertController * vc = [UIAlertController alertControllerWithTitle:@"提醒" message:@"淘宝查询请求已提交,稍后请在订单列表查看结果" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction * ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+//        [vc addAction:ac];
+//        AppDelegate * app = (AppDelegate *) [UIApplication sharedApplication].delegate;
+//        
+//        [app.currentVC presentViewController:vc animated:YES completion:nil];
+        [SVProgressHUD showSuccessWithStatus:@"请求已提交，稍后在订单列表查看"];
+    }else{
+        //[self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

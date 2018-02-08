@@ -42,19 +42,19 @@ static HTCheckVersionTool *checkManager = nil;
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSString * URL = [NSString stringWithFormat:@"https://itunes.apple.com/lookup?id=%@",AppleID];
-//    [HTNetworkingTool HTNetworkingToolPost:URL parame:nil success:^(NSDictionary * json) {
-//        if(json){
-//            NSArray *infoArray = [json objectForKey:@"results"];
-//            if ([infoArray count]) {
-//                NSDictionary *releaseInfo = [infoArray objectAtIndex:0];
-//                NSString *lastVersion = [releaseInfo objectForKey:@"version"];
-//                NSString *trackViewUrl = [releaseInfo objectForKey:@"trackViewUrl"];
-//                [self toAlertWithCurrent:currentVersion andNetVersion:lastVersion andUrl:trackViewUrl andVC:viewController];
-//            }
-//        }
-//    } failure:^(NSError *error) {
-//        LWLog(@"%@",[error description]);
-//    }];
+    [HTNetworkingTool HTNetworkingToolGet:URL parame:nil  isHud:NO success:^(NSDictionary * json) {
+        if(json){
+            NSArray *infoArray = [json objectForKey:@"results"];
+            if ([infoArray count]) {
+                NSDictionary *releaseInfo = [infoArray objectAtIndex:0];
+                NSString *lastVersion = [releaseInfo objectForKey:@"version"];
+                NSString *trackViewUrl = [releaseInfo objectForKey:@"trackViewUrl"];
+                [self toAlertWithCurrent:currentVersion andNetVersion:lastVersion andUrl:trackViewUrl andVC:viewController];
+            }
+        }
+    } failure:^(NSError *error) {
+        LWLog(@"%@",[error description]);
+    }];
 }
 
 @end
