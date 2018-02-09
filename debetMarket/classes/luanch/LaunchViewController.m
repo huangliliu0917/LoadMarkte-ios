@@ -7,7 +7,8 @@
 //
 
 #import "LaunchViewController.h"
-
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MBProgressHUD.h>
 
 @interface LaunchViewController ()
 
@@ -25,6 +26,40 @@
     return _backImageView;
 }
 
+- (void)networkStateChange{
+    AFNetworkReachabilityManager *ReachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    //[ReachabilityManager startMonitoring];
+    NSLog(@"manager.isReachable === %d++++++", ReachabilityManager.reachable);
+    if (ReachabilityManager.reachable) {
+        [self loadInitData];
+    }else{
+        
+        [[HTTool HTToolShare] showAlertWithController:self andTitle:@"错误提示" andMessage:@"当前手机网络状态不可用,请检查网络状态或修改网络权限" conform:^{
+            
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                
+                [[UIApplication sharedApplication] openURL:url];
+                
+            }
+            
+        } cancle:^{
+            
+        }];
+    }
+    
+}
+
+
+- (void)checkNetwork {
+    //__block BOOL result;
+    AFNetworkReachabilityManager *ReachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStateChange) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+    [ReachabilityManager startMonitoring];
+   
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,6 +69,15 @@
     UILabel * version = [[UILabel alloc] init];
     version.text = [NSString stringWithFormat:@"%@V%@",AppName,AppVersion];
     [self.view addSubview:version];
+    
+    
+    
+    
+    [self checkNetwork];
+    
+    
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
     
     [version mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);

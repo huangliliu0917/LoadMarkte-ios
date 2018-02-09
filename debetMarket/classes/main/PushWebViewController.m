@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) UIProgressView *progressView;
 
-
+@property (nonatomic,strong) NSString * orderId;
 
 @end
 
@@ -263,8 +263,12 @@
     }
     
     if ([url rangeOfString:@"gh_credit_authtaobao"].location !=  NSNotFound) {
+        //gh_credit://authTaobao?orderId=" + order.getOrderId();
+        NSRange rang = [temp rangeOfString:@"orderId="];
+        NSRange orderIdRang = NSMakeRange(rang.location + rang.length, temp.length - (rang.location + rang.length));
+        
         decisionHandler(WKNavigationActionPolicyCancel);
-        [self openAfterthing:0];
+        [self openAfterthing:[temp substringWithRange:orderIdRang]];
     }else{
         decisionHandler(WKNavigationActionPolicyAllow);
     }
@@ -300,8 +304,10 @@
 
  @param type 0 淘宝  1 京东
  */
-- (void)openAfterthing:(int)type{
+- (void)openAfterthing:(NSString *)orderId{
     
+    
+    self.orderId = [orderId copy];
  
     PBBaseReq *br = [PBBaseReq new];
     br.partnerCode=partner_code;//合作方code
@@ -331,10 +337,13 @@
     LWLog(@"%@",code);
     if ([code intValue] == 0) {
         
-//        [[HTTool HTToolShare] showAlertWithController:self andTitle:@"查询结果" andMessage:@"您的查询请求，已提交,稍后请去订单列表查看信息" conform:^{
-//            [self.navigationController popViewControllerAnimated:YES];
-//        } cancle:nil];
-        
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        dict[@"orderId"] = self.orderId;
+        dict[@"taskId"] = message;
+        [HTNetworkingTool HTNetworkingToolPost:@"carrier/saveTaskId" parame:nil isHud:YES success:^(id json) {
+            LWLog(@"%@",json);
+        } failure:^(NSError *error) {
+        }];
         [SVProgressHUD showSuccessWithStatus:@"请求已提交，请去订单列表查看"];
     }else{
         [self.navigationController popViewControllerAnimated:YES];

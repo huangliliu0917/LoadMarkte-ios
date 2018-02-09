@@ -38,7 +38,12 @@
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-    NSLog(@"sign-------%@",osVersion);
+    
+    NSString * app = @"adasd?orderId=1234";
+    NSRange rang = [app rangeOfString:@"orderId="];
+    NSRange orderIdRang = NSMakeRange(rang.location + rang.length, app.length - (rang.location + rang.length));
+    [app substringWithRange:orderIdRang];
+    NSLog(@"sign-------%@",[app substringWithRange:orderIdRang]);
 }
 
 - (void)testPerformanceExample {

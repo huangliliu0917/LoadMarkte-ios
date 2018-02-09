@@ -89,6 +89,10 @@
     [self addChildVcView];
     
 
+    if (self.type == 1) {
+        [self.segmentControl selectIndex:1];
+        [self selectCurrentOption:1];
+    }
     
 
 }
@@ -121,11 +125,12 @@
     
     self.segmentControl = [[XTSegmentControl alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 40) Items:self.titleArray selectedBlock:^(NSInteger index) {
         
-       //[self selectCurrentOption:index];
+       [self selectCurrentOption:index];
     }];
     //self.segmentControl
     
     [self.view addSubview:self.segmentControl];
+    
     
     
 }

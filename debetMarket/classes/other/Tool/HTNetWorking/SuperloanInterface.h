@@ -15,8 +15,10 @@
 
 
 #ifdef DEBUG //api/sys/init
+//#define MainIpAddress @"http://192.168.1.86:8080/api"
 //#define MainIpAddress @"http://zhengxin.51huotao.com/api"
-#define MainIpAddress @"http://zhengxin.51huotao.com/api"
+// http://zhengxin.51morecash.com/
+#define MainIpAddress @"http://zhengxin.51morecash.com/api"
 #else
 #define MainIpAddress @"http://zhengxin.51morecash.com/api"
 #endif

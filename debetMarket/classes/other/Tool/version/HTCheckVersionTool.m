@@ -42,9 +42,11 @@ static HTCheckVersionTool *checkManager = nil;
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     NSString * URL = [NSString stringWithFormat:@"https://itunes.apple.com/lookup?id=%@",AppleID];
-    [HTNetworkingTool HTNetworkingToolGet:URL parame:nil  isHud:NO success:^(NSDictionary * json) {
-        if(json){
-            NSArray *infoArray = [json objectForKey:@"results"];
+   // AFNnet
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    [manager GET:URL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
+        if(responseObject){
+            NSArray *infoArray = [responseObject objectForKey:@"results"];
             if ([infoArray count]) {
                 NSDictionary *releaseInfo = [infoArray objectAtIndex:0];
                 NSString *lastVersion = [releaseInfo objectForKey:@"version"];
@@ -52,9 +54,8 @@ static HTCheckVersionTool *checkManager = nil;
                 [self toAlertWithCurrent:currentVersion andNetVersion:lastVersion andUrl:trackViewUrl andVC:viewController];
             }
         }
-    } failure:^(NSError *error) {
-        LWLog(@"%@",[error description]);
-    }];
+    } failure:nil];
+    
 }
 
 @end

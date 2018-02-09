@@ -16,6 +16,10 @@
 @property(nonatomic,strong) NSMutableArray * listArray;
 
 @property(nonatomic,assign) int pageIndex;
+
+
+@property(nonatomic,strong) OrderModel * orderModel;
+
 @end
 
 @implementation OrderTableViewController
@@ -141,6 +145,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.orderModel = [self.listArray objectAtIndex:indexPath.row];
     OrderModel * orderModel = [self.listArray objectAtIndex:indexPath.row];
     LWLog(@"%@",[orderModel mj_keyValues]);
     if ([orderModel.status intValue] == 1) {
@@ -196,13 +201,13 @@
     
     LWLog(@"%@---%@",code,message);
     if ([code intValue] == 0) {
-        
-//        UIAlertController * vc = [UIAlertController alertControllerWithTitle:@"提醒" message:@"淘宝查询请求已提交,稍后请在订单列表查看结果" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction * ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-//        [vc addAction:ac];
-//        AppDelegate * app = (AppDelegate *) [UIApplication sharedApplication].delegate;
-//        
-//        [app.currentVC presentViewController:vc animated:YES completion:nil];
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        dict[@"orderId"] = self.orderModel.orderId ;
+        dict[@"taskId"] = message;
+        [HTNetworkingTool HTNetworkingToolPost:@"carrier/saveTaskId" parame:nil isHud:YES success:^(id json) {
+            LWLog(@"%@",json);
+        } failure:^(NSError *error) {
+        }];
         [SVProgressHUD showSuccessWithStatus:@"请求已提交，稍后在订单列表查看"];
     }else{
         //[self.navigationController popViewControllerAnimated:YES];

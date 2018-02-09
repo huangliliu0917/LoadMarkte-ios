@@ -59,14 +59,17 @@
 
 - (NSArray *)titleArray{
     if (_titleArray == nil) {
-        _titleArray = @[@"贷款进度查询",@"关于我们",@"设置"];
+        _titleArray = self.packageType == 1 ? @[@"贷款进度查询",@"关于我们",@"设置"] : @[@"关于我们",@"设置"];
     }
     return _titleArray;
 }
 
 - (NSArray *)imageArray{
     if (_imageArray == nil) {
-        _imageArray = @[@"pdkjd",@"pgywm",@"psz"];
+//        if (self.) {
+//            <#statements#>
+//        }
+        _imageArray = self.packageType == 1 ? @[@"pdkjd",@"pgywm",@"psz"] : @[@"pgywm",@"psz"];
     }
     return _imageArray;
 }
@@ -183,18 +186,18 @@
 
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row) {
-        if (self.packageType == 1) {
-            return 44;
-        }else{
-            return 0;
-        }
-    }else{
-        return 44;
-    }
-    
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.row == 0) {
+//        if (self.packageType == 1) {
+//            return 44;
+//        }else{
+//            return 0;
+//        }
+//    }else{
+//        return 44;
+//    }
+//
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
@@ -211,18 +214,32 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        PushWebViewController * pa = [[PushWebViewController alloc] init];
-        pa.funUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"loanProjectProcessUrl"];
-        [self.navigationController pushViewController:pa animated:YES];
-    }else if (indexPath.row == 1) {
-        PushWebViewController * pa = [[PushWebViewController alloc] init];
-        pa.funUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"aboutUrl"];
-        [self.navigationController pushViewController:pa animated:YES];
+    
+    if (self.packageType) {
+        if (indexPath.row == 0) {
+            PushWebViewController * pa = [[PushWebViewController alloc] init];
+            pa.funUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"loanProjectProcessUrl"];
+            [self.navigationController pushViewController:pa animated:YES];
+        }else if (indexPath.row == 1) {
+            PushWebViewController * pa = [[PushWebViewController alloc] init];
+            pa.funUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"aboutUrl"];
+            [self.navigationController pushViewController:pa animated:YES];
+        }else{
+            SettingViewController * setVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingViewController"];
+            [self.navigationController pushViewController:setVC animated:YES];
+        }
     }else{
-        SettingViewController * setVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingViewController"];
-         [self.navigationController pushViewController:setVC animated:YES];
+        if (indexPath.row == 0) {
+            PushWebViewController * pa = [[PushWebViewController alloc] init];
+            pa.funUrl = [[NSUserDefaults standardUserDefaults] objectForKey:@"aboutUrl"];
+            [self.navigationController pushViewController:pa animated:YES];
+        }else{
+            SettingViewController * setVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingViewController"];
+            [self.navigationController pushViewController:setVC animated:YES];
+        }
+        
     }
+    
 }
 
 

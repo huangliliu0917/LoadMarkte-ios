@@ -475,10 +475,19 @@
 */
 - (IBAction)lijishengqing:(id)sender {
     UserInfo * unUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:KeyedArchive(@"userInfo")];
-    if (unUserInfo == nil) {
-//        LoginViewController * alet = [[LoginViewController alloc] init];
-//        [self.view.window addSubview:alet.view];
-    }else{
+    
+    LWLog(@"%@",[self.model mj_keyValues]);
+    
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+    dict[@"projectId"] = self.model.loanId;
+    [HTNetworkingTool HTNetworkingToolPost:@"project/applyLog" parame:dict isHud:YES success:^(id json) {
+        LWLog(@"%@",json);
+       
+    } failure:^(NSError *error) {
+        LWLog(@"%@",[error description]);
+    }];
+    
+    if (self.model.applyUrl.length) {
         PushWebViewController *vc = [[PushWebViewController alloc] init];
         LWLog(@"%@",[self.model mj_keyValues]);
         vc.funUrl = self.model.applyUrl;
