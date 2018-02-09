@@ -130,6 +130,7 @@
         if (base.resultCode == 2000) {
             ;
             ShareInfoModel * model = [ShareInfoModel mj_objectWithKeyValues:json[@"data"]];
+            model.des = [[json objectForKey:@"data"] objectForKey:@"description"];
             self.shareInfo = model;
         }
         LWLog(@"%@",json);
@@ -273,7 +274,7 @@
         [self presentViewController:nav animated:YES completion:nil];
     }else{
         
-        [[HTTool HTToolShare] HTToolToTurnShare:self andShareImage:self.shareInfo.icon andShareTitle:self.shareInfo.title andDes:self.shareInfo.description andShareUrl:self.shareInfo.url];
+        [[HTTool HTToolShare] HTToolToTurnShare:self andShareImage:self.shareInfo.icon andShareTitle:self.shareInfo.title andDes:self.shareInfo.des andShareUrl:self.shareInfo.url];
     }
     
     

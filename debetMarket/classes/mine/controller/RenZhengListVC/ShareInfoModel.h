@@ -10,7 +10,7 @@
 
 @interface ShareInfoModel : NSObject
 
-@property(nonatomic,copy) NSString * description;
+@property(nonatomic,copy) NSString * des;
 @property(nonatomic,copy) NSString * icon;
 @property(nonatomic,copy) NSString * url;
 @property(nonatomic,copy) NSString * title;
