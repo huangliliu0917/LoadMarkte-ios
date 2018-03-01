@@ -229,7 +229,7 @@
         if (base.resultCode == InterfaceSuccess) {
             UserInfo * user = [UserInfo mj_objectWithKeyValues:json[@"data"]];
             [[HTTool HTToolShare] HTToolArchiveRootObject:user withPath:@"UserInfo"];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }else{
            [SVProgressHUD showErrorWithStatus:base.resultMsg];
         }

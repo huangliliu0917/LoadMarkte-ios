@@ -66,7 +66,11 @@
     
     NSArray * titleArray;
     if (self.cate == 0) {
-        self.navigationItem.title = @"黑名单";
+        if (self.type == 0) {
+           self.navigationItem.title = @"行业黑名单";
+        }else{
+           self.navigationItem.title = @"金融黑名单";
+        }
         titleArray = @[@"选择平台",@"查询主体",@"支付",@"查询结果"];
     }else if(self.cate == 1){
         self.navigationItem.title = @"运营商";

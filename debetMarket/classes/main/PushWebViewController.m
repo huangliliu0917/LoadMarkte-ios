@@ -9,6 +9,7 @@
 #import "PushWebViewController.h"
 #import "MD5Encryption.h"
 #import <WebKit/WebKit.h>
+#import "HeiMingViewController.h"
 
 @interface PushWebViewController ()<WKUIDelegate,WKNavigationDelegate,shujumoheDelegate>
 
@@ -74,6 +75,7 @@
 //}
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -106,7 +108,9 @@
     //gh_credit://authTaobao
     //NSURL * urlStr = [NSURL URLWithString:@"gh_credit_authtaobao"
 //                      ];
-    NSURL * urlStr = [NSURL URLWithString:self.funUrl];
+    NSString *encodeUrl = [self.funUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    LWLog(@"%@",self.funUrl);
+    NSURL * urlStr = [NSURL URLWithString:encodeUrl];
     NSURLRequest * req = [[NSURLRequest alloc] initWithURL:urlStr];
     [self.webView loadRequest:req];
     
@@ -248,55 +252,60 @@
 #pragma mark wk
 
 
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
-    
-    LWLog(@"decidePolicyForNavigationResponse");
-    NSString *temp = webView.URL.absoluteString;
-    LWLog(@"%@",temp);
-    LWLog(@"decidePolicyForNavigationResponse");
-    //NSString *temp = webView.URL.absoluteString;
-    LWLog(@"%@",temp);
-    NSString *url = [temp lowercaseString];
-    
-    if ([url isEqualToString:@"about:blank"]) {
-        decisionHandler(WKNavigationActionPolicyCancel);
-    }
-    
-    if ([url rangeOfString:@"gh_credit_authtaobao"].location !=  NSNotFound) {
-        //gh_credit://authTaobao?orderId=" + order.getOrderId();
-        NSRange rang = [temp rangeOfString:@"orderId="];
-        NSRange orderIdRang = NSMakeRange(rang.location + rang.length, temp.length - (rang.location + rang.length));
-        
-        decisionHandler(WKNavigationActionPolicyCancel);
-        [self openAfterthing:[temp substringWithRange:orderIdRang]];
-    }else{
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
-
-    
-}
-
-
-
-//- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+//- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
 //
 //    LWLog(@"decidePolicyForNavigationResponse");
 //    NSString *temp = webView.URL.absoluteString;
 //    LWLog(@"%@",temp);
+//    LWLog(@"decidePolicyForNavigationResponse");
+//    //NSString *temp = webView.URL.absoluteString;
+//    LWLog(@"%@",temp);
 //    NSString *url = [temp lowercaseString];
 //
-//    if ([url isEqualToString:@"about:blank"]) {
-//        decisionHandler(WKNavigationResponsePolicyCancel);
+////    if ([url isEqualToString:@"about:blank"]) {
+////        decisionHandler(WKNavigationActionPolicyCancel);
+////    }
+//    
+//    decisionHandler(WKNavigationActionPolicyAllow);
+//    //gh_credit://authTaobao
+//    //gh_credit://authTaobao
+//    if ([url rangeOfString:@"gh_credit_authtaobao"].location !=  NSNotFound) {
+//        //gh_credit://authTaobao?orderId=" + order.getOrderId();
+//        NSRange rang = [temp rangeOfString:@"orderId="];
+//        NSRange orderIdRang = NSMakeRange(rang.location + rang.length, temp.length - (rang.location + rang.length));
+//
+//        decisionHandler(WKNavigationActionPolicyCancel);
+//        [self openAfterthing:[temp substringWithRange:orderIdRang]];
+//    }else{
+//        decisionHandler(WKNavigationActionPolicyAllow);
 //    }
 //
-//    if ([url rangeOfString:@"gh_credit_authtaobao"].location !=  NSNotFound) {
-//        decisionHandler(WKNavigationResponsePolicyCancel);
-//        [self openAfterthing:0];
-//    }else{
-//        decisionHandler(WKNavigationResponsePolicyAllow);
-//    }
 //
 //}
+
+
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+
+    LWLog(@"decidePolicyForNavigationResponse");
+    NSString *temp = webView.URL.absoluteString;
+    LWLog(@"%@",temp);
+    NSString *url = [temp lowercaseString];
+
+    if ([url isEqualToString:@"about:blank"]) {
+        decisionHandler(WKNavigationResponsePolicyCancel);
+    }
+
+    if ([url rangeOfString:@"gh_credit_authtaobao"].location !=  NSNotFound) {
+        decisionHandler(WKNavigationResponsePolicyCancel);
+        NSRange rang = [temp rangeOfString:@"orderId="];
+        NSRange orderIdRang = NSMakeRange(rang.location + rang.length, temp.length - (rang.location + rang.length));
+        [self openAfterthing:[temp substringWithRange:orderIdRang]];
+    }else{
+        decisionHandler(WKNavigationResponsePolicyAllow);
+    }
+
+}
 
 
 /**
@@ -332,19 +341,63 @@
     
 }
 
+
+- (void)showInfo:(NSString *)message
+{
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, (height-50)/2, width-2*50, 50)];
+    label.backgroundColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
+    label.text = message;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.clipsToBounds = YES;
+    label.adjustsFontSizeToFitWidth = YES;
+    label.minimumScaleFactor = 0.6;
+    label.layer.cornerRadius = 7;
+    [[UIApplication sharedApplication].keyWindow addSubview:label];
+    
+    [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        label.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        [label removeFromSuperview];
+    }];
+}
+
+
+
 - (void)thePBMissionWithCode:(NSString *)code withMessage:(NSString *)message{
     
-    LWLog(@"%@",code);
+    LWLog(@"%@---%@",code,self.orderId);
     if ([code intValue] == 0) {
         
         NSMutableDictionary * dict = [NSMutableDictionary dictionary];
         dict[@"orderId"] = self.orderId;
         dict[@"taskId"] = message;
-        [HTNetworkingTool HTNetworkingToolPost:@"carrier/saveTaskId" parame:nil isHud:YES success:^(id json) {
+        [HTNetworkingTool HTNetworkingToolPost:@"carrier/saveTaskId" parame:dict isHud:NO success:^(id json) {
             LWLog(@"%@",json);
         } failure:^(NSError *error) {
         }];
-        [SVProgressHUD showSuccessWithStatus:@"请求已提交，请去订单列表查看"];
+        
+        
+//        if (self.navigationController) {
+//            <#statements#>
+//        }
+        NSArray * vcs =  self.navigationController.viewControllers;
+        for (int i = 0; i < vcs.count; i++) {
+            UIViewController * vc =  [vcs objectAtIndex:i];
+            if ([vc isKindOfClass:[HeiMingViewController class]]) {
+                [self.navigationController popToViewController:vc animated:YES];
+                break;
+            }
+            if ([vc isKindOfClass:[OrderTableViewController class]]) {
+                [self.navigationController popToViewController:vc animated:YES];
+                break;
+            }
+        }
+        [self showInfo:@"请求已提交，稍后请去订单列表刷新查看"];
+        //[SVProgressHUD showSuccessWithStatus:@"请求已提交，请去订单列表查看"];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }

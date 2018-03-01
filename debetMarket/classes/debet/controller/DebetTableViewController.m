@@ -26,6 +26,9 @@
 
 @property (nonatomic,strong) CateGoryModel * currentCategray;
 
+
+@property (nonatomic,assign) bool isUpPull;
+
 @end
 
 @implementation DebetTableViewController
@@ -55,6 +58,7 @@
     LWLog(@"%@",[model mj_keyValues
                  ]);
     self.pageIndex = 0;
+    self.isUpPull = false;
     _currentCategray = model;
     [self.listData removeAllObjects];
     [self getListWithCateGray:model];
@@ -62,13 +66,16 @@
 
 - (void)addMore{
     //self.pageIndex += 1;
+    self.isUpPull = YES;
     [self getListWithCateGray:self.currentCategray];
 }
 
+
+
+//下拉刷新
 - (void)getListWithCateGray:(CateGoryModel *)model{
     LWLog(@"%@",[model mj_keyValues]);
     NSMutableDictionary * parame  = [NSMutableDictionary dictionary];
-    
     parame[@"categoryId"] = model == nil ? @(0) : @(model.categoryId);
     parame[@"pageIndex"] = @(++self.pageIndex);
     parame[@"pageSize"] = @(10);
@@ -77,17 +84,17 @@
     parame[@"isNew"] = @(-1);
     [SVProgressHUD showWithStatus:nil];
     LWLog(@"%@",parame);
-    [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:parame isHud:YES  success:^(id json) {
+    [HTNetworkingTool HTNetworkingToolPost:@"project/list" parame:parame isHud:NO  success:^(id json) {
         LWLog(@"%@",[json description]);
         
         if ([[json objectForKey:@"resultCode"] integerValue] == 2000) {
             NSArray * data = [HomeListModel mj_objectArrayWithKeyValuesArray:[[json objectForKey:@"data"] objectForKey:@"list"]];
             LWLog(@"%ld",(long)self.pageIndex);
-            if (self.pageIndex == 1) {
+            if (!self.isUpPull) {
                 [self.listData removeAllObjects];
             }
             [self.listData addObjectsFromArray:data];
-            self.pageIndex = [[[json objectForKey:@"data"] objectForKey:@"pageIndex"] integerValue];
+            //self.pageIndex = [[[json objectForKey:@"data"] objectForKey:@"pageIndex"] integerValue];
             LWLog(@"%ld",(long)self.pageIndex);
             [self.tableView reloadData];
         }
@@ -103,8 +110,6 @@
             [self getListWithCateGray:_currentCategray];
         });
     }];
-    
-    
 }
 
 
@@ -122,30 +127,15 @@
     
     
     self.pageIndex = 0;
-    
+    self.isUpPull = false;
     
     
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"productCell"];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    //.content  = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.head.frame), KScreenWidth, KScreenHeight - CGRectGetMaxY(self.head.frame)) style:UITableViewStylePlain];
-    //self.content.dataSource = self;
-    //self.content.delegate = self;
-    //self.content.estimatedRowHeight = 100;
-    //self.content.rowHeight = UITableViewAutomaticDimension;
-    //[self.content registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"productCell"];
-    //self.content.tableFooterView = [[UIView alloc] init];
-//    self.content.contentInset = UIEdgeInsetsMake(kAdaptedHeight(15), 0, 0, 0);
-    //self.content.backgroundColor = [UIColor lightGrayColor];
-    //[self.view addSubview:self.content];
-//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//       
-//        LWLog(@"xxx");
-//        
-//        
-//    }];
     [self loadNewData];
     
     MJRefreshNormalHeader * head = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -153,25 +143,35 @@
     MJRefreshBackNormalFooter * footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(addMore)];
     self.tableView.mj_header = head;
     self.tableView.mj_footer = footer;
-//    [self.tableView.mj_header beginRefreshing];
+   //[self.tableView.mj_header beginRefreshing];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    if (self.headData.count) {
+        [self.tableView.mj_header beginRefreshing];
+    }
+    
+}
+
+//huo
 - (void)loadNewData{
     
     self.pageIndex = 0;
-    [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil isHud:YES success:^(id json) {
+    self.isUpPull = false;
+    [HTNetworkingTool HTNetworkingToolPost:@"project/categories" parame:nil isHud:NO success:^(id json) {
         
          LWLog(@"%@",json);
         if([[json objectForKey:@"resultCode"] intValue] == 2000){
             NSArray * data =  [CateGoryModel mj_objectArrayWithKeyValuesArray:[json objectForKey:@"data"][@"list"]];
             [self.headData addObjectsFromArray:data];
-            
             self.head.dataArray = [NSMutableArray arrayWithArray:data];
             CGFloat height = data.count == 0? 0 : (((data.count - 1)  / 4 + 1) * (KScreenWidth - 50) * 0.25) + ((data.count / 4 + 1) + 1) * 5;
             CGRect frame =  self.head.frame;
             frame.size.height = height;
             self.head.frame = frame;
-            _currentCategray = [data firstObject];
+            //_currentCategray = [data firstObject];
             [self getListWithCateGray:nil];
             
         }
@@ -187,12 +187,12 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//
+//    [super viewWillAppear:animated];
+//
+//
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -17,4 +17,7 @@
 
 @property(nonatomic,weak) id <MineFooterViewDelegate> delegate;
 
+
+- (void)setTheShareBtnHidden;
+
 @end

@@ -75,10 +75,15 @@
     //[self setupInit];
     
     
+    
+    
     [self setUpShareSdk];
     
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    //PushWebViewController * vc = [[PushWebViewController alloc] init];
+    //vc.funUrl = @"http://guohai.51morecash.com/success.html";
     LaunchViewController * launch = [[LaunchViewController alloc] init];
     //HTTabBarController * tab = [[HTTabBarController alloc] init];
     self.window.rootViewController = launch;
@@ -138,7 +143,7 @@
                     }
                 }
             }
-            if([resultDic[@"resultStatus"] intValue] == 6001){
+            if([resultDic[@"resultStatus"] intValue] != 6001){
                 PushWebViewController * pa = [[PushWebViewController alloc] init];
                 pa.funUrl = self.returnUrl;
                 [self.currentVC.navigationController pushViewController:pa animated:YES];

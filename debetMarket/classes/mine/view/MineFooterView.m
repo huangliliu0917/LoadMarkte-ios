@@ -42,4 +42,9 @@
     return self;
 }
 
+- (void)setTheShareBtnHidden{
+    
+    self.btn.hidden = YES;
+}
+
 @end

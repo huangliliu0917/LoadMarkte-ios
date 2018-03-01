@@ -197,7 +197,7 @@
     if (section == 0) {
         UILabel * title = [[UILabel alloc] init];
         title.backgroundColor = LWColor(241, 242, 243);
-        title.text = @"   查询主题信息";
+        title.text = @"   查询主体信息";
         title.font = kAdaptedFontSize(13);
         title.frame = CGRectMake(0, 0, KScreenWidth, 20);
         return title;

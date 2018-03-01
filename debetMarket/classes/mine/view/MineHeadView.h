@@ -32,4 +32,7 @@
 - (void)setHeadImage:(UIImage *)iconView;
 
 
+// 变包隐藏人数
+- (void)setBottomNumberHidden;
+
 @end

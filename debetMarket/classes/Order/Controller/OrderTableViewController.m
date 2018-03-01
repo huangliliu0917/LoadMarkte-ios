@@ -204,7 +204,7 @@
         NSMutableDictionary * dict = [NSMutableDictionary dictionary];
         dict[@"orderId"] = self.orderModel.orderId ;
         dict[@"taskId"] = message;
-        [HTNetworkingTool HTNetworkingToolPost:@"carrier/saveTaskId" parame:nil isHud:YES success:^(id json) {
+        [HTNetworkingTool HTNetworkingToolPost:@"carrier/saveTaskId" parame:dict isHud:YES success:^(id json) {
             LWLog(@"%@",json);
         } failure:^(NSError *error) {
         }];

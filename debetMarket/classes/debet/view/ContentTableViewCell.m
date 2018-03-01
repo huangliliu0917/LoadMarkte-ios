@@ -113,17 +113,18 @@
     }
     _monthRate.text = [NSString stringWithFormat:@"%@ %%",aa];
     
-    if (model.enableMoney.length) {
-        NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
-        if (money.count == 1) {
-            _debetLine.text = [NSString stringWithFormat:@"%@元",[self getRang:[money firstObject]]];
-        }else{
-           _debetLine.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
-        }
-        
-    }else{
-        _debetLine.text = @"0 元";
-    }
+    _debetLine.text = [NSString stringWithFormat:@"%@元",model.maxMoney];
+//    if (model.enableMoney.length) {
+//        NSArray * money =  [model.enableMoney componentsSeparatedByString:@","];
+//        if (money.count == 1) {
+//            _debetLine.text = [NSString stringWithFormat:@"%@元",[self getRang:[money firstObject]]];
+//        }else{
+//           _debetLine.text = [NSString stringWithFormat:@"%@ ~ %@元",[self getRang:[money firstObject]],[self getRang:[money lastObject]]];
+//        }
+//
+//    }else{
+//        _debetLine.text = @"0 元";
+//    }
 //    LWLog(@"%d-----%d",model.isHot,model.isNew);
     if (model.isHot == 1) {
         [_rightImage setImage:[UIImage imageNamed:@"tj"]];

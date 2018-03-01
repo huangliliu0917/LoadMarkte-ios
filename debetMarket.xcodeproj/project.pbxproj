@@ -139,6 +139,7 @@
 		12FCBEA41FA84BC200BF29BF /* HSPickerViewTestVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12FCBE9C1FA84BC200BF29BF /* HSPickerViewTestVC.storyboard */; };
 		12FCBEA51FA84BC200BF29BF /* NSDate+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCBE9E1FA84BC200BF29BF /* NSDate+Date.m */; };
 		72EA155964C8A0852D673723 /* libPods-debetMarketTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BAA840C0FADCD4EC04AF49 /* libPods-debetMarketTests.a */; };
+		DB7364D6B709F954F55D6982 /* libPods-debetMarket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB7E6F8468EAAEB58274994 /* libPods-debetMarket.a */; };
 		EF6C686F1F95A40500DB3871 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C686D1F95A40500DB3871 /* HomeViewController.m */; };
 		EF6C68741F95A4D300DB3871 /* HTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C68731F95A4D300DB3871 /* HTViewController.m */; };
 		EF6C68771F95A53500DB3871 /* HTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6C68761F95A53500DB3871 /* HTTableViewController.m */; };
@@ -491,6 +492,7 @@
 				1213673A20245B5A00C2D6CB /* JavaScriptCore.framework in Frameworks */,
 				12532D492029715D00A6AB3E /* AlipaySDK.framework in Frameworks */,
 				121BCF9D202AA4800030DB8A /* QQConnector.framework in Frameworks */,
+				DB7364D6B709F954F55D6982 /* libPods-debetMarket.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1901,6 +1903,45 @@
 					"$(PROJECT_DIR)/debetMarket/classes/other/threelib/ShareSDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/debetMarket/classes/other/threelib/数据魔盒SDK/shujumohe_release_20171102",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"BlocksKit\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"YYCache\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UMMobClick\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.guohai.guohaizhengxing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1935,6 +1976,45 @@
 					"$(PROJECT_DIR)/debetMarket/classes/other/threelib/ShareSDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/debetMarket/classes/other/threelib/ShareSDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/debetMarket/classes/other/threelib/数据魔盒SDK/shujumohe_release_20171102",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"BlocksKit\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"YYCache\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UMMobClick\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.guohai.guohaizhengxing;
 				PRODUCT_NAME = "$(TARGET_NAME)";

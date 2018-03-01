@@ -283,14 +283,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4d-Bl-xsm">
-                                                    <rect key="frame" x="26" y="13" width="61.5" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="61.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="z4d-Bl-xsm" firstAttribute="leading" secondItem="07o-cq-ysO" secondAttribute="leadingMargin" constant="10" id="752-1d-R3p"/>
+                                                <constraint firstItem="z4d-Bl-xsm" firstAttribute="leading" secondItem="07o-cq-ysO" secondAttribute="leadingMargin" id="752-1d-R3p"/>
                                                 <constraint firstItem="z4d-Bl-xsm" firstAttribute="centerY" secondItem="07o-cq-ysO" secondAttribute="centerY" id="dyO-Gj-SSZ"/>
                                             </constraints>
                                         </tableViewCellContentView>

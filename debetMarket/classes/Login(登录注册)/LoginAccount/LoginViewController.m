@@ -175,6 +175,10 @@
     }];
 }
 
+- (void)dismiscurrent{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 
 - (void)viewDidLoad {
@@ -183,7 +187,23 @@
     AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
     delegate.currentVC = self;
 
-    // Do any additional setup after loading the view from its nib.
+
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    //        [button setTitle:@"返回" forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"main_title_left_back"] forState:UIControlStateNormal];
+    //[button sizeToFit];
+    button.bounds = CGRectMake(0, 0, 35, 35);
+    //        button.titleLabel.font = kAdaptedFontSize(15);
+    // 让按钮内部的所有内容左对齐
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    // 让按钮的内容往左边偏移10
+    //button.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+    [button addTarget:self action:@selector(dismiscurrent) forControlEvents:UIControlEventTouchUpInside];
+  
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
     [self setUpUI];
 }
 

@@ -25,7 +25,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor blueColor];
+        //self.backgroundColor = [UIColor blueColor];
         [self initSetUp];
     }
     
@@ -120,15 +120,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         return cell;
-        
-        
-        //FourListTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"xx"];
-//        if (cell == nil) {
-//            cell = [[FourListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"xx" WithData:self.hotProjectList];
-//        }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.delegate = self;
-//        return cell;
     }else{
         ListTableViewCell * list = [tableView dequeueReusableCellWithIdentifier:@"ss"];
        

@@ -319,12 +319,16 @@ static HTTool * _htTool;
     //@"温馨提示" @"您的通讯录暂未允许访问，请去设置->隐私里面授权!"
     UIAlertController * alerController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     //UIView *subView1 = alerController.view.subviews[0];
-    if (conformBlock) {
-        UIAlertAction * ac = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
     
+    bool flag = false;
+    if ([message rangeOfString:@"本公司承诺为之保密不外泄"].location != NSNotFound) {
+        flag = true;
+    }
+    
+    if (conformBlock) {
+        
+        UIAlertAction * ac = [UIAlertAction actionWithTitle:(flag ? @"同意" : @"确定") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 conformBlock();
-          
         }];
          [alerController addAction:ac];
     }

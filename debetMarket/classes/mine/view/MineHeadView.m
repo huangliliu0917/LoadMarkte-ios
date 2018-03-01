@@ -43,6 +43,18 @@
 }
 
 
+- (void)setBottomNumberHidden{
+    
+    [self.mineTopView mas_updateConstraints:^(MASConstraintMaker *make) {
+      make.height.mas_equalTo(self.mas_height).multipliedBy(1);
+    }];
+    
+    [self.mineBottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_bottom);
+    }];
+    
+}
+
 - (instancetype)init{
     if (self = [super init]) {
         
@@ -56,8 +68,6 @@
         
         __weak typeof(self) wself = self;
         self.mineTopView.block = ^{
-            
-            
             LWLog(@"xxxxxxx");
             if ([wself.delegate respondsToSelector:@selector(mineHeadOptionClick:)]) {
                 [wself.delegate mineHeadOptionClick:0];

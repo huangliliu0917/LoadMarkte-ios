@@ -144,14 +144,17 @@
 //    contenView.NewListS = self.newProjectList;
     
     ContentView * contenView = [[ContentView alloc] initWithFrame:CGRectZero];
+    //self.contenView.backgroundColor = [UIColor redColor];
     self.contenView = contenView;
     [self.view addSubview:contenView];
     contenView.delegate = self;
+    
+    //self.contenView.frame = CGRectMake(0, CGRectGetMaxY(homeTopView.frame), KScreenWidth, KScreenHeight - CGRectGetMaxY(homeTopView.frame));
     [self.contenView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.homeTopView.mas_bottom);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom).mas_offset(0);
+        make.bottom.equalTo(self.view.mas_bottom).mas_offset(-44);
     }];
     
     

@@ -115,12 +115,19 @@
     UserInfo * usermodel = (UserInfo *)[[HTTool HTToolShare] HTToolUnArchiveObject:@"UserInfo"];
     self.headView.usermodel = usermodel;
     
+    if (self.packageType == 0) { //隐藏底部分享按钮
+        [self.mineFooterView setTheShareBtnHidden];
+        [self.headView setBottomNumberHidden];
+    }
+    
     if (usermodel) {
         [self getUserCenterData];
         [self getShareInfo];
     }else{
        [self.headView setInit:0 andUn:0];
     }
+    
+    
 }
 
 // 获取用户信息
@@ -153,7 +160,14 @@
     
     self.tableView.backgroundColor = LWColor(232, 233, 234);
     self.tableView.rowHeight = 50;
-    self.headView.frame = CGRectMake(0, kNavigationBar_HEIGHT, KScreenWidth, kAdaptedHeight(160));
+
+    CGFloat headHeight = 0.0;
+    if (self.packageType == 0) {
+        headHeight = kAdaptedHeight(160) * 0.6;
+    }else{
+        headHeight = kAdaptedHeight(160);
+    }
+    self.headView.frame = CGRectMake(0, kNavigationBar_HEIGHT, KScreenWidth, headHeight);
     self.headView.backgroundColor = AppMainColor;
     self.tableView.tableHeaderView = self.headView;
     
@@ -177,6 +191,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mineCell"];
         cell.imageView.bounds = CGRectMake(0, 0, 30, 30);
         cell.textLabel.font = kAdaptedFontSize(16);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.imageView.image = [UIImage imageNamed:[self.imageArray objectAtIndex:indexPath.row]];
     cell.textLabel.text = [self.titleArray objectAtIndex:indexPath.row];

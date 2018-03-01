@@ -34,9 +34,9 @@
         //fl.itemSize = CGSizeMake(with, height);
         //UICollectionViewFlowLayout *fl = [[UICollectionViewFlowLayout alloc]init];
         fl.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        fl.minimumLineSpacing = 5;
-        fl.minimumInteritemSpacing = 5;
-        fl.itemSize = CGSizeMake(with, height);
+        fl.minimumInteritemSpacing = 0;
+        fl.minimumLineSpacing = 0;
+        //fl.itemSize = CGSizeMake(with, height);
         _contenScrollView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 143) collectionViewLayout:fl];
         _contenScrollView.dataSource = self;
         _contenScrollView.delegate = self;
@@ -77,6 +77,7 @@
     HotListView * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HotListView" forIndexPath:indexPath];
     HomeListModel * model = [self.dataArray objectAtIndex:indexPath.row];
     cell.model = model;
+    //cell.backgroundColor = [UIColor redColor];
     return cell;
 //    HotListView * cell = (HotListView *)[collectionView dequeueReusableCellWithReuseIdentifier:@"xxxindexPath"] forIndexPath:indexPath];
 //    //MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];

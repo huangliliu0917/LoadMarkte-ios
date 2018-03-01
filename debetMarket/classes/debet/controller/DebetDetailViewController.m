@@ -307,22 +307,24 @@
     _dayBackMoneyLable.text = [self getMoneyBack:_daikuanMoneyRight.text andDay:_fenqiDay.text withRate:model];
     
 
-    NSArray * appArr = [model.applicationMaterial componentsSeparatedByString:@","];
-    
-    for (int i = 0; i < appArr.count; i++) {
-        UIView * view = [self.viewArray objectAtIndex:i];
-        view.hidden = NO;
-        for (int j = 0; j < view.subviews.count; j++) {
-            UIView * item = [view.subviews objectAtIndex:j];
-            if ([item isKindOfClass:[UIImageView class]]) {
-                UIImageView * im = (UIImageView *)item;
-                [im setImage:[UIImage imageNamed:[self.imagesArray objectAtIndex:[[appArr objectAtIndex:i] integerValue]]]];
-            }else{
-                UILabel * im = (UILabel *)item;
-                im.text = [self.titleArray objectAtIndex:[[appArr objectAtIndex:i] integerValue]];
+    if (model.applicationMaterial.length) {
+        NSArray * appArr = [model.applicationMaterial componentsSeparatedByString:@","];
+        for (int i = 0; i < appArr.count; i++) {
+            UIView * view = [self.viewArray objectAtIndex:i];
+            view.hidden = NO;
+            for (int j = 0; j < view.subviews.count; j++) {
+                UIView * item = [view.subviews objectAtIndex:j];
+                if ([item isKindOfClass:[UIImageView class]]) {
+                    UIImageView * im = (UIImageView *)item;
+                    [im setImage:[UIImage imageNamed:[self.imagesArray objectAtIndex:[[appArr objectAtIndex:i] integerValue]]]];
+                }else{
+                    UILabel * im = (UILabel *)item;
+                    im.text = [self.titleArray objectAtIndex:[[appArr objectAtIndex:i] integerValue]];
+                }
             }
         }
     }
+    
     
     
 }

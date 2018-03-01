@@ -30,10 +30,12 @@
     [super viewDidLoad];
     self.pageIndex = 1;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(RenNew)] ;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.mj_footer = [MJRefreshAutoStateFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     [self.tableView.mj_header beginRefreshing];
     
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -116,6 +118,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"xxxxx"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     RenZhengModel * model = [self.dataArray objectAtIndex:indexPath.row];
     cell.textLabel.text = model.userName;
