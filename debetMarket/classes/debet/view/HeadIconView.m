@@ -56,7 +56,7 @@
 - (void)setupInit{
     CGFloat with = (KScreenWidth - 50) * 0.25;
     CGFloat height = with;
-    CGFloat margin = 5;
+    CGFloat margin = 10;
     for (int i  = 0; i < self.dataArray.count; i++) {
         NewProductTableViewCell * cell = [[[NSBundle mainBundle] loadNibNamed:@"NewProductTableViewCell" owner:nil options:nil] lastObject];
         cell.tag = i;

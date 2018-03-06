@@ -19,5 +19,5 @@
 @property(nonatomic,copy) NSString * createTime; //时间
 @property(nonatomic,copy) NSString * thirdAuthUrl; // 第三方授权页面,只有认证中状态下有数据
 
-
+@property(nonatomic,assign) int orderType;
 @end

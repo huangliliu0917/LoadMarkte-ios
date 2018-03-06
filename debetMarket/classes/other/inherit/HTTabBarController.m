@@ -51,7 +51,14 @@
 }
 
 
-
+- (void)goOrderList{
+    AppDelegate * delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    if(delegate.packageType == 0){
+        self.selectedIndex = 1 ;
+    }else{
+       self.selectedIndex = 2 ;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,6 +66,10 @@
     
     AppDelegate * de = (AppDelegate *) [UIApplication sharedApplication].delegate;
     self.packageType = de.packageType;
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goOrderList) name:@"goOrderList" object:nil];
     
     if (self.packageType) {
         for (int i = 0; i < self.titleArray.count; i++) {

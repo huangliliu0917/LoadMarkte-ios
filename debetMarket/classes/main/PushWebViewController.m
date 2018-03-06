@@ -347,8 +347,12 @@
     //导航栏按钮图片
     set.backBtnImage = [UIImage imageNamed:@"icon_back_PB"];
     
+    
     [shujumohePB openPBPluginAtViewController:self withDelegate:self withReq:br withBaseSet:set];
     
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"goOrderList" object:nil];
 }
 
 

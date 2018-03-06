@@ -163,7 +163,13 @@
 
 - (void)setOrderModel:(OrderModel *)orderModel{
     _orderModel = orderModel;
-    self.orderName.text = orderModel.orderName;
+    
+
+    if([orderModel.status intValue] == 2 && (orderModel.orderType == 3 || orderModel.orderType == 4)){
+        self.orderName.text = [NSString stringWithFormat:@"%@(数据正在获取中,请稍后...)",orderModel.orderName];
+    }else{
+       self.orderName.text = orderModel.orderName;
+    }
     self.orderDesc.text = orderModel.desc;
     
 }
