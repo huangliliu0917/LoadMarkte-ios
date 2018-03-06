@@ -144,9 +144,12 @@
                 }
             }
             if([resultDic[@"resultStatus"] intValue] != 6001){
+                
+                UINavigationController * nav =  self.currentVC.navigationController;
+                [nav popToRootViewControllerAnimated:NO];
                 PushWebViewController * pa = [[PushWebViewController alloc] init];
                 pa.funUrl = self.returnUrl;
-                [self.currentVC.navigationController pushViewController:pa animated:YES];
+                [nav pushViewController:pa animated:YES];
             }
             NSLog(@"授权结果 authCode = %@", authCode?:@"");
         }];

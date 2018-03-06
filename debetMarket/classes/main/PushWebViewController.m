@@ -300,7 +300,12 @@
         decisionHandler(WKNavigationResponsePolicyCancel);
         NSRange rang = [temp rangeOfString:@"orderId="];
         NSRange orderIdRang = NSMakeRange(rang.location + rang.length, temp.length - (rang.location + rang.length));
-        [self openAfterthing:[temp substringWithRange:orderIdRang]];
+        [self openAfterthing:[temp substringWithRange:orderIdRang] andType:0];
+    }else if([url rangeOfString:@"gh_credit_authjindong"].location !=  NSNotFound){
+        decisionHandler(WKNavigationResponsePolicyCancel);
+        NSRange rang = [temp rangeOfString:@"orderId="];
+        NSRange orderIdRang = NSMakeRange(rang.location + rang.length, temp.length - (rang.location + rang.length));
+        [self openAfterthing:[temp substringWithRange:orderIdRang] andType:1];
     }else{
         decisionHandler(WKNavigationResponsePolicyAllow);
     }
@@ -313,15 +318,20 @@
 
  @param type 0 淘宝  1 京东
  */
-- (void)openAfterthing:(NSString *)orderId{
-    
-    
+- (void)openAfterthing:(NSString *)orderId andType:(int)type{
+
     self.orderId = [orderId copy];
  
     PBBaseReq *br = [PBBaseReq new];
     br.partnerCode=partner_code;//合作方code
     br.partnerKey = partner_key;//合作方key
-    br.channel_code = @"005003";//授权渠道code
+    
+    if (type == 0) {
+        br.channel_code = @"005003";//授权渠道code
+    }else{
+        br.channel_code = @"005011";//授权渠道code
+    }
+    
     /*
      基础设置
      如果不用自定义PBBaseSet，withBaseSet传nil

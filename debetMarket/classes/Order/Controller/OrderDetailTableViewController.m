@@ -39,7 +39,7 @@
     
     self.orderFooter = [[OrderaViewFooter alloc] init];
     self.orderFooter.delegate = self;
-    self.orderFooter.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(200));
+    self.orderFooter.frame = CGRectMake(0, 10, KScreenWidth, kAdaptedHeight(200));
     self.tableView.tableFooterView = self.orderFooter;
     
     self.tableView.backgroundColor = LWColor(241, 242, 243);
@@ -68,6 +68,7 @@
             self.name = json[@"data"][@"name"];
             self.idCard = json[@"data"][@"idCardNo"];
             self.phone = json[@"data"][@"mobile"];
+            self.tradeType = [json[@"data"][@"tradeType"] intValue];
             [self.tableView reloadData];
         }else{
             [SVProgressHUD showErrorWithStatus:base.resultMsg];
@@ -124,9 +125,12 @@
                                        callback:^(NSDictionary *resultDic) {
                                            NSLog(@"result = AlipaySDK defaultService ======%@",resultDic);
                                            if([resultDic[@"resultStatus"] intValue] != 6001){
+                                               
+                                               UINavigationController * nav = self.navigationController;
+                                               [nav popToRootViewControllerAnimated:NO];
                                                PushWebViewController * pa = [[PushWebViewController alloc] init];
                                                pa.funUrl = [self.order.bizParameters objectForKey:@"returnUrl"];
-                                               [self.navigationController pushViewController:pa animated:YES];
+                                               [nav pushViewController:pa animated:YES];
                                            }
                                        }];
 }
@@ -177,6 +181,18 @@
         }
         
     }else{
+        cell.imageView.image = [UIImage imageNamed:@"zfb"];
+        
+        
+        CGSize itemSize = CGSizeMake(30, 30);
+        UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
+        CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+        [cell.imageView.image drawInRect:imageRect];
+        cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        
+
         cell.textLabel.text = @"支付宝";
     }
     return cell;
@@ -191,6 +207,14 @@
     }
     return 30;
 }
+
+
+//- table
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//
+//    return 20;
+//}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     

@@ -39,15 +39,15 @@
 - (instancetype)init{
     if (self = [super init]) {
        
-        self.upStatus = 0;
-        self.downStatus = 0;
+        self.upStatus = 1;
+        self.downStatus = 1;
         
         
         
         self.upCheck = [[UIImageView alloc] init];
         self.upCheck.userInteractionEnabled = YES;
         [self addSubview:self.upCheck];
-        self.upCheck.image = [UIImage imageNamed:@"orderCheckOut"];
+        self.upCheck.image = [UIImage imageNamed:@"orderCheckOn"];
         [self.upCheck mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.height.width.mas_equalTo(kAdaptedHeight(20));
@@ -101,7 +101,7 @@
         self.downCheck = [[UIImageView alloc] init];
         self.downCheck.userInteractionEnabled = YES;
         [self addSubview:self.downCheck];
-        self.downCheck.image = [UIImage imageNamed:@"orderCheckOut"];
+        self.downCheck.image = [UIImage imageNamed:@"orderCheckOn"];
         [self.downCheck mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.mas_equalTo(kAdaptedHeight(20));
             make.top.mas_equalTo(self.upCheck.mas_bottom).mas_offset(kAdaptedHeight(10));
@@ -137,8 +137,8 @@
         
         
         self.btn = [[UIButton alloc] init];
-        [self.btn setBackgroundColor:LWColor(242, 241, 243)];
-        self.btn.userInteractionEnabled = NO;
+        [self.btn setBackgroundColor:AppMainColor];
+//        self.btn.userInteractionEnabled = NO;
         [self addSubview:self.btn];
         self.btn.layer.cornerRadius = 5;
         self.btn.layer.masksToBounds = YES;

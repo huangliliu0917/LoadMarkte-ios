@@ -156,6 +156,8 @@
         if (orderModel.thirdAuthUrl && orderModel.thirdAuthUrl.length) {
             if ([orderModel.thirdAuthUrl rangeOfString:@"gh_credit://authTaobao"].location != NSNotFound) {
                 [self openAfterthing:0];
+            }else if([orderModel.thirdAuthUrl rangeOfString:@"gh_credit_authjindong"].location != NSNotFound){
+                [self openAfterthing:1];
             }else{
                 PushWebViewController * vc =[[PushWebViewController alloc] init];
                 vc.funUrl = orderModel.thirdAuthUrl;
@@ -177,7 +179,13 @@
     PBBaseReq *br = [PBBaseReq new];
     br.partnerCode=partner_code;//合作方code
     br.partnerKey = partner_key;//合作方key
-    br.channel_code = @"005003";//授权渠道code
+    // 005003 是淘宝  //京东 005011
+    if (type==0) {
+       br.channel_code = @"005003";//授权渠道code
+    }else{
+       br.channel_code = @"005011";//授权渠道code
+    }
+    
     /*
      基础设置
      如果不用自定义PBBaseSet，withBaseSet传nil
