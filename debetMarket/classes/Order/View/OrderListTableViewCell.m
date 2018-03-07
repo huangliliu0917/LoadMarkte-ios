@@ -166,7 +166,14 @@
     
 
     if([orderModel.status intValue] == 2 && (orderModel.orderType == 3 || orderModel.orderType == 4)){
-        self.orderName.text = [NSString stringWithFormat:@"%@(数据正在获取中,请稍后...)",orderModel.orderName];
+        
+        NSString * str = [NSString stringWithFormat:@"%@(数据正在获取中,请稍后...)",orderModel.orderName];
+        NSRange rang = [str rangeOfString:@"(数据正在获取中,请稍后...)"];
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%@(数据正在获取中,请稍后...)",orderModel.orderName]];
+        [attributeStr addAttribute:NSForegroundColorAttributeName
+                             value:[UIColor lightGrayColor]
+                             range:rang];
+        self.orderName.attributedText = attributeStr;
     }else{
        self.orderName.text = orderModel.orderName;
     }
