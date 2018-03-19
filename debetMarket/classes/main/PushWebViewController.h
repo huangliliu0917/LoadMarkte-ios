@@ -8,9 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PushWebViewDelegate <NSObject>
+
+
+
+@end
+
+
 @interface PushWebViewController : HTViewController
+
+//首页列表
+@property(nonatomic,strong) HomeListModel * homeModel;
 
 /***/
 @property(nonatomic,strong) NSString * funUrl;
+
+
+@property(nonatomic,weak) id <PushWebViewDelegate > delegate;
 
 @end

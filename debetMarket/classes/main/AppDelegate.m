@@ -75,7 +75,7 @@
     //[self setupInit];
     
     
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     [self setUpShareSdk];
     

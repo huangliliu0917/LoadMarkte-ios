@@ -70,6 +70,9 @@
     NSMutableDictionary * parame = [NSMutableDictionary dictionary];
     parame[@"pageIndex"] = @(++self.pageIndex);
     parame[@"pageSize"] = @"10";
+    if (self.model) {
+       parame[@"inviteeId"] = @(self.model.userId);
+    }
     [HTNetworkingTool HTNetworkingToolPost:@"order/list" parame:parame isHud:NO success:^(id json) {
         LWLog(@"%@",parame);
         BaseInterface * base = [BaseInterface mj_objectWithKeyValues:json];
@@ -93,6 +96,9 @@
     parame[@"pageIndex"] = @"1";
     self.pageIndex = 1;
     parame[@"pageSize"] = @"10";
+    if (self.model) {
+        parame[@"inviteeId"] = @(self.model.userId);
+    }
     [HTNetworkingTool HTNetworkingToolPost:@"order/list" parame:parame isHud:NO success:^(id json) {
         LWLog(@"%@",parame);
         BaseInterface * base = [BaseInterface mj_objectWithKeyValues:json];

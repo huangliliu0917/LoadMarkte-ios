@@ -11,7 +11,7 @@
 #import "ContentTableViewCell.h"
 #import "DebetDetailViewController.h"
 #import "UIView+EaseBlankPage.h"
-@interface DebetTableViewController ()<UITableViewDelegate,UITableViewDataSource,HeadIconViewDelegate>
+@interface DebetTableViewController ()<UITableViewDelegate,UITableViewDataSource,HeadIconViewDelegate,LoginViewControllerDelegate>
 
 @property(nonatomic,strong) HeadIconView * head;
 
@@ -238,11 +238,54 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    DebetDetailViewController * debetDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DebetDetailViewController"];
     HomeListModel * model = [self.listData objectAtIndex:indexPath.row];
-    debetDetailViewController.model = model;
-    [self.navigationController pushViewController:debetDetailViewController animated:YES];
+    [self ContentViewDelegate:model];
+    
 }
+
+
+
+- (void)ContentViewDelegate:(HomeListModel *)model{
+    
+    //判断是否登陆
+    UserInfo * usermodel = (UserInfo *)[[HTTool HTToolShare] HTToolUnArchiveObject:@"UserInfo"];
+    if (usermodel==nil) {//为登陆
+        LoginViewController * uer = [[LoginViewController alloc] init];
+        uer.homeModel = model;
+        uer.delegate = self;
+        [self presentViewController:[[HTNavigationController alloc] initWithRootViewController:uer] animated:YES completion:nil];
+    }else{
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        dict[@"projectId"] = model.loanId;
+        [HTNetworkingTool HTNetworkingToolPost:@"project/applyLog" parame:dict isHud:YES success:^(id json) {
+            LWLog(@"%@",json);
+            
+        } failure:^(NSError *error) {
+            LWLog(@"%@",[error description]);
+        }];
+        PushWebViewController *vc = [[PushWebViewController alloc] init];
+        LWLog(@"%@",[model mj_keyValues]);
+        //vc.delegate  = self;
+        vc.funUrl = model.applyUrl;
+        vc.homeModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
+
+- (void)logionSuccess:(int)type withData:(HomeListModel *)model{
+    
+    if (model) {
+        PushWebViewController *vc = [[PushWebViewController alloc] init];
+        LWLog(@"%@",[model mj_keyValues]);
+        //vc.delegate  = self;
+        vc.funUrl = model.applyUrl;
+        vc.homeModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

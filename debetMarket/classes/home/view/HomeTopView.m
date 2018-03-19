@@ -32,6 +32,19 @@
     self.secondLable.font = kAdaptedFontSize(14);
     self.thirdLable.font = kAdaptedFontSize(14);
     
+
+//    homeTopView.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(180));
+//    self.homeTopView = homeTopView;
+//    [self.view addSubview:homeTopView];
+    //
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(180));
+//    gradient.colors = [NSArray arrayWithObjects:
+//                       (id)[UIColor colorWithRed:0 green:143/255.0 blue:234/255.0 alpha:1.0].CGColor,
+//                       (id)[UIColor colorWithRed:0 green:173/255.0 blue:234/255.0 alpha:1.0].CGColor,
+//                       (id)[UIColor whiteColor].CGColor, nil];
+//    [self.layer addSublayer:gradient];
+    
     
     self.firstView.userInteractionEnabled = YES;
     

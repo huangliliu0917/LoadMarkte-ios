@@ -70,7 +70,7 @@
     
     
 //    //导航栏颜色
-    [NavBar setBarTintColor:LWColor(236, 36, 43)];
+    [NavBar setBarTintColor:LWColor(245, 88, 84)];
 //    //导航栏按钮颜色
 //    [NavBar setTintColor:TopNavTitleViewTitleColor];
     

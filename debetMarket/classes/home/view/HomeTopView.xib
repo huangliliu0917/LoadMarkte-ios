@@ -43,32 +43,6 @@
                         <constraint firstItem="e8G-49-hfC" firstAttribute="leading" secondItem="eKN-TD-4kc" secondAttribute="leading" constant="15" id="rh8-5p-6hN"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TeZ-AZ-abw">
-                    <rect key="frame" x="142" y="0.0" width="72" height="106"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yys" translatesAutoresizingMaskIntoConstraints="NO" id="O54-Lq-Zcj">
-                            <rect key="frame" x="15" y="12" width="42" height="42"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="O54-Lq-Zcj" secondAttribute="height" id="PBW-De-7Ts"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运营商风险检测" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRy-Q0-g7D">
-                            <rect key="frame" x="-20" y="59" width="112" height="12"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="O54-Lq-Zcj" firstAttribute="top" secondItem="TeZ-AZ-abw" secondAttribute="top" constant="12" id="FKd-gD-zAb"/>
-                        <constraint firstAttribute="trailing" secondItem="rRy-Q0-g7D" secondAttribute="trailing" constant="-20" id="MAk-45-Fg0"/>
-                        <constraint firstItem="rRy-Q0-g7D" firstAttribute="top" secondItem="O54-Lq-Zcj" secondAttribute="bottom" constant="5" id="RE2-YL-qad"/>
-                        <constraint firstItem="O54-Lq-Zcj" firstAttribute="leading" secondItem="TeZ-AZ-abw" secondAttribute="leading" constant="15" id="bhw-uj-ykm"/>
-                        <constraint firstItem="rRy-Q0-g7D" firstAttribute="leading" secondItem="TeZ-AZ-abw" secondAttribute="leading" constant="-20" id="vqn-Ue-TmX"/>
-                        <constraint firstAttribute="trailing" secondItem="O54-Lq-Zcj" secondAttribute="trailing" constant="15" id="z6f-cH-v3v"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JA6-Ik-8FQ">
                     <rect key="frame" x="254" y="0.0" width="72" height="106"/>
                     <subviews>
@@ -93,6 +67,32 @@
                         <constraint firstItem="P3J-2k-3if" firstAttribute="leading" secondItem="JA6-Ik-8FQ" secondAttribute="leading" constant="-20" id="foH-CO-tAp"/>
                         <constraint firstItem="P3J-2k-3if" firstAttribute="top" secondItem="Ley-qL-Kt1" secondAttribute="bottom" constant="5" id="i3q-jB-cRS"/>
                         <constraint firstAttribute="trailing" secondItem="Ley-qL-Kt1" secondAttribute="trailing" constant="15" id="r2w-eh-ik2"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TeZ-AZ-abw">
+                    <rect key="frame" x="142" y="0.0" width="72" height="106"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yys" translatesAutoresizingMaskIntoConstraints="NO" id="O54-Lq-Zcj">
+                            <rect key="frame" x="15" y="12" width="42" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="O54-Lq-Zcj" secondAttribute="height" id="PBW-De-7Ts"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="运营商风险检测" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRy-Q0-g7D">
+                            <rect key="frame" x="-20" y="59" width="112" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="O54-Lq-Zcj" firstAttribute="top" secondItem="TeZ-AZ-abw" secondAttribute="top" constant="12" id="FKd-gD-zAb"/>
+                        <constraint firstAttribute="trailing" secondItem="rRy-Q0-g7D" secondAttribute="trailing" constant="-20" id="MAk-45-Fg0"/>
+                        <constraint firstItem="rRy-Q0-g7D" firstAttribute="top" secondItem="O54-Lq-Zcj" secondAttribute="bottom" constant="5" id="RE2-YL-qad"/>
+                        <constraint firstItem="O54-Lq-Zcj" firstAttribute="leading" secondItem="TeZ-AZ-abw" secondAttribute="leading" constant="15" id="bhw-uj-ykm"/>
+                        <constraint firstItem="rRy-Q0-g7D" firstAttribute="leading" secondItem="TeZ-AZ-abw" secondAttribute="leading" constant="-20" id="vqn-Ue-TmX"/>
+                        <constraint firstAttribute="trailing" secondItem="O54-Lq-Zcj" secondAttribute="trailing" constant="15" id="z6f-cH-v3v"/>
                     </constraints>
                 </view>
             </subviews>
@@ -123,7 +123,7 @@
                 <outlet property="thirdLable" destination="P3J-2k-3if" id="tyh-Or-XJt"/>
                 <outlet property="thirdView" destination="JA6-Ik-8FQ" id="OZx-r2-2On"/>
             </connections>
-            <point key="canvasLocation" x="-22" y="-198"/>
+            <point key="canvasLocation" x="-40" y="-206"/>
         </view>
     </objects>
     <resources>

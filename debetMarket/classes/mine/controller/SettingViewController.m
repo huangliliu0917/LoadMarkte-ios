@@ -35,6 +35,7 @@
     
     self.navigationItem.title = @"设置";
     
+    self.loginOutButton.backgroundColor = AppMainColor;
     self.loginOutButton.layer.cornerRadius = 5;
     self.loginOutButton.layer.masksToBounds = YES;
     

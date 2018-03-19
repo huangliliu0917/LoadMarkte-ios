@@ -43,6 +43,15 @@
         self.downStatus = 1;
         
         
+        UIView * wa = [[UIView alloc] init];
+        [self addSubview:wa];
+        wa.backgroundColor = LWColor(242, 241, 243);
+        [wa mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(8);
+            make.top.mas_equalTo(self.mas_top);
+            make.left.mas_equalTo(self.mas_left);
+            make.right.mas_equalTo(self.mas_right);
+        }];
         
         self.upCheck = [[UIImageView alloc] init];
         self.upCheck.userInteractionEnabled = YES;
@@ -51,7 +60,7 @@
         [self.upCheck mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.height.width.mas_equalTo(kAdaptedHeight(20));
-            make.top.mas_equalTo(self.mas_top).mas_offset(kAdaptedHeight(10));
+            make.top.mas_equalTo(self.mas_top).mas_offset(kAdaptedHeight(15));
             make.left.mas_equalTo(self.mas_left).mas_offset(kAdaptedWidth(10));
             
         }];

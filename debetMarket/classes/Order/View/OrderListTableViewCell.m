@@ -328,7 +328,7 @@
 - (void)setupView{
     
     [self.contentView addSubview:self.headView];
-    self.headView.backgroundColor = [UIColor redColor];
+    self.headView.backgroundColor = AppMainColor;
     [self.headView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);

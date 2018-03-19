@@ -430,6 +430,10 @@
         }
     }];
 
+    if(self.delegate){
+        
+        
+    }
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{

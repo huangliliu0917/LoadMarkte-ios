@@ -117,15 +117,32 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"xxxxx"];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    if (self.type) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     RenZhengModel * model = [self.dataArray objectAtIndex:indexPath.row];
     cell.textLabel.text = model.userName;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"注册时间 %@",model.inviteTime];
     return cell;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    RenZhengModel * model = [self.dataArray objectAtIndex:indexPath.row];
+    if (self.type) {
+        OrderTableViewController * vc = [[OrderTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

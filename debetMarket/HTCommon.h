@@ -55,7 +55,7 @@ green:((CGFloat)((rgbValue & 0xFF00) >> 8)) / 255.0 \
 blue:((CGFloat)(rgbValue & 0xFF)) / 255.0 alpha:(a)]
 
 //2、APP主题色
-#define AppMainColor LWColor(236, 36, 43)
+#define AppMainColor LWColor(245, 88, 84)
 
 //3 App版本
 #define AppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]

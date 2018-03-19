@@ -32,6 +32,7 @@
     delegate.currentVC = self;
     
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navigationItem.title = @"订单详情";
     self.orderView = [[OrderHeadView alloc] init];
     self.orderView.frame = CGRectMake(0, 0, KScreenWidth, 93);
@@ -51,6 +52,7 @@
     }
     
 }
+
 
 
 - (void)getOrderInfo{
@@ -195,6 +197,7 @@
 
         cell.textLabel.text = @"支付宝";
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

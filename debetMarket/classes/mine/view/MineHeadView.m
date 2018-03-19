@@ -66,6 +66,7 @@
             make.height.mas_equalTo(self.mas_height).multipliedBy(0.7);
         }];
         
+        self.mineTopView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navColor"]];
         __weak typeof(self) wself = self;
         self.mineTopView.block = ^{
             LWLog(@"xxxxxxx");

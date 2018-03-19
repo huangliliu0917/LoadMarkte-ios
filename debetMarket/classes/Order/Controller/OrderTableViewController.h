@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "RenZhengModel.h"
+
 @interface OrderTableViewController : UITableViewController
 
+// 认证列表
+@property(nonatomic,strong) RenZhengModel * model;
 @end

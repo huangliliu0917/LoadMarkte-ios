@@ -163,7 +163,18 @@
             LWLog(@"%@",[model mj_keyValues]);
             [[HTTool HTToolShare] HTToolArchiveRootObject:model withPath:@"UserInfo"];
 
-            [self dismissViewControllerAnimated:YES completion:nil];
+            __weak typeof (self) wslef = self;
+            [self dismissViewControllerAnimated:YES completion:^{
+                if (wslef.homeModel) {
+                    if ([wslef.delegate respondsToSelector:@selector(logionSuccess:withData:)]) {
+                            [wslef.delegate logionSuccess:1 withData:wslef.homeModel];
+                    }
+                }else if(wslef.isHomeTop){
+                    if ([wslef.delegate respondsToSelector:@selector(logionSuccessToS:)]) {
+                        [wslef.delegate logionSuccessToS:wslef.type];
+                    }
+                }
+            }];
             
         }else{
             [SVProgressHUD showErrorWithStatus:base.resultMsg];

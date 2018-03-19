@@ -13,7 +13,7 @@
 #import "DebetDetailViewController.h"
 #import "HeiMingViewController.h"
 
-@interface HomeViewController ()<HomeTopViewDelegate,ContentViewDelegate>
+@interface HomeViewController ()<HomeTopViewDelegate,ContentViewDelegate,PushWebViewDelegate,LoginViewControllerDelegate>
 
 @property(nonatomic,strong) HomeTopView * homeTopView;
 @property(nonatomic,strong) HotPublish * hotPublish;
@@ -106,18 +106,26 @@
 
 - (void)HomeTopView:(int)type{
 
-    if (type == 1) {
-        HeiMingDanCaXunTableViewController * vc = [[HeiMingDanCaXunTableViewController alloc] initWithStyle:UITableViewStylePlain];
-        vc.cate = 1;
-        vc.type = 0;
-        [self.navigationController pushViewController:vc animated:YES];
+    LWLog(@"%d",type);
+    UserInfo * usermodel = (UserInfo *)[[HTTool HTToolShare] HTToolUnArchiveObject:@"UserInfo"];
+    if (usermodel == nil) { // 没登陆
+        LoginViewController * uer = [[LoginViewController alloc] init];
+        uer.isHomeTop = 1;
+        uer.type = type;
+        uer.delegate = self;
+        [self presentViewController:[[HTNavigationController alloc] initWithRootViewController:uer] animated:YES completion:nil];
     }else{
-        HeiMingViewController * vc = [[HeiMingViewController alloc] init];
-        vc.type = type;
-        [self.navigationController pushViewController:vc animated:YES];
+        if (type == 1) {
+            HeiMingDanCaXunTableViewController * vc = [[HeiMingDanCaXunTableViewController alloc] initWithStyle:UITableViewStylePlain];
+            vc.cate = 1;
+            vc.type = 0;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            HeiMingViewController * vc = [[HeiMingViewController alloc] init];
+            vc.type = type;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
-    
-
 }
 
 - (void)setupInit{
@@ -135,7 +143,18 @@
     homeTopView.frame = CGRectMake(0, 0, KScreenWidth, kAdaptedHeight(180));
     self.homeTopView = homeTopView;
     [self.view addSubview:homeTopView];
+    
+    homeTopView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navColor"]];
 //
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = homeTopView.bounds;
+//    gradient.colors = [NSArray arrayWithObjects:
+//                       (id)[UIColor colorWithRed:0 green:143/255.0 blue:234/255.0 alpha:1.0].CGColor,
+//                       (id)[UIColor colorWithRed:0 green:173/255.0 blue:234/255.0 alpha:1.0].CGColor,
+//                       (id)[UIColor whiteColor].CGColor, nil];
+//    [homeTopView.layer addSublayer:gradient];
+//
+//    self.homeTopView.backgroundColor = [UIColor yellowColor];
     
     
     [[HTCheckVersionTool sharedCheckManager] checkVersion:self];
@@ -171,9 +190,56 @@
 
 - (void)ContentViewDelegate:(HomeListModel *)model{
     
-    DebetDetailViewController * debetDetailViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DebetDetailViewController"];
-//    HomeListModel * model = [self.listData objectAtIndex:indexPath.row];
-    debetDetailViewController.model = model;
-    [self.navigationController pushViewController:debetDetailViewController animated:YES];
+    //判断是否登陆
+    UserInfo * usermodel = (UserInfo *)[[HTTool HTToolShare] HTToolUnArchiveObject:@"UserInfo"];
+    if (usermodel==nil) {//为登陆
+        LoginViewController * uer = [[LoginViewController alloc] init];
+        uer.homeModel = model;
+        uer.delegate = self;
+        [self presentViewController:[[HTNavigationController alloc] initWithRootViewController:uer] animated:YES completion:nil];
+    }else{
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        dict[@"projectId"] = model.loanId;
+        [HTNetworkingTool HTNetworkingToolPost:@"project/applyLog" parame:dict isHud:YES success:^(id json) {
+            LWLog(@"%@",json);
+            
+        } failure:^(NSError *error) {
+            LWLog(@"%@",[error description]);
+        }];
+        PushWebViewController *vc = [[PushWebViewController alloc] init];
+        LWLog(@"%@",[model mj_keyValues]);
+        //vc.delegate  = self;
+        vc.funUrl = model.applyUrl;
+        vc.homeModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
+}
+
+
+- (void)logionSuccess:(int)type withData:(HomeListModel *)model{
+    
+    if (model) {
+        PushWebViewController *vc = [[PushWebViewController alloc] init];
+        LWLog(@"%@",[model mj_keyValues]);
+        //vc.delegate  = self;
+        vc.funUrl = model.applyUrl;
+        vc.homeModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
+
+- (void)logionSuccessToS:(int)type{
+    if (type == 1) {
+        HeiMingDanCaXunTableViewController * vc = [[HeiMingDanCaXunTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        vc.cate = 1;
+        vc.type = 0;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        HeiMingViewController * vc = [[HeiMingViewController alloc] init];
+        vc.type = type;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end
